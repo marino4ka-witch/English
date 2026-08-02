@@ -3,12 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>✦ Grimoire · Английский Марины ✦</title>
+<title>Night English</title>
 <style>
   :root{
-    --gold:#e8bd6d; --gold2:#f4d99b; --violet:#b06bff; --violet2:#c99bff;
-    --emerald:#5fe0a0; --blood:#e0574f; --parch:#efe4cf; --muted:#a99bbf;
-    --ink:#0a0611; --stone:#191029; --stone2:#241634; --line:#4a2f6e;
+    --bg:#0c0a09; --screen:#141110; --panel:#1c1815; --panel2:#231d19;
+    --gold:#c9a24b; --gold2:#e6c777; --goldsoft:#a98b3f;
+    --wine:#5a181c; --wine2:#7a2328; --wineln:#8c5a3a;
+    --green:#4f9d6b; --greenbg:#16281d; --red:#a34a45; --redbg:#2a1614;
+    --parch:#ece2cf; --muted:#9b8f7c; --line:#2f2721;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;height:100%}
@@ -16,134 +18,193 @@
     font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
     color:var(--parch);
     background:
-      radial-gradient(120% 80% at 50% -10%, #2a123f 0%, #140a22 45%, #07040d 100%),
-      #07040d;
-    display:flex;align-items:center;justify-content:center;overflow:hidden;
-  }
-  /* плавающие магические искры */
-  .spark{position:fixed;bottom:-20px;width:4px;height:4px;border-radius:50%;
-    background:var(--gold);box-shadow:0 0 8px 2px var(--gold);opacity:0;
+      radial-gradient(120% 70% at 50% -5%, #241a12 0%, #120d0a 45%, #060504 100%),
+      #060504;
+    display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .ember{position:fixed;bottom:-16px;width:3px;height:3px;border-radius:50%;
+    background:var(--gold);box-shadow:0 0 8px 2px rgba(201,162,75,.7);opacity:0;
     animation:rise linear infinite;pointer-events:none;z-index:0}
-  @keyframes rise{
-    0%{transform:translateY(0) scale(.6);opacity:0}
-    15%{opacity:.9}
-    100%{transform:translateY(-105vh) scale(1.1);opacity:0}}
+  @keyframes rise{0%{transform:translateY(0) scale(.5);opacity:0}
+    15%{opacity:.8}100%{transform:translateY(-104vh) scale(1);opacity:0}}
 
-  /* рамка 9:16 — гримуар */
-  .frame{
-    position:relative;z-index:1;
+  /* телефон 9:16 */
+  .phone{position:relative;z-index:1;display:flex;flex-direction:column;
     width:min(100vw, calc(100vh * 9 / 16));
     height:min(100vh, calc(100vw * 16 / 9));
+    background:linear-gradient(180deg,#151110 0%,#0f0c0a 100%);
+    border:1px solid #241d17;border-radius:26px;overflow:hidden;
+    box-shadow:0 0 0 1px rgba(201,162,75,.12),0 0 70px rgba(0,0,0,.7),
+      inset 0 0 90px rgba(0,0,0,.55)}
+
+  .status{display:flex;justify-content:space-between;align-items:center;
+    padding:9px 18px 3px;font-size:12px;color:var(--muted);flex:0 0 auto;
+    font-family:system-ui,sans-serif}
+  .status .dots{letter-spacing:1px}
+
+  .brand{display:flex;align-items:center;gap:9px;padding:4px 18px 8px;flex:0 0 auto}
+  .brand svg{width:30px;height:30px;flex:0 0 auto}
+  .brand .bt{line-height:1}
+  .brand .n1{font-size:15px;letter-spacing:3px;color:var(--gold2);font-weight:700}
+  .brand .n2{font-size:15px;letter-spacing:3px;color:var(--parch);font-weight:700}
+  .brand .bs{font-size:9px;letter-spacing:2px;color:var(--goldsoft);
+    text-transform:uppercase;margin-top:2px;font-family:system-ui,sans-serif}
+
+  .head{padding:6px 18px 4px;flex:0 0 auto;display:flex;
+    justify-content:space-between;align-items:flex-end;border-top:1px solid var(--line)}
+  .head .ht{font-size:19px;color:var(--parch);letter-spacing:.5px}
+  .head .hsub{font-size:11px;color:var(--muted);font-family:system-ui,sans-serif;margin-top:1px}
+  .head .hpos{font-size:12px;color:var(--gold);font-family:system-ui,sans-serif}
+
+  .screen{flex:1 1 auto;overflow-y:auto;padding:12px 16px 8px;
+    display:flex;flex-direction:column}
+
+  /* карта-гримуар */
+  .card{position:relative;flex:0 0 auto;border-radius:14px;
     background:
-      radial-gradient(140% 60% at 50% 0%, rgba(176,107,255,.18), transparent 60%),
-      linear-gradient(180deg,#1a1029 0%, #120a1f 100%);
-    border:1px solid var(--line);
-    border-radius:22px;
-    box-shadow:0 0 0 1px rgba(232,189,109,.25), 0 0 60px rgba(176,107,255,.25),
-      inset 0 0 80px rgba(0,0,0,.6);
-    display:flex;flex-direction:column;overflow:hidden;padding:16px 15px;
-  }
-  .frame::before{content:"";position:absolute;inset:7px;border-radius:16px;
-    border:1px solid rgba(232,189,109,.18);pointer-events:none}
+      radial-gradient(90% 60% at 50% 12%, rgba(230,199,119,.10), transparent 60%),
+      linear-gradient(180deg,#5f1a1f 0%,#401114 100%);
+    border:1px solid var(--wineln);padding:26px 20px 24px;text-align:center;
+    cursor:pointer;user-select:none;min-height:230px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    box-shadow:inset 0 0 0 1px rgba(201,162,75,.35),
+      inset 0 0 46px rgba(0,0,0,.5),0 6px 24px rgba(0,0,0,.5)}
+  .card .em{width:26px;height:26px;opacity:.85;margin-bottom:6px}
+  .card .word{font-size:34px;font-weight:700;color:var(--gold2);line-height:1.1;
+    text-shadow:0 1px 10px rgba(0,0,0,.6)}
+  .card .rule{width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:13px 0}
+  .card .tr{font-size:19px;color:#e9d6a3;font-style:italic}
+  .card .bk{font-size:22px;color:var(--parch);margin-top:5px}
+  .card .hint{font-size:11px;color:#d8b98e;opacity:.75;margin-top:16px;
+    font-family:system-ui,sans-serif}
 
-  header{text-align:center;flex:0 0 auto}
-  .rune{color:var(--gold);letter-spacing:6px;font-size:15px;opacity:.85}
-  h1{font-size:20px;margin:2px 0 0;letter-spacing:1px;
-    background:linear-gradient(180deg,var(--gold2),var(--gold));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    text-shadow:0 0 18px rgba(232,189,109,.35)}
-  .sub{color:var(--muted);font-size:11px;margin-top:2px;font-style:italic}
+  .row{display:flex;gap:11px;margin-top:14px;flex:0 0 auto}
+  .btn{flex:1;font-family:system-ui,sans-serif;font-size:14px;padding:13px;
+    border-radius:11px;border:1px solid var(--line);cursor:pointer;
+    background:var(--panel);color:var(--parch);transition:.15s}
+  .btn:hover{border-color:var(--gold)}
+  .know{background:var(--greenbg);border-color:#2f5c41;color:#8fe0ac}
+  .know:hover{box-shadow:0 0 12px rgba(79,157,107,.35)}
+  .dont{background:var(--redbg);border-color:#5a2b28;color:#e2a19c}
+  .dont:hover{box-shadow:0 0 12px rgba(163,74,69,.35)}
 
-  .bar{display:flex;gap:6px;justify-content:center;margin-top:12px;flex:0 0 auto}
-  .bar.small{margin-top:7px}
-  button,select,label.file{
-    font-family:inherit;background:linear-gradient(180deg,var(--stone2),var(--stone));
-    color:var(--parch);border:1px solid var(--line);border-radius:11px;
-    padding:9px 11px;font-size:13px;cursor:pointer;transition:.18s;flex:1;min-width:0}
-  .bar.small button,.bar.small label{font-size:12px;padding:8px 8px}
-  button:hover,label.file:hover{border-color:var(--gold);box-shadow:0 0 12px rgba(232,189,109,.25)}
-  button.active{background:linear-gradient(180deg,#4a2b7a,#33205a);
-    border-color:var(--violet);color:#fff;box-shadow:0 0 16px rgba(176,107,255,.45)}
+  /* викторина */
+  .q{font-size:13px;color:var(--muted);font-family:system-ui,sans-serif;margin:2px 0 4px}
+  .qword{font-size:26px;color:var(--gold2);text-align:center;margin:6px 0 14px}
+  .opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+    margin:7px 0;padding:13px 14px;border-radius:11px;border:1px solid var(--line);
+    background:var(--panel);color:var(--parch);cursor:pointer;font-size:16px;
+    font-family:system-ui,sans-serif}
+  .opt:hover{border-color:var(--gold)}
+  .opt .lt{width:24px;height:24px;flex:0 0 auto;border-radius:6px;border:1px solid var(--goldsoft);
+    color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:12px}
+  .opt.correct{background:var(--greenbg);border-color:var(--green)}
+  .opt.correct .lt{background:var(--green);color:#0c0a09;border-color:var(--green)}
+  .opt.wrong{background:var(--redbg);border-color:var(--red)}
+  .opt.wrong .lt{background:var(--red);color:#0c0a09;border-color:var(--red)}
 
-  .progress{text-align:center;font-size:11px;color:var(--muted);margin-top:11px;flex:0 0 auto;
-    font-variant:small-caps;letter-spacing:.5px}
-  .progress b{color:var(--gold2)}
-  .divider{flex:0 0 auto;text-align:center;color:var(--line);font-size:12px;margin:9px 0 2px}
+  /* печать */
+  input[type=text]{width:100%;padding:14px;font-size:17px;border-radius:11px;
+    border:1px solid var(--line);background:var(--panel);color:var(--parch);
+    margin-top:12px;font-family:system-ui,sans-serif}
+  input[type=text]:focus{outline:none;border-color:var(--gold);
+    box-shadow:0 0 12px rgba(201,162,75,.3)}
+  .tip{margin-top:12px;padding:12px 14px;border-radius:11px;border:1px solid var(--line);
+    background:var(--panel);color:var(--muted);font-size:12px;font-family:system-ui,sans-serif;line-height:1.5}
+  .tip b{color:var(--gold)}
+  .msg{text-align:center;margin-top:12px;font-size:15px;min-height:22px;font-family:system-ui,sans-serif}
+  .primary{width:100%;margin-top:12px;padding:14px;border-radius:11px;cursor:pointer;
+    font-family:system-ui,sans-serif;font-size:15px;color:var(--gold2);
+    background:linear-gradient(180deg,#2a2119,#1d1712);border:1px solid var(--goldsoft)}
+  .primary:hover{box-shadow:0 0 14px rgba(201,162,75,.3)}
 
-  #stage{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;
-    overflow-y:auto;padding:4px 2px}
+  /* управление */
+  .sect{font-size:12px;color:var(--goldsoft);text-transform:uppercase;letter-spacing:1.5px;
+    font-family:system-ui,sans-serif;margin:16px 0 8px}
+  .seg{display:flex;gap:10px}
+  .seg button{flex:1;padding:12px;border-radius:11px;border:1px solid var(--line);
+    background:var(--panel);color:var(--muted);cursor:pointer;font-family:system-ui,sans-serif;font-size:14px}
+  .seg button.on{background:linear-gradient(180deg,#3a2c1c,#2a2015);
+    border-color:var(--gold);color:var(--gold2)}
+  .stats{display:flex;gap:10px;margin-top:2px}
+  .chip{flex:1;padding:12px;border-radius:11px;text-align:center;font-family:system-ui,sans-serif}
+  .chip .cv{font-size:24px;font-weight:700}.chip .cl{font-size:11px;opacity:.85}
+  .chip.g{background:var(--greenbg);border:1px solid #2f5c41;color:#8fe0ac}
+  .chip.r{background:var(--redbg);border:1px solid #5a2b28;color:#e2a19c}
+  .gauge{display:flex;flex-direction:column;align-items:center;margin-top:16px}
+  .gauge svg{width:130px;height:130px}
+  .gauge .gt{margin-top:-92px;text-align:center}
+  .gauge .gn{font-size:30px;color:var(--gold2);font-weight:700}
+  .gauge .gl{font-size:11px;color:var(--muted);font-family:system-ui,sans-serif}
+  .gauge .gp{margin-top:52px;font-size:12px;color:var(--gold);font-family:system-ui,sans-serif}
 
-  .card{position:relative;
-    background:
-      radial-gradient(90% 70% at 50% 25%, rgba(176,107,255,.14), transparent 70%),
-      linear-gradient(180deg,#241635,#1a0f2a);
-    border:1px solid var(--line);border-radius:18px;
-    min-height:200px;display:flex;flex-direction:column;align-items:center;
-    justify-content:center;text-align:center;padding:24px 18px;cursor:pointer;
-    user-select:none;box-shadow:inset 0 0 40px rgba(0,0,0,.5),0 0 24px rgba(176,107,255,.15)}
-  .card::before{content:"✦";position:absolute;top:9px;left:13px;color:var(--gold);opacity:.4;font-size:13px}
-  .card::after{content:"✦";position:absolute;bottom:9px;right:13px;color:var(--gold);opacity:.4;font-size:13px}
-  .front{font-size:34px;font-weight:700;line-height:1.15;
-    color:var(--gold2);text-shadow:0 0 22px rgba(232,189,109,.4)}
-  .tr{color:var(--violet2);font-size:20px;margin-top:12px;font-style:italic}
-  .back{font-size:26px;font-weight:600;margin-top:6px;color:var(--parch)}
-  .hint{color:var(--muted);font-size:11px;margin-top:16px;font-style:italic;letter-spacing:.5px}
-
-  .row{display:flex;gap:10px;margin-top:14px;flex:0 0 auto}
-  .row button{flex:1;font-size:14px;padding:13px}
-  .know{border-color:var(--emerald);color:var(--emerald)}
-  .know:hover{background:rgba(95,224,160,.14);box-shadow:0 0 14px rgba(95,224,160,.3)}
-  .dont{border-color:var(--blood);color:#f0a19b}
-  .dont:hover{background:rgba(224,87,79,.14);box-shadow:0 0 14px rgba(224,87,79,.3)}
-
-  .opts{margin-top:12px}
-  .opt{display:block;width:100%;text-align:left;margin:7px 0;padding:13px 14px;font-size:16px}
-  .opt.correct{background:rgba(95,224,160,.18);border-color:var(--emerald)}
-  .opt.wrong{background:rgba(224,87,79,.18);border-color:var(--blood)}
-  input[type=text]{width:100%;padding:13px;font-size:17px;border-radius:11px;
-    border:1px solid var(--line);background:var(--stone);color:var(--parch);
-    margin-top:14px;font-family:inherit}
-  input[type=text]:focus{outline:none;border-color:var(--gold);box-shadow:0 0 14px rgba(232,189,109,.3)}
-  .msg{text-align:center;margin-top:12px;font-size:15px;min-height:22px}
-  .done{text-align:center;font-size:19px;padding:30px 10px;color:var(--gold2);line-height:1.5}
+  /* библиотека */
+  .impd{border-radius:14px;padding:18px;text-align:center;cursor:pointer;
+    background:linear-gradient(180deg,#241d16,#1a1510);border:1px dashed var(--goldsoft)}
+  .impd .ii{font-size:26px}.impd .il{font-size:15px;color:var(--gold2);margin-top:6px}
+  .impd .is{font-size:11px;color:var(--muted);font-family:system-ui,sans-serif;margin-top:3px}
+  .note{margin-top:12px;font-size:11px;color:var(--muted);font-family:system-ui,sans-serif;
+    text-align:center;line-height:1.5}
+  .lib .li{display:flex;align-items:center;gap:11px;padding:11px 4px;border-bottom:1px solid var(--line)}
+  .lib .lf{width:22px;text-align:center;color:var(--goldsoft)}
+  .lib .ln{font-size:13px;color:var(--parch)}
+  .lib .ld{font-size:10px;color:var(--muted);font-family:system-ui,sans-serif}
   .file input{display:none}
+
+  .done{text-align:center;font-size:18px;padding:34px 12px;color:var(--gold2);line-height:1.6}
+
+  /* нижние вкладки */
+  .tabs{display:flex;flex:0 0 auto;border-top:1px solid var(--line);
+    background:linear-gradient(180deg,#100c0a,#0a0806);padding:6px 4px 8px}
+  .tab{flex:1;background:none;border:none;cursor:pointer;color:var(--muted);
+    display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0;
+    font-family:system-ui,sans-serif;font-size:9.5px;letter-spacing:.3px}
+  .tab svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.6}
+  .tab.on{color:var(--gold2)}
+  .tab.on svg{filter:drop-shadow(0 0 5px rgba(201,162,75,.6))}
 </style>
 </head>
 <body>
-<div class="frame">
-  <header>
-    <div class="rune">☾ ⚝ ☽</div>
-    <h1>Grimoire of English</h1>
-    <div class="sub">заклинания слов · без интернета</div>
-  </header>
+<div class="phone">
+  <div class="status"><span>9:41</span><span class="dots">✦ ◗ ▮</span></div>
 
-  <div class="bar">
-    <button id="mFlip" class="active" onclick="setMode('flip')">🃏 Руны</button>
-    <button id="mQuiz" onclick="setMode('quiz')">📜 Ритуал</button>
-    <button id="mType" onclick="setMode('type')">⌨ Заклинание</button>
-  </div>
-  <div class="bar small">
-    <button id="dir" onclick="toggleDir()">EN → RU</button>
-    <button onclick="shuffleCards()">🔀 Перемешать</button>
-    <button onclick="restart()">↻ Заново</button>
-    <label class="file">📂 CSV<input type="file" accept=".csv" onchange="loadCsv(event)"></label>
+  <div class="brand">
+    <svg viewBox="0 0 40 40"><g fill="none" stroke="#c9a24b" stroke-width="1.4">
+      <circle cx="20" cy="20" r="17"/><circle cx="20" cy="20" r="12.5" stroke="#a98b3f"/>
+      </g><path d="M20 6 L23 20 L20 34 L17 20 Z" fill="#e6c777"/>
+      <path d="M6 20 L20 17 L34 20 L20 23 Z" fill="#a98b3f"/>
+      <circle cx="20" cy="20" r="2" fill="#e6c777"/></svg>
+    <div class="bt"><span class="n1">NIGHT</span> <span class="n2">ENGLISH</span>
+      <div class="bs">учи · помни · говори</div></div>
   </div>
 
-  <div class="progress">свиток <b><span id="pos">0</span></b> / <b><span id="total">0</span></b>
-    · познано <b id="known">0</b> · во тьме <b id="review">0</b></div>
-  <div class="divider">━━━ ✦ ━━━</div>
+  <div class="head"><div><div class="ht" id="htitle">Карточки</div>
+    <div class="hsub" id="hsub">Запоминай с умом</div></div>
+    <div class="hpos" id="hpos"></div></div>
 
-  <div id="stage"></div>
+  <div class="screen" id="screen"></div>
+
+  <nav class="tabs">
+    <button class="tab on" id="tFlip" onclick="setTab('flip')">
+      <svg viewBox="0 0 24 24"><rect x="4" y="6" width="13" height="14" rx="2"/><path d="M8 4h10a2 2 0 0 1 2 2v11"/></svg>Карточки</button>
+    <button class="tab" id="tQuiz" onclick="setTab('quiz')">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .9-1 1.7"/><circle cx="12" cy="17" r=".6" fill="currentColor" stroke="none"/></svg>Викторина</button>
+    <button class="tab" id="tType" onclick="setTab('type')">
+      <svg viewBox="0 0 24 24"><path d="M15 4l5 5L9 20H4v-5z"/><path d="M13 6l5 5"/></svg>Печать</button>
+    <button class="tab" id="tSet" onclick="setTab('settings')">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>Управление</button>
+    <button class="tab" id="tLib" onclick="setTab('library')">
+      <svg viewBox="0 0 24 24"><path d="M4 5v14a2 2 0 0 1 2-2h6V4H6a2 2 0 0 0-2 1z"/><path d="M20 5v14a2 2 0 0 0-2-2h-6V4h6a2 2 0 0 1 2 1z"/></svg>Библиотека</button>
+  </nav>
 </div>
 
 <script>
-// магические искры
-(function(){const n=14;for(let i=0;i<n;i++){const s=document.createElement('div');
-  s.className='spark';s.style.left=(6+i*6.6)+'%';
-  s.style.animationDuration=(7+(i%5)*2)+'s';s.style.animationDelay=(-i*0.9)+'s';
-  s.style.background=i%3?'#e8bd6d':'#b06bff';
-  s.style.boxShadow='0 0 8px 2px '+(i%3?'#e8bd6d':'#b06bff');
+// угли от свечей
+(function(){for(let i=0;i<12;i++){const s=document.createElement('div');
+  s.className='ember';s.style.left=(6+i*7.5)+'%';
+  s.style.animationDuration=(8+(i%5)*2)+'s';s.style.animationDelay=(-i*1.1)+'s';
   document.body.appendChild(s);}})();
+
+const EMBLEM='<svg class="em" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="#e6c777" stroke-width="1.3"/><path d="M20 7 L22.5 20 L20 33 L17.5 20 Z" fill="#e6c777"/><circle cx="20" cy="20" r="1.6" fill="#e6c777"/></svg>';
 
 // ── Встроенные карточки [английский, транскрипция, русский] ──
 const DEFAULT = [
@@ -845,93 +906,241 @@ const DEFAULT = [
 ["wizard", "/ˈwɪzəd/", "волшебник"],
 ["treasure", "/ˈtreʒər/", "сокровище"],
 ["Once upon a time", "/wʌns əˈpɒn ə taɪm/", "Жили-были..."],
-["They lived happily ever after.", "/ðeɪ lɪvd ˈhæpɪli ˈevər ˈɑːftər/", "И жили они долго и счастливо."]
+["They lived happily ever after.", "/ðeɪ lɪvd ˈhæpɪli ˈevər ˈɑːftər/", "И жили они долго и счастливо."],
+["clothes", "/kləʊðz/", "одежда"],
+["shirt", "/ʃɜːt/", "рубашка"],
+["T-shirt", "/ˈtiːʃɜːt/", "футболка"],
+["dress", "/dres/", "платье"],
+["skirt", "/skɜːt/", "юбка"],
+["trousers", "/ˈtraʊzəz/", "брюки"],
+["jeans", "/dʒiːnz/", "джинсы"],
+["shoes", "/ʃuːz/", "туфли / обувь"],
+["boots", "/buːts/", "ботинки / сапоги"],
+["socks", "/sɒks/", "носки"],
+["coat", "/kəʊt/", "пальто"],
+["jacket", "/ˈdʒækɪt/", "куртка"],
+["hat", "/hæt/", "шляпа / шапка"],
+["gloves", "/ɡlʌvz/", "перчатки"],
+["scarf", "/skɑːf/", "шарф"],
+["belt", "/belt/", "ремень"],
+["bag", "/bæɡ/", "сумка"],
+["glasses", "/ˈɡlɑːsɪz/", "очки"],
+["ring", "/rɪŋ/", "кольцо"],
+["feeling", "/ˈfiːlɪŋ/", "чувство"],
+["fear", "/fɪər/", "страх"],
+["joy", "/dʒɔɪ/", "радость"],
+["anger", "/ˈæŋɡər/", "гнев"],
+["surprised", "/səˈpraɪzd/", "удивлённый"],
+["bored", "/bɔːd/", "скучающий"],
+["excited", "/ɪkˈsaɪtɪd/", "взволнованный (радостно)"],
+["nervous", "/ˈnɜːvəs/", "нервный"],
+["proud", "/praʊd/", "гордый"],
+["jealous", "/ˈdʒeləs/", "ревнивый"],
+["lonely", "/ˈləʊnli/", "одинокий"],
+["calm", "/kɑːm/", "спокойный"],
+["confused", "/kənˈfjuːzd/", "в замешательстве"],
+["embarrassed", "/ɪmˈbærəst/", "смущённый"],
+["transport", "/ˈtrænspɔːt/", "транспорт"],
+["bicycle", "/ˈbaɪsɪkəl/", "велосипед"],
+["ship", "/ʃɪp/", "корабль"],
+["boat", "/bəʊt/", "лодка"],
+["truck", "/trʌk/", "грузовик"],
+["motorbike", "/ˈməʊtəbaɪk/", "мотоцикл"],
+["underground", "/ˈʌndəɡraʊnd/", "метро (Британия)"],
+["subway", "/ˈsʌbweɪ/", "метро (США)"],
+["seat", "/siːt/", "место / сиденье"],
+["wheel", "/wiːl/", "колесо"],
+["climb", "/klaɪm/", "взбираться"],
+["crawl", "/krɔːl/", "ползти"],
+["ride", "/raɪd/", "ехать верхом / кататься"],
+["push", "/pʊʃ/", "толкать"],
+["pull", "/pʊl/", "тянуть"],
+["kick", "/kɪk/", "пинать"],
+["enter", "/ˈentər/", "входить"],
+["return", "/rɪˈtɜːn/", "возвращаться"],
+["arrive", "/əˈraɪv/", "прибывать"],
+["travel", "/ˈtrævəl/", "путешествовать"],
+["escape", "/ɪˈskeɪp/", "сбегать"],
+["chase", "/tʃeɪs/", "преследовать"],
+["roof", "/ruːf/", "крыша"],
+["stairs", "/steəz/", "лестница"],
+["ceiling", "/ˈsiːlɪŋ/", "потолок"],
+["furniture", "/ˈfɜːnɪtʃər/", "мебель"],
+["sofa", "/ˈsəʊfə/", "диван"],
+["shelf", "/ʃelf/", "полка"],
+["drawer", "/drɔːr/", "ящик (выдвижной)"],
+["fridge", "/frɪdʒ/", "холодильник"],
+["oven", "/ˈʌvən/", "духовка"],
+["towel", "/ˈtaʊəl/", "полотенце"],
+["blanket", "/ˈblæŋkɪt/", "одеяло"],
+["pillow", "/ˈpɪləʊ/", "подушка"],
+["lamp", "/læmp/", "лампа"],
+["begin", "/bɪˈɡɪn/", "начинать"],
+["hurt", "/hɜːt/", "причинять боль"],
+["feed", "/fiːd/", "кормить"],
+["drop", "/drɒp/", "ронять"],
+["shout", "/ʃaʊt/", "кричать"],
+["whisper", "/ˈwɪspər/", "шептать"],
+["listen", "/ˈlɪsən/", "слушать"],
+["hear", "/hɪər/", "слышать"],
+["taste", "/teɪst/", "пробовать на вкус"],
+["smell", "/smel/", "пахнуть / нюхать"],
+["touch", "/tʌtʃ/", "трогать"],
+["marry", "/ˈmæri/", "жениться / выходить замуж"],
+["raise", "/reɪz/", "растить / поднимать"],
+["break", "/breɪk/", "ломать"],
+["zero", "/ˈzɪərəʊ/", "ноль"],
+["one", "/wʌn/", "один"],
+["two", "/tuː/", "два"],
+["three", "/θriː/", "три"],
+["four", "/fɔːr/", "четыре"],
+["five", "/faɪv/", "пять"],
+["six", "/sɪks/", "шесть"],
+["seven", "/ˈsevən/", "семь"],
+["eight", "/eɪt/", "восемь"],
+["nine", "/naɪn/", "девять"],
+["ten", "/ten/", "десять"],
+["twenty", "/ˈtwenti/", "двадцать"],
+["hundred", "/ˈhʌndrəd/", "сто"],
+["thousand", "/ˈθaʊzənd/", "тысяча"],
+["million", "/ˈmɪljən/", "миллион"],
+["first", "/fɜːst/", "первый"],
+["second", "/ˈsekənd/", "второй"],
+["third", "/θɜːd/", "третий"]
 ];
 
-let cards = DEFAULT.map(c=>({en:c[0],tr:c[1],ru:c[2],known:false}));
-let order=[], idx=0, mode='flip', flipped=false, dir='en';
+let cards=DEFAULT.map(c=>({en:c[0],tr:c[1],ru:c[2],known:false}));
+let order=[],idx=0,tab='flip',flipped=false,dir='en';
+const META={
+  flip:['Карточки','Запоминай с умом'], quiz:['Викторина','Проверь себя'],
+  type:['Печать','Режим сильной памяти'], settings:['Управление','Полный контроль'],
+  library:['Библиотека','Импортируй и учи своё']};
 
 function reindex(){order=cards.map((_,i)=>i)}
 function shuffleCards(){for(let i=order.length-1;i>0;i--){const j=(i*2654435761>>>0)%(i+1);[order[i],order[j]]=[order[j],order[i]]}idx=0;render()}
 function restart(){cards.forEach(c=>c.known=false);reindex();idx=0;render()}
-function setMode(m){mode=m;['flip','quiz','type'].forEach(x=>document.getElementById('m'+x[0].toUpperCase()+x.slice(1)).classList.toggle('active',x===m));idx=0;render()}
-function toggleDir(){dir=dir==='en'?'ru':'en';document.getElementById('dir').textContent=dir==='en'?'EN → RU':'RU → EN';idx=0;render()}
+function setTab(t){tab=t;['flip','quiz','type','settings','library'].forEach(x=>{
+  const id='t'+({flip:'Flip',quiz:'Quiz',type:'Type',settings:'Set',library:'Lib'})[x];
+  document.getElementById(id).classList.toggle('on',x===t)});
+  if(t==='flip'||t==='quiz'||t==='type')idx=Math.min(idx,order.length);render()}
+function setDir(d){dir=d;idx=0;render()}
 
-function stats(){
-  document.getElementById('total').textContent=order.length;
-  document.getElementById('pos').textContent=Math.min(idx+1,order.length);
-  const k=cards.filter(c=>c.known).length;
-  document.getElementById('known').textContent=k;
-  document.getElementById('review').textContent=cards.length-k;
-}
 function frontText(c){return dir==='en'?c.en:c.ru}
-function backText(c){return dir==='en'?(c.tr+'  '+c.ru):(c.en+'  '+c.tr)}
+function backTr(c){return c.tr}
+function backText(c){return dir==='en'?c.ru:c.en}
+function fullBack(c){return dir==='en'?(c.tr+'  '+c.ru):(c.en+'  '+c.tr)}
+
+function head(){
+  document.getElementById('htitle').textContent=META[tab][0];
+  document.getElementById('hsub').textContent=META[tab][1];
+  const p=document.getElementById('hpos');
+  p.textContent=(tab==='flip'||tab==='quiz'||tab==='type')?
+    Math.min(idx+1,order.length)+' / '+order.length:'';
+}
 
 function render(){
-  stats();
-  const stage=document.getElementById('stage');
-  if(idx>=order.length){stage.innerHTML='<div class="done">✦ ✦ ✦<br>Гримуар прочитан до конца.<br>Все слова прошли через тебя.<br><br>Нажми «↻ Заново» или «🔀 Перемешать».</div>';return}
+  head();
+  const s=document.getElementById('screen');
+  if(tab==='settings')return renderSettings(s);
+  if(tab==='library')return renderLibrary(s);
+  if(idx>=order.length){s.innerHTML='<div class="done">✦<br>Свиток пройден до конца.<br>Все слова прошли через тебя.</div><div class="row"><button class="btn dont" onclick="restart()">↻ Сначала</button><button class="btn" onclick="shuffleCards()">🔀 Перемешать</button></div>';return}
   const c=cards[order[idx]];
-  if(mode==='flip'){flipped=false;
-    stage.innerHTML=`<div class="card" onclick="flip()">
-      <div class="front">${frontText(c)}</div>
-      <div id="rev" style="display:none">${dir==='en'?`<div class="tr">${c.tr}</div><div class="back">${c.ru}</div>`:`<div class="back">${c.en}</div><div class="tr">${c.tr}</div>`}</div>
-      <div class="hint">▾ коснись, чтобы открыть тайну ▾</div></div>
-      <div class="row"><button class="dont" onclick="mark(false)">🌑 Во тьму</button>
-      <button class="know" onclick="mark(true)">✨ Познано</button></div>`;
-  } else if(mode==='quiz'){
+  if(tab==='flip'){flipped=false;
+    s.innerHTML=`<div class="card" onclick="flip()">${EMBLEM}
+      <div class="word">${frontText(c)}</div>
+      <div id="rev" style="display:none"><div class="rule"></div>
+        <div class="tr">${backTr(c)}</div><div class="bk">${backText(c)}</div></div>
+      <div class="hint" id="hint">нажмите на карточку, чтобы перевернуть</div></div>
+      <div class="row"><button class="btn dont" onclick="mark(false)">↻ Повторить</button>
+      <button class="btn know" onclick="mark(true)">✓ Знаю</button></div>`;
+  } else if(tab==='quiz'){
     const correct=backText(c);
-    const pool=cards.filter(x=>x!==c);
-    const opts=[correct];
-    for(let n=0;n<40&&opts.length<4;n++){const r=pool[(idx*7+n*13)%pool.length];const t=backText(r);if(!opts.includes(t))opts.push(t)}
+    const pool=cards.filter(x=>x!==c);const opts=[correct];
+    for(let n=0;n<60&&opts.length<4;n++){const r=pool[(idx*7+n*13)%pool.length];const t=backText(r);if(!opts.includes(t))opts.push(t)}
     for(let i=opts.length-1;i>0;i--){const j=(i*2654435761>>>0)%(i+1);[opts[i],opts[j]]=[opts[j],opts[i]]}
-    stage.innerHTML=`<div class="card"><div class="front">${frontText(c)}</div></div>
-      <div class="opts">${opts.map(o=>`<button class="opt" onclick="answer(this,${o===correct})">${o}</button>`).join('')}</div>
+    const L=['A','B','C','D'];
+    s.innerHTML=`<div class="q">Выберите перевод слова:</div>
+      <div class="qword">${frontText(c)}</div>
+      ${opts.map((o,i)=>`<button class="opt" onclick="answer(this,${o===correct})"><span class="lt">${L[i]}</span>${o}</button>`).join('')}
       <div class="msg" id="msg"></div>`;
   } else {
-    const answer=(dir==='en'?c.ru:c.en);
-    stage.innerHTML=`<div class="card"><div class="front">${frontText(c)}</div>
-      ${dir==='en'?'':`<div class="tr">${c.tr}</div>`}</div>
-      <input id="inp" type="text" placeholder="произнеси заклинание (перевод) + Enter" autocomplete="off" autocapitalize="off" autocorrect="off">
-      <div class="msg" id="msg"></div>`;
+    const ans=backText(c);
+    s.innerHTML=`<div class="q">Напечатайте перевод:</div>
+      <div class="qword">${frontText(c)}</div>
+      ${dir==='en'?`<div style="text-align:center;color:#e9d6a3;font-style:italic;margin-top:-6px">${c.tr}</div>`:''}
+      <input id="inp" type="text" placeholder="${dir==='en'?'введите перевод на русском':'type the English word'}" autocomplete="off" autocapitalize="off" autocorrect="off">
+      <button class="primary" onclick="checkType()">Проверить</button>
+      <div class="msg" id="msg"></div>
+      <div class="tip">Режим печати — самый эффективный способ запоминания. Мозг работает <b>активно</b>, память становится сильнее.</div>`;
     const inp=document.getElementById('inp');inp.focus();
-    inp.addEventListener('keydown',e=>{if(e.key==='Enter')checkType(answer)});
+    window._ans=ans;
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter')checkType()});
   }
 }
-function flip(){const r=document.getElementById('rev');if(r)r.style.display=flipped?'none':'block';flipped=!flipped}
+function flip(){const r=document.getElementById('rev'),h=document.getElementById('hint');
+  if(r){flipped=!flipped;r.style.display=flipped?'block':'none';if(h)h.style.display=flipped?'none':'block';}}
 function mark(k){cards[order[idx]].known=k;if(!k)order.push(order[idx]);idx++;render()}
-function answer(btn,ok){
-  document.querySelectorAll('.opt').forEach(b=>b.onclick=null);
-  btn.classList.add(ok?'correct':'wrong');
-  cards[order[idx]].known=ok;
-  document.getElementById('msg').textContent=ok?'✨ Верно!':'🌑 Правильно: '+backText(cards[order[idx]]);
-  if(!ok)order.push(order[idx]);
-  setTimeout(()=>{idx++;render()},ok?700:1600);
-}
+function answer(btn,ok){document.querySelectorAll('.opt').forEach(b=>b.onclick=null);
+  btn.classList.add(ok?'correct':'wrong');cards[order[idx]].known=ok;
+  document.getElementById('msg').textContent=ok?'✓ Верно!':'✕ Правильно: '+fullBack(cards[order[idx]]);
+  if(!ok)order.push(order[idx]);setTimeout(()=>{idx++;render()},ok?650:1500);}
 function norm(s){return s.trim().toLowerCase().replace(/ё/g,'е').replace(/\s+/g,' ')}
-function checkType(ans){
-  const inp=document.getElementById('inp');const val=norm(inp.value);
+function checkType(){const inp=document.getElementById('inp');if(inp.disabled)return;
+  const val=norm(inp.value);const ans=window._ans;
   const variants=ans.split(/[\/,()]/).map(norm).filter(Boolean);
-  const ok=variants.some(v=>v===val);
-  cards[order[idx]].known=ok;if(!ok)order.push(order[idx]);
-  document.getElementById('msg').textContent=ok?'✨ Верно!':'🌑 Правильно: '+ans;
-  inp.disabled=true;setTimeout(()=>{idx++;render()},ok?700:1800);
+  const ok=variants.some(v=>v===val);cards[order[idx]].known=ok;if(!ok)order.push(order[idx]);
+  document.getElementById('msg').textContent=ok?'✓ Верно!':'✕ Правильно: '+ans;
+  inp.disabled=true;setTimeout(()=>{idx++;render()},ok?650:1700);}
+
+function renderSettings(s){
+  const total=cards.length,known=cards.filter(c=>c.known).length,rev=total-known;
+  const p=total?known/total:0,C=2*Math.PI*54,off=C*(1-p);
+  s.innerHTML=`
+    <div class="sect">Направление</div>
+    <div class="seg"><button class="${dir==='en'?'on':''}" onclick="setDir('en')">EN → RU</button>
+      <button class="${dir==='ru'?'on':''}" onclick="setDir('ru')">RU → EN</button></div>
+    <div class="sect">Порядок</div>
+    <div class="seg"><button onclick="shuffleCards()">🔀 Перемешать</button>
+      <button onclick="restart()">↻ Сначала</button></div>
+    <div class="sect">Статистика</div>
+    <div class="stats"><div class="chip g"><div class="cv">${known}</div><div class="cl">Знаю</div></div>
+      <div class="chip r"><div class="cv">${rev}</div><div class="cl">Повторить</div></div></div>
+    <div class="gauge">
+      <svg viewBox="0 0 130 130"><circle cx="65" cy="65" r="54" fill="none" stroke="#2a221b" stroke-width="9"/>
+      <circle cx="65" cy="65" r="54" fill="none" stroke="#c9a24b" stroke-width="9" stroke-linecap="round"
+        stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" transform="rotate(-90 65 65)"/></svg>
+      <div class="gt"><div class="gn">${total}</div><div class="gl">всего карточек</div></div>
+      <div class="gp">Прогресс: ${Math.round(p*100)}%</div></div>`;
 }
-function loadCsv(e){
-  const f=e.target.files[0];if(!f)return;const rd=new FileReader();
-  rd.onload=()=>{
-    const rows=rd.result.split(/\r?\n/).filter(r=>r.trim());
-    const parsed=[];
-    for(let i=0;i<rows.length;i++){
+function renderLibrary(s){
+  const files=[
+    ['📄','README.md','старт · метод · ожидания'],
+    ['🗺️','план/00_план_4_месяца.md','дорожная карта A1→B1'],
+    ['📘','lessons/','уроки с мнемоникой'],
+    ['🔤','словарь/глаголы_топ.md','глаголы · 3 формы'],
+    ['📚','словарь/словарь_по_темам.md','весь словарь по темам'],
+    ['🗂️','словарь/карточки.csv','база карточек'],
+    ['✈️','путешествия/фразы.md','кафе · аэропорт · о себе'],
+    ['🦅','гражданство/гражданство_сша.md','100 civics-вопросов USCIS'],
+    ['📱','приложение/тренажёр.html','это приложение']];
+  s.innerHTML=`
+    <label class="impd file"><div class="ii">📂</div><div class="il">Свой CSV</div>
+      <div class="is">импортируй свои карточки из CSV-файла</div>
+      <input type="file" accept=".csv" onchange="loadCsv(event)"></label>
+    <div class="note">«Не знаю» карточки автоматически возвращаются в конец колоды.</div>
+    <div class="sect">Моя библиотека курса</div>
+    <div class="lib">${files.map(f=>`<div class="li"><div class="lf">${f[0]}</div>
+      <div><div class="ln">${f[1]}</div><div class="ld">${f[2]}</div></div></div>`).join('')}</div>`;
+}
+function loadCsv(e){const f=e.target.files[0];if(!f)return;const rd=new FileReader();
+  rd.onload=()=>{const rows=rd.result.split(/\r?\n/).filter(r=>r.trim());const parsed=[];
+    for(let i=0;i<rows.length;i++){if(rows[i].trim().startsWith('#'))continue;
       const p=rows[i].split(',');if(p.length<3)continue;
       if(i===0&&/english|русск|engli/i.test(rows[i]))continue;
-      parsed.push({en:p[0].trim(),tr:p[1].trim(),ru:p.slice(2).join(',').trim(),known:false});
-    }
-    if(parsed.length){cards=parsed;reindex();idx=0;render();}
-    else alert('Не нашёл карточки. Нужен формат: English,Transcription,Русский');
-  };
-  rd.readAsText(f,'utf-8');
-}
+      parsed.push({en:p[0].trim(),tr:p[1].trim(),ru:p.slice(2).join(',').trim(),known:false});}
+    if(parsed.length){cards=parsed;reindex();idx=0;tab='flip';setTab('flip');}
+    else alert('Не нашёл карточки. Формат: English,Transcription,Русский');};
+  rd.readAsText(f,'utf-8');}
 reindex();render();
 </script>
 </body>
