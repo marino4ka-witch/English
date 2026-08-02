@@ -2,111 +2,850 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Тренажёр английского — Марина</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>✦ Grimoire · Английский Марины ✦</title>
 <style>
   :root{
-    --bg:#14121a; --card:#211d2b; --card2:#2c2638; --text:#f2eefb;
-    --muted:#a99fc0; --accent:#8b5cf6; --good:#34d399; --bad:#f87171; --line:#39324a;
+    --gold:#e8bd6d; --gold2:#f4d99b; --violet:#b06bff; --violet2:#c99bff;
+    --emerald:#5fe0a0; --blood:#e0574f; --parch:#efe4cf; --muted:#a99bbf;
+    --ink:#0a0611; --stone:#191029; --stone2:#241634; --line:#4a2f6e;
   }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
-    background:var(--bg);color:var(--text);min-height:100vh;
-    display:flex;flex-direction:column;align-items:center;padding:16px}
-  h1{font-size:20px;margin:8px 0 2px;text-align:center}
-  .sub{color:var(--muted);font-size:13px;margin-bottom:14px}
-  .bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:12px}
-  button,select,label.file{background:var(--card2);color:var(--text);border:1px solid var(--line);
-    border-radius:10px;padding:9px 13px;font-size:14px;cursor:pointer;transition:.15s}
-  button:hover,label.file:hover{border-color:var(--accent)}
-  button.active{background:var(--accent);border-color:var(--accent);color:#fff}
-  .progress{color:var(--muted);font-size:13px;margin-bottom:10px;text-align:center}
-  .progress b{color:var(--text)}
-  #stage{width:100%;max-width:520px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;
-    min-height:240px;display:flex;flex-direction:column;align-items:center;
-    justify-content:center;text-align:center;padding:26px;cursor:pointer;user-select:none}
-  .front{font-size:38px;font-weight:700}
-  .tr{color:var(--accent);font-size:22px;margin-top:10px}
-  .back{font-size:30px;font-weight:600;margin-top:6px}
-  .hint{color:var(--muted);font-size:13px;margin-top:18px}
-  .row{display:flex;gap:10px;margin-top:14px;justify-content:center}
-  .row button{flex:1;max-width:200px;font-size:15px;padding:12px}
-  .know{border-color:var(--good)} .know:hover{background:rgba(52,211,153,.15)}
-  .dont{border-color:var(--bad)} .dont:hover{background:rgba(248,113,113,.15)}
-  .opt{display:block;width:100%;text-align:left;margin:8px 0;padding:14px;font-size:17px}
-  .opt.correct{background:rgba(52,211,153,.2);border-color:var(--good)}
-  .opt.wrong{background:rgba(248,113,113,.2);border-color:var(--bad)}
-  input[type=text]{width:100%;padding:14px;font-size:18px;border-radius:10px;
-    border:1px solid var(--line);background:var(--card2);color:var(--text);margin-top:14px}
-  .msg{text-align:center;margin-top:12px;font-size:16px;min-height:22px}
-  .done{text-align:center;font-size:20px;padding:40px 10px}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    color:var(--parch);
+    background:
+      radial-gradient(120% 80% at 50% -10%, #2a123f 0%, #140a22 45%, #07040d 100%),
+      #07040d;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  /* плавающие магические искры */
+  .spark{position:fixed;bottom:-20px;width:4px;height:4px;border-radius:50%;
+    background:var(--gold);box-shadow:0 0 8px 2px var(--gold);opacity:0;
+    animation:rise linear infinite;pointer-events:none;z-index:0}
+  @keyframes rise{
+    0%{transform:translateY(0) scale(.6);opacity:0}
+    15%{opacity:.9}
+    100%{transform:translateY(-105vh) scale(1.1);opacity:0}}
+
+  /* рамка 9:16 — гримуар */
+  .frame{
+    position:relative;z-index:1;
+    width:min(100vw, calc(100vh * 9 / 16));
+    height:min(100vh, calc(100vw * 16 / 9));
+    background:
+      radial-gradient(140% 60% at 50% 0%, rgba(176,107,255,.18), transparent 60%),
+      linear-gradient(180deg,#1a1029 0%, #120a1f 100%);
+    border:1px solid var(--line);
+    border-radius:22px;
+    box-shadow:0 0 0 1px rgba(232,189,109,.25), 0 0 60px rgba(176,107,255,.25),
+      inset 0 0 80px rgba(0,0,0,.6);
+    display:flex;flex-direction:column;overflow:hidden;padding:16px 15px;
+  }
+  .frame::before{content:"";position:absolute;inset:7px;border-radius:16px;
+    border:1px solid rgba(232,189,109,.18);pointer-events:none}
+
+  header{text-align:center;flex:0 0 auto}
+  .rune{color:var(--gold);letter-spacing:6px;font-size:15px;opacity:.85}
+  h1{font-size:20px;margin:2px 0 0;letter-spacing:1px;
+    background:linear-gradient(180deg,var(--gold2),var(--gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 0 18px rgba(232,189,109,.35)}
+  .sub{color:var(--muted);font-size:11px;margin-top:2px;font-style:italic}
+
+  .bar{display:flex;gap:6px;justify-content:center;margin-top:12px;flex:0 0 auto}
+  .bar.small{margin-top:7px}
+  button,select,label.file{
+    font-family:inherit;background:linear-gradient(180deg,var(--stone2),var(--stone));
+    color:var(--parch);border:1px solid var(--line);border-radius:11px;
+    padding:9px 11px;font-size:13px;cursor:pointer;transition:.18s;flex:1;min-width:0}
+  .bar.small button,.bar.small label{font-size:12px;padding:8px 8px}
+  button:hover,label.file:hover{border-color:var(--gold);box-shadow:0 0 12px rgba(232,189,109,.25)}
+  button.active{background:linear-gradient(180deg,#4a2b7a,#33205a);
+    border-color:var(--violet);color:#fff;box-shadow:0 0 16px rgba(176,107,255,.45)}
+
+  .progress{text-align:center;font-size:11px;color:var(--muted);margin-top:11px;flex:0 0 auto;
+    font-variant:small-caps;letter-spacing:.5px}
+  .progress b{color:var(--gold2)}
+  .divider{flex:0 0 auto;text-align:center;color:var(--line);font-size:12px;margin:9px 0 2px}
+
+  #stage{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;
+    overflow-y:auto;padding:4px 2px}
+
+  .card{position:relative;
+    background:
+      radial-gradient(90% 70% at 50% 25%, rgba(176,107,255,.14), transparent 70%),
+      linear-gradient(180deg,#241635,#1a0f2a);
+    border:1px solid var(--line);border-radius:18px;
+    min-height:200px;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;padding:24px 18px;cursor:pointer;
+    user-select:none;box-shadow:inset 0 0 40px rgba(0,0,0,.5),0 0 24px rgba(176,107,255,.15)}
+  .card::before{content:"✦";position:absolute;top:9px;left:13px;color:var(--gold);opacity:.4;font-size:13px}
+  .card::after{content:"✦";position:absolute;bottom:9px;right:13px;color:var(--gold);opacity:.4;font-size:13px}
+  .front{font-size:34px;font-weight:700;line-height:1.15;
+    color:var(--gold2);text-shadow:0 0 22px rgba(232,189,109,.4)}
+  .tr{color:var(--violet2);font-size:20px;margin-top:12px;font-style:italic}
+  .back{font-size:26px;font-weight:600;margin-top:6px;color:var(--parch)}
+  .hint{color:var(--muted);font-size:11px;margin-top:16px;font-style:italic;letter-spacing:.5px}
+
+  .row{display:flex;gap:10px;margin-top:14px;flex:0 0 auto}
+  .row button{flex:1;font-size:14px;padding:13px}
+  .know{border-color:var(--emerald);color:var(--emerald)}
+  .know:hover{background:rgba(95,224,160,.14);box-shadow:0 0 14px rgba(95,224,160,.3)}
+  .dont{border-color:var(--blood);color:#f0a19b}
+  .dont:hover{background:rgba(224,87,79,.14);box-shadow:0 0 14px rgba(224,87,79,.3)}
+
+  .opts{margin-top:12px}
+  .opt{display:block;width:100%;text-align:left;margin:7px 0;padding:13px 14px;font-size:16px}
+  .opt.correct{background:rgba(95,224,160,.18);border-color:var(--emerald)}
+  .opt.wrong{background:rgba(224,87,79,.18);border-color:var(--blood)}
+  input[type=text]{width:100%;padding:13px;font-size:17px;border-radius:11px;
+    border:1px solid var(--line);background:var(--stone);color:var(--parch);
+    margin-top:14px;font-family:inherit}
+  input[type=text]:focus{outline:none;border-color:var(--gold);box-shadow:0 0 14px rgba(232,189,109,.3)}
+  .msg{text-align:center;margin-top:12px;font-size:15px;min-height:22px}
+  .done{text-align:center;font-size:19px;padding:30px 10px;color:var(--gold2);line-height:1.5}
   .file input{display:none}
-  a{color:var(--accent)}
 </style>
 </head>
 <body>
-  <h1>🧛‍♀️ Тренажёр английского</h1>
-  <div class="sub">Карточки Марины · работает без интернета</div>
+<div class="frame">
+  <header>
+    <div class="rune">☾ ⚝ ☽</div>
+    <h1>Grimoire of English</h1>
+    <div class="sub">заклинания слов · без интернета</div>
+  </header>
 
   <div class="bar">
-    <button id="mFlip" class="active" onclick="setMode('flip')">🃏 Карточки</button>
-    <button id="mQuiz" onclick="setMode('quiz')">📝 Викторина</button>
-    <button id="mType" onclick="setMode('type')">⌨️ Печать</button>
+    <button id="mFlip" class="active" onclick="setMode('flip')">🃏 Руны</button>
+    <button id="mQuiz" onclick="setMode('quiz')">📜 Ритуал</button>
+    <button id="mType" onclick="setMode('type')">⌨ Заклинание</button>
   </div>
-  <div class="bar">
+  <div class="bar small">
     <button id="dir" onclick="toggleDir()">EN → RU</button>
     <button onclick="shuffleCards()">🔀 Перемешать</button>
-    <button onclick="restart()">↻ Сначала</button>
-    <label class="file">📂 Свой CSV<input type="file" accept=".csv" onchange="loadCsv(event)"></label>
+    <button onclick="restart()">↻ Заново</button>
+    <label class="file">📂 CSV<input type="file" accept=".csv" onchange="loadCsv(event)"></label>
   </div>
 
-  <div class="progress">Карта <b><span id="pos">0</span></b> из <b><span id="total">0</span></b>
-    · знаю: <b id="known">0</b> · повторить: <b id="review">0</b></div>
+  <div class="progress">свиток <b><span id="pos">0</span></b> / <b><span id="total">0</span></b>
+    · познано <b id="known">0</b> · во тьме <b id="review">0</b></div>
+  <div class="divider">━━━ ✦ ━━━</div>
 
   <div id="stage"></div>
+</div>
 
 <script>
+// магические искры
+(function(){const n=14;for(let i=0;i<n;i++){const s=document.createElement('div');
+  s.className='spark';s.style.left=(6+i*6.6)+'%';
+  s.style.animationDuration=(7+(i%5)*2)+'s';s.style.animationDelay=(-i*0.9)+'s';
+  s.style.background=i%3?'#e8bd6d':'#b06bff';
+  s.style.boxShadow='0 0 8px 2px '+(i%3?'#e8bd6d':'#b06bff');
+  document.body.appendChild(s);}})();
+
 // ── Встроенные карточки [английский, транскрипция, русский] ──
 const DEFAULT = [
-["be","/biː/","быть"],["have","/hæv/","иметь"],["do","/duː/","делать"],
-["go","/ɡəʊ/","идти"],["get","/ɡet/","получать / становиться"],
-["make","/meɪk/","делать / создавать"],["say","/seɪ/","сказать"],
-["know","/nəʊ/","знать"],["think","/θɪŋk/","думать"],["see","/siː/","видеть"],
-["come","/kʌm/","приходить"],["take","/teɪk/","брать"],["give","/ɡɪv/","давать"],
-["find","/faɪnd/","находить"],["tell","/tel/","рассказывать"],
-["feel","/fiːl/","чувствовать"],["want","/wɒnt/","хотеть"],
-["need","/niːd/","нуждаться"],["like","/laɪk/","нравиться"],["love","/lʌv/","любить"],
-["watch","/wɒtʃ/","смотреть"],["play","/pleɪ/","играть"],["live","/lɪv/","жить"],
-["work","/wɜːk/","работать"],["eat","/iːt/","есть (кушать)"],["drink","/drɪŋk/","пить"],
-["sleep","/sliːp/","спать"],["speak","/spiːk/","говорить"],["read","/riːd/","читать"],
-["write","/raɪt/","писать"],["buy","/baɪ/","покупать"],["pay","/peɪ/","платить"],
-["run","/rʌn/","бежать"],["hide","/haɪd/","прятать(ся)"],["bite","/baɪt/","кусать"],
-["catch","/kætʃ/","ловить"],["fight","/faɪt/","драться"],["break","/breɪk/","ломать"],
-["kill","/kɪl/","убивать"],["fall","/fɔːl/","падать"],["become","/bɪˈkʌm/","становиться"],
-["leave","/liːv/","покидать / оставлять"],["lose","/luːz/","терять"],
-["win","/wɪn/","выигрывать"],["meet","/miːt/","встречать"],
-["understand","/ˌʌndərˈstænd/","понимать"],["help","/help/","помогать"],
-["ask","/ɑːsk/","спрашивать"],["call","/kɔːl/","звонить"],["cook","/kʊk/","готовить"],
-["learn","/lɜːn/","учить"],["remember","/rɪˈmembər/","помнить"],
-["witch","/wɪtʃ/","ведьма"],["vampire","/ˈvæmpaɪər/","вампир"],
-["monster","/ˈmɒnstər/","монстр"],["hunter","/ˈhʌntər/","охотник"],
-["ghost","/ɡəʊst/","призрак"],["spider","/ˈspaɪdər/","паук"],
-["family","/ˈfæməli/","семья"],["child","/tʃaɪld/","ребёнок"],
-["children","/ˈtʃɪldrən/","дети"],["mother","/ˈmʌðər/","мама"],
-["father","/ˈfɑːðər/","папа"],["son","/sʌn/","сын"],["daughter","/ˈdɔːtər/","дочь"],
-["friend","/frend/","друг"],["music","/ˈmjuːzɪk/","музыка"],["film","/fɪlm/","фильм"],
-["coffee","/ˈkɒfi/","кофе"],["food","/fuːd/","еда"],["water","/ˈwɔːtər/","вода"],
-["nature","/ˈneɪtʃər/","природа"],["animal","/ˈænɪməl/","животное"],
-["dangerous","/ˈdeɪndʒərəs/","опасный"],["happy","/ˈhæpi/","счастливый"],
-["tired","/ˈtaɪərd/","уставший"],["hot","/hɒt/","горячий"],["cold","/kəʊld/","холодный"],
-["big","/bɪɡ/","большой"],["small","/smɔːl/","маленький"],
-["delicious","/dɪˈlɪʃəs/","очень вкусный"],["always","/ˈɔːlweɪz/","всегда"],
-["usually","/ˈjuːʒuəli/","обычно"],["often","/ˈɒfən/","часто"],
-["sometimes","/ˈsʌmtaɪmz/","иногда"],["never","/ˈnevər/","никогда"],
-["in","/ɪn/","в"],["on","/ɒn/","на"],["under","/ˈʌndər/","под"],
-["next to","/nekst tuː/","рядом с"],["because","/bɪˈkɒz/","потому что"],
-["but","/bʌt/","но"],["and","/ænd/","и"]
+["be", "/biː/", "быть"],
+["have", "/hæv/", "иметь"],
+["do", "/duː/", "делать"],
+["go", "/ɡəʊ/", "идти"],
+["get", "/ɡet/", "получать / становиться"],
+["make", "/meɪk/", "делать / создавать"],
+["say", "/seɪ/", "сказать"],
+["know", "/nəʊ/", "знать"],
+["think", "/θɪŋk/", "думать"],
+["see", "/siː/", "видеть"],
+["come", "/kʌm/", "приходить"],
+["take", "/teɪk/", "брать"],
+["give", "/ɡɪv/", "давать"],
+["find", "/faɪnd/", "находить"],
+["tell", "/tel/", "рассказывать"],
+["feel", "/fiːl/", "чувствовать"],
+["want", "/wɒnt/", "хотеть"],
+["need", "/niːd/", "нуждаться"],
+["like", "/laɪk/", "нравиться"],
+["love", "/lʌv/", "любить"],
+["watch", "/wɒtʃ/", "смотреть"],
+["play", "/pleɪ/", "играть"],
+["live", "/lɪv/", "жить"],
+["work", "/wɜːk/", "работать"],
+["eat", "/iːt/", "есть (кушать)"],
+["drink", "/drɪŋk/", "пить"],
+["sleep", "/sliːp/", "спать"],
+["speak", "/spiːk/", "говорить"],
+["read", "/riːd/", "читать"],
+["write", "/raɪt/", "писать"],
+["buy", "/baɪ/", "покупать"],
+["pay", "/peɪ/", "платить"],
+["sell", "/sel/", "продавать"],
+["run", "/rʌn/", "бежать"],
+["walk", "/wɔːk/", "идти пешком"],
+["drive", "/draɪv/", "водить машину"],
+["fly", "/flaɪ/", "летать"],
+["swim", "/swɪm/", "плавать"],
+["jump", "/dʒʌmp/", "прыгать"],
+["sit", "/sɪt/", "сидеть"],
+["stand", "/stænd/", "стоять"],
+["open", "/ˈəʊpən/", "открывать"],
+["close", "/kləʊz/", "закрывать"],
+["start", "/stɑːt/", "начинать"],
+["finish", "/ˈfɪnɪʃ/", "заканчивать"],
+["stop", "/stɒp/", "останавливать"],
+["keep", "/kiːp/", "продолжать / хранить"],
+["put", "/pʊt/", "класть"],
+["bring", "/brɪŋ/", "приносить"],
+["carry", "/ˈkæri/", "нести"],
+["hold", "/həʊld/", "держать"],
+["turn", "/tɜːn/", "поворачивать"],
+["move", "/muːv/", "двигать"],
+["change", "/tʃeɪndʒ/", "менять"],
+["happen", "/ˈhæpən/", "случаться"],
+["try", "/traɪ/", "пытаться"],
+["use", "/juːz/", "использовать"],
+["help", "/help/", "помогать"],
+["ask", "/ɑːsk/", "спрашивать"],
+["answer", "/ˈɑːnsər/", "отвечать"],
+["call", "/kɔːl/", "звонить"],
+["show", "/ʃəʊ/", "показывать"],
+["mean", "/miːn/", "значить"],
+["believe", "/bɪˈliːv/", "верить"],
+["remember", "/rɪˈmembər/", "помнить"],
+["forget", "/fəˈɡet/", "забывать"],
+["understand", "/ˌʌndərˈstænd/", "понимать"],
+["learn", "/lɜːn/", "учить"],
+["teach", "/tiːtʃ/", "преподавать"],
+["study", "/ˈstʌdi/", "изучать"],
+["cook", "/kʊk/", "готовить"],
+["clean", "/kliːn/", "убирать"],
+["wash", "/wɒʃ/", "мыть"],
+["wear", "/weər/", "носить (одежду)"],
+["meet", "/miːt/", "встречать"],
+["leave", "/liːv/", "покидать / оставлять"],
+["stay", "/steɪ/", "оставаться"],
+["wait", "/weɪt/", "ждать"],
+["become", "/bɪˈkʌm/", "становиться"],
+["lose", "/luːz/", "терять"],
+["win", "/wɪn/", "выигрывать"],
+["choose", "/tʃuːz/", "выбирать"],
+["decide", "/dɪˈsaɪd/", "решать"],
+["hope", "/həʊp/", "надеяться"],
+["wish", "/wɪʃ/", "желать"],
+["mind", "/maɪnd/", "возражать"],
+["care", "/keər/", "заботиться"],
+["worry", "/ˈwʌri/", "волноваться"],
+["enjoy", "/ɪnˈdʒɔɪ/", "наслаждаться"],
+["laugh", "/lɑːf/", "смеяться"],
+["cry", "/kraɪ/", "плакать"],
+["smile", "/smaɪl/", "улыбаться"],
+["kiss", "/kɪs/", "целовать"],
+["hug", "/hʌɡ/", "обнимать"],
+["grow", "/ɡrəʊ/", "расти"],
+["build", "/bɪld/", "строить"],
+["break", "/breɪk/", "ломать"],
+["fix", "/fɪks/", "чинить"],
+["cut", "/kʌt/", "резать"],
+["throw", "/θrəʊ/", "бросать"],
+["catch", "/kætʃ/", "ловить"],
+["hit", "/hɪt/", "ударять"],
+["fall", "/fɔːl/", "падать"],
+["hide", "/haɪd/", "прятать(ся)"],
+["bite", "/baɪt/", "кусать"],
+["fight", "/faɪt/", "драться"],
+["kill", "/kɪl/", "убивать"],
+["die", "/daɪ/", "умирать"],
+["save", "/seɪv/", "спасать / сохранять"],
+["protect", "/prəˈtekt/", "защищать"],
+["follow", "/ˈfɒləʊ/", "следовать"],
+["lead", "/liːd/", "вести"],
+["send", "/send/", "отправлять"],
+["receive", "/rɪˈsiːv/", "получать"],
+["spend", "/spend/", "тратить"],
+["cost", "/kɒst/", "стоить"],
+["count", "/kaʊnt/", "считать"],
+["add", "/æd/", "добавлять"],
+["explain", "/ɪkˈspleɪn/", "объяснять"],
+["describe", "/dɪˈskraɪb/", "описывать"],
+["suggest", "/səˈdʒest/", "предлагать"],
+["agree", "/əˈɡriː/", "соглашаться"],
+["promise", "/ˈprɒmɪs/", "обещать"],
+["allow", "/əˈlaʊ/", "разрешать"],
+["happen", "/ˈhæpən/", "происходить"],
+["seem", "/siːm/", "казаться"],
+["appear", "/əˈpɪər/", "появляться"],
+["disappear", "/ˌdɪsəˈpɪər/", "исчезать"],
+["get up", "/ɡet ʌp/", "вставать (с постели)"],
+["wake up", "/weɪk ʌp/", "просыпаться"],
+["get on", "/ɡet ɒn/", "садиться (в транспорт)"],
+["get off", "/ɡet ɒf/", "выходить (из транспорта)"],
+["give up", "/ɡɪv ʌp/", "сдаваться"],
+["look for", "/lʊk fɔːr/", "искать"],
+["look after", "/lʊk ˈɑːftər/", "заботиться о"],
+["look forward to", "/lʊk ˈfɔːwəd tuː/", "с нетерпением ждать"],
+["find out", "/faɪnd aʊt/", "выяснять"],
+["turn on", "/tɜːn ɒn/", "включать"],
+["turn off", "/tɜːn ɒf/", "выключать"],
+["put on", "/pʊt ɒn/", "надевать"],
+["take off", "/teɪk ɒf/", "снимать / взлетать"],
+["pick up", "/pɪk ʌp/", "забирать / поднимать"],
+["grow up", "/ɡrəʊ ʌp/", "взрослеть"],
+["come back", "/kʌm bæk/", "возвращаться"],
+["go out", "/ɡəʊ aʊt/", "выходить (гулять)"],
+["run out of", "/rʌn aʊt ɒv/", "заканчиваться (о запасе)"],
+["take care of", "/teɪk keər ɒv/", "заботиться о"],
+["man", "/mæn/", "мужчина"],
+["woman", "/ˈwʊmən/", "женщина"],
+["child", "/tʃaɪld/", "ребёнок"],
+["children", "/ˈtʃɪldrən/", "дети"],
+["baby", "/ˈbeɪbi/", "малыш"],
+["boy", "/bɔɪ/", "мальчик"],
+["girl", "/ɡɜːl/", "девочка"],
+["family", "/ˈfæməli/", "семья"],
+["mother", "/ˈmʌðər/", "мама"],
+["father", "/ˈfɑːðər/", "папа"],
+["parents", "/ˈpeərənts/", "родители"],
+["son", "/sʌn/", "сын"],
+["daughter", "/ˈdɔːtər/", "дочь"],
+["brother", "/ˈbrʌðər/", "брат"],
+["sister", "/ˈsɪstər/", "сестра"],
+["husband", "/ˈhʌzbənd/", "муж"],
+["wife", "/waɪf/", "жена"],
+["grandmother", "/ˈɡrænmʌðər/", "бабушка"],
+["grandfather", "/ˈɡrænfɑːðər/", "дедушка"],
+["friend", "/frend/", "друг"],
+["neighbour", "/ˈneɪbər/", "сосед"],
+["people", "/ˈpiːpəl/", "люди"],
+["person", "/ˈpɜːsən/", "человек"],
+["house", "/haʊs/", "дом"],
+["home", "/həʊm/", "дом (родной)"],
+["room", "/ruːm/", "комната"],
+["kitchen", "/ˈkɪtʃɪn/", "кухня"],
+["bedroom", "/ˈbedruːm/", "спальня"],
+["bathroom", "/ˈbɑːθruːm/", "ванная"],
+["door", "/dɔːr/", "дверь"],
+["window", "/ˈwɪndəʊ/", "окно"],
+["wall", "/wɔːl/", "стена"],
+["floor", "/flɔːr/", "пол"],
+["table", "/ˈteɪbəl/", "стол"],
+["chair", "/tʃeər/", "стул"],
+["bed", "/bed/", "кровать"],
+["key", "/kiː/", "ключ"],
+["light", "/laɪt/", "свет"],
+["phone", "/fəʊn/", "телефон"],
+["clock", "/klɒk/", "часы (настенные)"],
+["mirror", "/ˈmɪrər/", "зеркало"],
+["garden", "/ˈɡɑːdən/", "сад"],
+["food", "/fuːd/", "еда"],
+["water", "/ˈwɔːtər/", "вода"],
+["coffee", "/ˈkɒfi/", "кофе"],
+["tea", "/tiː/", "чай"],
+["milk", "/mɪlk/", "молоко"],
+["juice", "/dʒuːs/", "сок"],
+["bread", "/bred/", "хлеб"],
+["butter", "/ˈbʌtər/", "масло"],
+["cheese", "/tʃiːz/", "сыр"],
+["egg", "/eɡ/", "яйцо"],
+["meat", "/miːt/", "мясо"],
+["chicken", "/ˈtʃɪkɪn/", "курица"],
+["fish", "/fɪʃ/", "рыба"],
+["soup", "/suːp/", "суп"],
+["salad", "/ˈsæləd/", "салат"],
+["rice", "/raɪs/", "рис"],
+["fruit", "/fruːt/", "фрукты"],
+["apple", "/ˈæpəl/", "яблоко"],
+["sugar", "/ˈʃʊɡər/", "сахар"],
+["salt", "/sɔːlt/", "соль"],
+["breakfast", "/ˈbrekfəst/", "завтрак"],
+["lunch", "/lʌntʃ/", "обед"],
+["dinner", "/ˈdɪnər/", "ужин"],
+["menu", "/ˈmenjuː/", "меню"],
+["plate", "/pleɪt/", "тарелка"],
+["cup", "/kʌp/", "чашка"],
+["glass", "/ɡlɑːs/", "стакан"],
+["spoon", "/spuːn/", "ложка"],
+["fork", "/fɔːk/", "вилка"],
+["knife", "/naɪf/", "нож"],
+["bill", "/bɪl/", "счёт"],
+["waiter", "/ˈweɪtər/", "официант"],
+["delicious", "/dɪˈlɪʃəs/", "очень вкусный"],
+["hungry", "/ˈhʌŋɡri/", "голодный"],
+["thirsty", "/ˈθɜːsti/", "испытывающий жажду"],
+["nature", "/ˈneɪtʃər/", "природа"],
+["tree", "/triː/", "дерево"],
+["flower", "/ˈflaʊər/", "цветок"],
+["grass", "/ɡrɑːs/", "трава"],
+["forest", "/ˈfɒrɪst/", "лес"],
+["mountain", "/ˈmaʊntɪn/", "гора"],
+["river", "/ˈrɪvər/", "река"],
+["sea", "/siː/", "море"],
+["lake", "/leɪk/", "озеро"],
+["sky", "/skaɪ/", "небо"],
+["sun", "/sʌn/", "солнце"],
+["moon", "/muːn/", "луна"],
+["star", "/stɑːr/", "звезда"],
+["rain", "/reɪn/", "дождь"],
+["snow", "/snəʊ/", "снег"],
+["wind", "/wɪnd/", "ветер"],
+["fire", "/ˈfaɪər/", "огонь"],
+["stone", "/stəʊn/", "камень"],
+["animal", "/ˈænɪməl/", "животное"],
+["dog", "/dɒɡ/", "собака"],
+["cat", "/kæt/", "кошка"],
+["bird", "/bɜːd/", "птица"],
+["horse", "/hɔːs/", "лошадь"],
+["wolf", "/wʊlf/", "волк"],
+["bear", "/beər/", "медведь"],
+["snake", "/sneɪk/", "змея"],
+["spider", "/ˈspaɪdər/", "паук"],
+["city", "/ˈsɪti/", "город"],
+["town", "/taʊn/", "городок"],
+["street", "/striːt/", "улица"],
+["road", "/rəʊd/", "дорога"],
+["shop", "/ʃɒp/", "магазин"],
+["market", "/ˈmɑːkɪt/", "рынок"],
+["hospital", "/ˈhɒspɪtəl/", "больница"],
+["school", "/skuːl/", "школа"],
+["station", "/ˈsteɪʃən/", "станция / вокзал"],
+["airport", "/ˈeəpɔːt/", "аэропорт"],
+["hotel", "/həʊˈtel/", "отель"],
+["bank", "/bæŋk/", "банк"],
+["church", "/tʃɜːtʃ/", "церковь"],
+["park", "/pɑːk/", "парк"],
+["bridge", "/brɪdʒ/", "мост"],
+["map", "/mæp/", "карта"],
+["ticket", "/ˈtɪkɪt/", "билет"],
+["passport", "/ˈpɑːspɔːt/", "паспорт"],
+["luggage", "/ˈlʌɡɪdʒ/", "багаж"],
+["train", "/treɪn/", "поезд"],
+["bus", "/bʌs/", "автобус"],
+["car", "/kɑːr/", "машина"],
+["plane", "/pleɪn/", "самолёт"],
+["taxi", "/ˈtæksi/", "такси"],
+["flight", "/flaɪt/", "рейс / полёт"],
+["trip", "/trɪp/", "поездка"],
+["holiday", "/ˈhɒlədeɪ/", "отпуск / праздник"],
+["head", "/hed/", "голова"],
+["face", "/feɪs/", "лицо"],
+["eye", "/aɪ/", "глаз"],
+["ear", "/ɪər/", "ухо"],
+["nose", "/nəʊz/", "нос"],
+["mouth", "/maʊθ/", "рот"],
+["tooth", "/tuːθ/", "зуб"],
+["hair", "/heər/", "волосы"],
+["hand", "/hænd/", "рука (кисть)"],
+["arm", "/ɑːm/", "рука"],
+["leg", "/leɡ/", "нога"],
+["foot", "/fʊt/", "ступня"],
+["heart", "/hɑːt/", "сердце"],
+["blood", "/blʌd/", "кровь"],
+["skin", "/skɪn/", "кожа"],
+["doctor", "/ˈdɒktər/", "врач"],
+["medicine", "/ˈmedsɪn/", "лекарство"],
+["pain", "/peɪn/", "боль"],
+["health", "/helθ/", "здоровье"],
+["sick", "/sɪk/", "больной"],
+["time", "/taɪm/", "время"],
+["day", "/deɪ/", "день"],
+["night", "/naɪt/", "ночь"],
+["morning", "/ˈmɔːnɪŋ/", "утро"],
+["evening", "/ˈiːvnɪŋ/", "вечер"],
+["week", "/wiːk/", "неделя"],
+["month", "/mʌnθ/", "месяц"],
+["year", "/jɪər/", "год"],
+["today", "/təˈdeɪ/", "сегодня"],
+["tomorrow", "/təˈmɒrəʊ/", "завтра"],
+["yesterday", "/ˈjestədeɪ/", "вчера"],
+["hour", "/ˈaʊər/", "час"],
+["minute", "/ˈmɪnɪt/", "минута"],
+["Monday", "/ˈmʌndeɪ/", "понедельник"],
+["Friday", "/ˈfraɪdeɪ/", "пятница"],
+["weekend", "/ˌwiːkˈend/", "выходные"],
+["work", "/wɜːk/", "работа"],
+["job", "/dʒɒb/", "работа (должность)"],
+["money", "/ˈmʌni/", "деньги"],
+["price", "/praɪs/", "цена"],
+["card", "/kɑːd/", "карта (банковская)"],
+["cash", "/kæʃ/", "наличные"],
+["office", "/ˈɒfɪs/", "офис"],
+["boss", "/bɒs/", "начальник"],
+["company", "/ˈkʌmpəni/", "компания"],
+["business", "/ˈbɪznɪs/", "бизнес / дело"],
+["customer", "/ˈkʌstəmər/", "клиент"],
+["free", "/friː/", "бесплатный / свободный"],
+["expensive", "/ɪkˈspensɪv/", "дорогой"],
+["cheap", "/tʃiːp/", "дешёвый"],
+["good", "/ɡʊd/", "хороший"],
+["bad", "/bæd/", "плохой"],
+["big", "/bɪɡ/", "большой"],
+["small", "/smɔːl/", "маленький"],
+["new", "/njuː/", "новый"],
+["old", "/əʊld/", "старый"],
+["young", "/jʌŋ/", "молодой"],
+["long", "/lɒŋ/", "длинный"],
+["short", "/ʃɔːt/", "короткий"],
+["high", "/haɪ/", "высокий"],
+["low", "/ləʊ/", "низкий"],
+["hot", "/hɒt/", "горячий"],
+["cold", "/kəʊld/", "холодный"],
+["warm", "/wɔːm/", "тёплый"],
+["fast", "/fɑːst/", "быстрый"],
+["slow", "/sləʊ/", "медленный"],
+["easy", "/ˈiːzi/", "лёгкий"],
+["hard", "/hɑːd/", "трудный / твёрдый"],
+["happy", "/ˈhæpi/", "счастливый"],
+["sad", "/sæd/", "грустный"],
+["angry", "/ˈæŋɡri/", "сердитый"],
+["scared", "/skeəd/", "испуганный"],
+["tired", "/ˈtaɪəd/", "уставший"],
+["strong", "/strɒŋ/", "сильный"],
+["weak", "/wiːk/", "слабый"],
+["beautiful", "/ˈbjuːtɪfəl/", "красивый"],
+["ugly", "/ˈʌɡli/", "уродливый"],
+["clean", "/kliːn/", "чистый"],
+["dirty", "/ˈdɜːti/", "грязный"],
+["full", "/fʊl/", "полный"],
+["empty", "/ˈempti/", "пустой"],
+["right", "/raɪt/", "правильный / правый"],
+["wrong", "/rɒŋ/", "неправильный"],
+["true", "/truː/", "правдивый"],
+["important", "/ɪmˈpɔːtənt/", "важный"],
+["different", "/ˈdɪfrənt/", "разный"],
+["same", "/seɪm/", "одинаковый"],
+["dark", "/dɑːk/", "тёмный"],
+["bright", "/braɪt/", "яркий"],
+["dangerous", "/ˈdeɪndʒərəs/", "опасный"],
+["safe", "/seɪf/", "безопасный"],
+["famous", "/ˈfeɪməs/", "знаменитый"],
+["funny", "/ˈfʌni/", "смешной"],
+["scary", "/ˈskeəri/", "страшный"],
+["strange", "/streɪndʒ/", "странный"],
+["quiet", "/ˈkwaɪət/", "тихий"],
+["loud", "/laʊd/", "громкий"],
+["now", "/naʊ/", "сейчас"],
+["then", "/ðen/", "тогда / потом"],
+["here", "/hɪər/", "здесь"],
+["there", "/ðeər/", "там"],
+["always", "/ˈɔːlweɪz/", "всегда"],
+["usually", "/ˈjuːʒuəli/", "обычно"],
+["often", "/ˈɒfən/", "часто"],
+["sometimes", "/ˈsʌmtaɪmz/", "иногда"],
+["never", "/ˈnevər/", "никогда"],
+["already", "/ɔːlˈredi/", "уже"],
+["still", "/stɪl/", "всё ещё"],
+["yet", "/jet/", "ещё (в вопросах/отриц.)"],
+["just", "/dʒʌst/", "только что / просто"],
+["soon", "/suːn/", "скоро"],
+["late", "/leɪt/", "поздно"],
+["early", "/ˈɜːli/", "рано"],
+["together", "/təˈɡeðər/", "вместе"],
+["alone", "/əˈləʊn/", "один"],
+["really", "/ˈrɪəli/", "действительно"],
+["very", "/ˈveri/", "очень"],
+["too", "/tuː/", "слишком / тоже"],
+["also", "/ˈɔːlsəʊ/", "также"],
+["almost", "/ˈɔːlməʊst/", "почти"],
+["maybe", "/ˈmeɪbi/", "может быть"],
+["probably", "/ˈprɒbəbli/", "вероятно"],
+["quickly", "/ˈkwɪkli/", "быстро"],
+["slowly", "/ˈsləʊli/", "медленно"],
+["carefully", "/ˈkeəfəli/", "осторожно"],
+["suddenly", "/ˈsʌdənli/", "вдруг"],
+["in", "/ɪn/", "в"],
+["on", "/ɒn/", "на"],
+["at", "/æt/", "в / на (точка)"],
+["to", "/tuː/", "к"],
+["from", "/frɒm/", "из / от"],
+["of", "/ɒv/", "принадлежность (кого/чего)"],
+["with", "/wɪð/", "с"],
+["without", "/wɪˈðaʊt/", "без"],
+["for", "/fɔːr/", "для / за"],
+["about", "/əˈbaʊt/", "о / около"],
+["under", "/ˈʌndər/", "под"],
+["over", "/ˈəʊvər/", "над"],
+["between", "/bɪˈtwiːn/", "между"],
+["behind", "/bɪˈhaɪnd/", "позади"],
+["in front of", "/ɪn frʌnt ɒv/", "перед"],
+["next to", "/nekst tuː/", "рядом с"],
+["near", "/nɪər/", "около"],
+["before", "/bɪˈfɔːr/", "перед / до"],
+["after", "/ˈɑːftər/", "после"],
+["during", "/ˈdjʊərɪŋ/", "во время"],
+["until", "/ənˈtɪl/", "до (момента)"],
+["through", "/θruː/", "сквозь / через"],
+["across", "/əˈkrɒs/", "через (поперёк)"],
+["into", "/ˈɪntuː/", "внутрь"],
+["who", "/huː/", "кто"],
+["what", "/wɒt/", "что"],
+["where", "/weər/", "где / куда"],
+["when", "/wen/", "когда"],
+["why", "/waɪ/", "почему"],
+["how", "/haʊ/", "как"],
+["which", "/wɪtʃ/", "который"],
+["whose", "/huːz/", "чей"],
+["someone", "/ˈsʌmwʌn/", "кто-то"],
+["something", "/ˈsʌmθɪŋ/", "что-то"],
+["anything", "/ˈeniθɪŋ/", "что-нибудь"],
+["nothing", "/ˈnʌθɪŋ/", "ничего"],
+["everyone", "/ˈevriwʌn/", "каждый / все"],
+["everything", "/ˈevriθɪŋ/", "всё"],
+["and", "/ænd/", "и"],
+["but", "/bʌt/", "но"],
+["or", "/ɔːr/", "или"],
+["so", "/səʊ/", "поэтому / так что"],
+["because", "/bɪˈkɒz/", "потому что"],
+["if", "/ɪf/", "если"],
+["when", "/wen/", "когда"],
+["while", "/waɪl/", "пока / в то время как"],
+["although", "/ɔːlˈðəʊ/", "хотя"],
+["however", "/haʊˈevər/", "однако"],
+["also", "/ˈɔːlsəʊ/", "также"],
+["than", "/ðæn/", "чем (сравнение)"],
+["as", "/æz/", "как / поскольку"],
+["that", "/ðæt/", "что (союз)"],
+["Hello!", "/həˈləʊ/", "Привет! / Здравствуйте!"],
+["Goodbye!", "/ɡʊdˈbaɪ/", "До свидания!"],
+["Thank you.", "/ˈθæŋk juː/", "Спасибо."],
+["You're welcome.", "/jɔːr ˈwelkəm/", "Пожалуйста (в ответ)."],
+["Excuse me.", "/ɪkˈskjuːz miː/", "Извините."],
+["I'm sorry.", "/aɪm ˈsɒri/", "Простите."],
+["Nice to meet you.", "/naɪs tuː miːt juː/", "Приятно познакомиться."],
+["How are you?", "/haʊ ɑːr juː/", "Как дела?"],
+["I'm fine.", "/aɪm faɪn/", "У меня всё хорошо."],
+["What's your name?", "/wɒts jɔːr neɪm/", "Как тебя зовут?"],
+["My name is...", "/maɪ neɪm ɪz/", "Меня зовут..."],
+["I don't know.", "/aɪ dəʊnt nəʊ/", "Я не знаю."],
+["I don't understand.", "/aɪ dəʊnt ˌʌndərˈstænd/", "Я не понимаю."],
+["Can you help me?", "/kæn juː help miː/", "Можешь мне помочь?"],
+["Of course.", "/ɒv kɔːs/", "Конечно."],
+["No problem.", "/nəʊ ˈprɒbləm/", "Без проблем."],
+["Let's go!", "/lets ɡəʊ/", "Пойдём!"],
+["See you later.", "/siː juː ˈleɪtər/", "Увидимся позже."],
+["Take care.", "/teɪk keər/", "Береги себя."],
+["Good luck!", "/ɡʊd lʌk/", "Удачи!"],
+["I'll have a coffee.", "/aɪl hæv ə ˈkɒfi/", "Мне кофе (заказ)."],
+["Can I have the bill?", "/kæn aɪ hæv ðə bɪl/", "Можно счёт?"],
+["A table for two.", "/ə ˈteɪbəl fɔːr tuː/", "Столик на двоих."],
+["How much is it?", "/haʊ mʌtʃ ɪz ɪt/", "Сколько это стоит?"],
+["Do you take card?", "/duː juː teɪk kɑːd/", "Оплата картой есть?"],
+["Where is the toilet?", "/weər ɪz ðə ˈtɔɪlət/", "Где туалет?"],
+["I have a reservation.", "/aɪ hæv ə ˌrezərˈveɪʃən/", "У меня бронь."],
+["I'm lost.", "/aɪm lɒst/", "Я заблудился."],
+["Turn left.", "/tɜːn left/", "Поверните налево."],
+["Go straight.", "/ɡəʊ streɪt/", "Идите прямо."],
+["Can you speak slowly?", "/kæn juː spiːk ˈsləʊli/", "Можете говорить медленнее?"],
+["I'm from Russia.", "/aɪm frɒm ˈrʌʃə/", "Я из России."],
+["I'm learning English.", "/aɪm ˈlɜːnɪŋ ˈɪŋɡlɪʃ/", "Я учу английский."],
+["I would like to...", "/aɪ wʊd laɪk tuː/", "Я хотел(а) бы... (вежливо)"],
+["I'd rather...", "/aɪd ˈrɑːðər/", "Я бы предпочёл..."],
+["I used to...", "/aɪ juːst tuː/", "Раньше я... (было привычкой)"],
+["I'm used to...", "/aɪm juːst tuː/", "Я привык(ла) к..."],
+["I'm going to...", "/aɪm ˈɡəʊɪŋ tuː/", "Я собираюсь..."],
+["I have to...", "/aɪ hæv tuː/", "Я должен (вынужден)..."],
+["I should...", "/aɪ ʃʊd/", "Мне следует..."],
+["I might...", "/aɪ maɪt/", "Я может быть..."],
+["You'd better...", "/juːd ˈbetər/", "Тебе лучше... (совет)"],
+["It depends on...", "/ɪt dɪˈpendz ɒn/", "Это зависит от..."],
+["It looks like...", "/ɪt lʊks laɪk/", "Похоже что..."],
+["It seems that...", "/ɪt siːmz ðæt/", "Кажется что..."],
+["as soon as", "/əz suːn əz/", "как только"],
+["as long as", "/əz lɒŋ əz/", "пока / при условии"],
+["in order to", "/ɪn ˈɔːdər tuː/", "чтобы (с целью)"],
+["even though", "/ˈiːvən ðəʊ/", "несмотря на то что"],
+["by the way", "/baɪ ðə weɪ/", "кстати"],
+["on the other hand", "/ɒn ðiː ˈʌðər hænd/", "с другой стороны"],
+["in my opinion", "/ɪn maɪ əˈpɪnjən/", "по моему мнению"],
+["That's why...", "/ðæts waɪ/", "Вот почему..."],
+["The more the better.", "/ðə mɔːr ðə ˈbetər/", "Чем больше тем лучше."],
+["If I were you...", "/ɪf aɪ wɜːr juː/", "На твоём месте я бы..."],
+["I wish I could...", "/aɪ wɪʃ aɪ kʊd/", "Жаль что я не могу..."],
+["I can't wait to...", "/aɪ kɑːnt weɪt tuː/", "Не могу дождаться чтобы..."],
+["Would you mind...?", "/wʊd juː maɪnd/", "Не мог бы ты...? (вежливо)"],
+["It's up to you.", "/ɪts ʌp tuː juː/", "Решать тебе."],
+["Never mind.", "/ˈnevər maɪnd/", "Неважно / забудь."],
+["Take it easy.", "/teɪk ɪt ˈiːzi/", "Не переживай / расслабься."],
+["It's worth it.", "/ɪts wɜːθ ɪt/", "Оно того стоит."],
+["Make up your mind.", "/meɪk ʌp jɔːr maɪnd/", "Определись / реши."],
+["piece of cake", "/piːs ɒv keɪk/", "проще простого"],
+["once in a while", "/wʌns ɪn ə waɪl/", "время от времени"],
+["out of the blue", "/aʊt ɒv ðə bluː/", "как гром среди ясного неба"],
+["witch", "/wɪtʃ/", "ведьма"],
+["vampire", "/ˈvæmpaɪər/", "вампир"],
+["monster", "/ˈmɒnstər/", "монстр"],
+["hunter", "/ˈhʌntər/", "охотник"],
+["ghost", "/ɡəʊst/", "призрак"],
+["demon", "/ˈdiːmən/", "демон"],
+["soul", "/səʊl/", "душа"],
+["spell", "/spel/", "заклинание"],
+["magic", "/ˈmædʒɪk/", "магия"],
+["curse", "/kɜːs/", "проклятие"],
+["sword", "/sɔːd/", "меч"],
+["dark", "/dɑːk/", "тьма / тёмный"],
+["power", "/ˈpaʊər/", "сила / власть"],
+["She is not human.", "/ʃiː ɪz nɒt ˈhjuːmən/", "Она не человек."],
+["He hunts monsters.", "/hiː hʌnts ˈmɒnstəz/", "Он охотится на монстров."],
+["The night is dark.", "/ðə naɪt ɪz dɑːk/", "Ночь темна."],
+["Blood never lies.", "/blʌd ˈnevər laɪz/", "Кровь никогда не лжёт."],
+["colour", "/ˈkʌlər/", "цвет"],
+["red", "/red/", "красный"],
+["blue", "/bluː/", "синий / голубой"],
+["green", "/ɡriːn/", "зелёный"],
+["yellow", "/ˈjeləʊ/", "жёлтый"],
+["black", "/blæk/", "чёрный"],
+["white", "/waɪt/", "белый"],
+["orange", "/ˈɒrɪndʒ/", "оранжевый"],
+["pink", "/pɪŋk/", "розовый"],
+["purple", "/ˈpɜːpəl/", "фиолетовый"],
+["brown", "/braʊn/", "коричневый"],
+["grey", "/ɡreɪ/", "серый"],
+["gold", "/ɡəʊld/", "золотой"],
+["silver", "/ˈsɪlvər/", "серебряный"],
+["weather", "/ˈweðər/", "погода"],
+["sunny", "/ˈsʌni/", "солнечно"],
+["cloudy", "/ˈklaʊdi/", "облачно"],
+["rainy", "/ˈreɪni/", "дождливо"],
+["windy", "/ˈwɪndi/", "ветрено"],
+["snowy", "/ˈsnəʊi/", "снежно"],
+["foggy", "/ˈfɒɡi/", "туманно"],
+["storm", "/stɔːm/", "буря / шторм"],
+["thunder", "/ˈθʌndər/", "гром"],
+["lightning", "/ˈlaɪtnɪŋ/", "молния"],
+["cloud", "/klaʊd/", "облако"],
+["ice", "/aɪs/", "лёд"],
+["heat", "/hiːt/", "жара"],
+["degree", "/dɪˈɡriː/", "градус"],
+["It's raining.", "/ɪts ˈreɪnɪŋ/", "Идёт дождь."],
+["It's cold today.", "/ɪts kəʊld təˈdeɪ/", "Сегодня холодно."],
+["cow", "/kaʊ/", "корова"],
+["pig", "/pɪɡ/", "свинья"],
+["sheep", "/ʃiːp/", "овца"],
+["goat", "/ɡəʊt/", "коза"],
+["rabbit", "/ˈræbɪt/", "кролик"],
+["mouse", "/maʊs/", "мышь"],
+["fox", "/fɒks/", "лиса"],
+["deer", "/dɪər/", "олень"],
+["lion", "/ˈlaɪən/", "лев"],
+["tiger", "/ˈtaɪɡər/", "тигр"],
+["elephant", "/ˈelɪfənt/", "слон"],
+["monkey", "/ˈmʌŋki/", "обезьяна"],
+["frog", "/frɒɡ/", "лягушка"],
+["duck", "/dʌk/", "утка"],
+["chicken", "/ˈtʃɪkɪn/", "курица"],
+["tail", "/teɪl/", "хвост"],
+["wing", "/wɪŋ/", "крыло"],
+["insect", "/ˈɪnsekt/", "насекомое"],
+["bee", "/biː/", "пчела"],
+["ant", "/ænt/", "муравей"],
+["mosquito", "/məˈskiːtəʊ/", "комар"],
+["butterfly", "/ˈbʌtəflaɪ/", "бабочка"],
+["wasp", "/wɒsp/", "оса"],
+["beetle", "/ˈbiːtəl/", "жук"],
+["worm", "/wɜːm/", "червяк"],
+["snail", "/sneɪl/", "улитка"],
+["shark", "/ʃɑːk/", "акула"],
+["whale", "/weɪl/", "кит"],
+["dolphin", "/ˈdɒlfɪn/", "дельфин"],
+["octopus", "/ˈɒktəpəs/", "осьминог"],
+["crab", "/kræb/", "краб"],
+["jellyfish", "/ˈdʒelifɪʃ/", "медуза"],
+["seal", "/siːl/", "тюлень"],
+["turtle", "/ˈtɜːtəl/", "черепаха"],
+["shell", "/ʃel/", "ракушка"],
+["wave", "/weɪv/", "волна"],
+["banana", "/bəˈnɑːnə/", "банан"],
+["orange (fruit)", "/ˈɒrɪndʒ/", "апельсин"],
+["lemon", "/ˈlemən/", "лимон"],
+["grape", "/ɡreɪp/", "виноград"],
+["strawberry", "/ˈstrɔːbəri/", "клубника"],
+["cherry", "/ˈtʃeri/", "вишня"],
+["peach", "/piːtʃ/", "персик"],
+["pear", "/peər/", "груша"],
+["watermelon", "/ˈwɔːtəmelən/", "арбуз"],
+["pineapple", "/ˈpaɪnæpəl/", "ананас"],
+["vegetable", "/ˈvedʒtəbəl/", "овощ"],
+["potato", "/pəˈteɪtəʊ/", "картофель"],
+["tomato", "/təˈmɑːtəʊ/", "помидор"],
+["carrot", "/ˈkærət/", "морковь"],
+["onion", "/ˈʌnjən/", "лук"],
+["cucumber", "/ˈkjuːkʌmbər/", "огурец"],
+["cabbage", "/ˈkæbɪdʒ/", "капуста"],
+["pepper", "/ˈpepər/", "перец"],
+["garlic", "/ˈɡɑːlɪk/", "чеснок"],
+["mushroom", "/ˈmʌʃruːm/", "гриб"],
+["corn", "/kɔːn/", "кукуруза"],
+["bean", "/biːn/", "фасоль"],
+["computer", "/kəmˈpjuːtər/", "компьютер"],
+["laptop", "/ˈlæptɒp/", "ноутбук"],
+["screen", "/skriːn/", "экран"],
+["keyboard", "/ˈkiːbɔːd/", "клавиатура"],
+["computer mouse", "/kəmˈpjuːtər maʊs/", "мышь (компьютерная)"],
+["internet", "/ˈɪntənet/", "интернет"],
+["password", "/ˈpɑːswɜːd/", "пароль"],
+["email", "/ˈiːmeɪl/", "электронная почта"],
+["message", "/ˈmesɪdʒ/", "сообщение"],
+["app", "/æp/", "приложение"],
+["file", "/faɪl/", "файл"],
+["camera", "/ˈkæmərə/", "камера"],
+["battery", "/ˈbætəri/", "батарея"],
+["charger", "/ˈtʃɑːdʒər/", "зарядка"],
+["download", "/ˌdaʊnˈləʊd/", "скачивать"],
+["online", "/ˌɒnˈlaɪn/", "онлайн"],
+["teacher", "/ˈtiːtʃər/", "учитель"],
+["nurse", "/nɜːs/", "медсестра"],
+["police officer", "/pəˈliːs ˈɒfɪsər/", "полицейский"],
+["firefighter", "/ˈfaɪəfaɪtər/", "пожарный"],
+["driver", "/ˈdraɪvər/", "водитель"],
+["farmer", "/ˈfɑːmər/", "фермер"],
+["engineer", "/ˌendʒɪˈnɪər/", "инженер"],
+["lawyer", "/ˈlɔɪər/", "юрист"],
+["artist", "/ˈɑːtɪst/", "художник"],
+["singer", "/ˈsɪŋər/", "певец"],
+["actor", "/ˈæktər/", "актёр"],
+["writer", "/ˈraɪtər/", "писатель"],
+["scientist", "/ˈsaɪəntɪst/", "учёный"],
+["programmer", "/ˈprəʊɡræmər/", "программист"],
+["pilot", "/ˈpaɪlət/", "пилот"],
+["soldier", "/ˈsəʊldʒər/", "солдат"],
+["kindergarten", "/ˈkɪndəɡɑːtən/", "детский сад"],
+["pupil", "/ˈpjuːpəl/", "ученик"],
+["student", "/ˈstjuːdənt/", "студент"],
+["lesson", "/ˈlesən/", "урок"],
+["homework", "/ˈhəʊmwɜːk/", "домашнее задание"],
+["book", "/bʊk/", "книга"],
+["pen", "/pen/", "ручка"],
+["pencil", "/ˈpensəl/", "карандаш"],
+["paper", "/ˈpeɪpər/", "бумага"],
+["desk", "/desk/", "парта / стол"],
+["board", "/bɔːd/", "доска"],
+["test", "/test/", "тест / контрольная"],
+["mark", "/mɑːk/", "оценка"],
+["toy", "/tɔɪ/", "игрушка"],
+["game", "/ɡeɪm/", "игра"],
+["draw", "/drɔː/", "рисовать"],
+["meeting", "/ˈmiːtɪŋ/", "совещание / встреча"],
+["report", "/rɪˈpɔːt/", "отчёт"],
+["deadline", "/ˈdedlaɪn/", "крайний срок"],
+["project", "/ˈprɒdʒekt/", "проект"],
+["colleague", "/ˈkɒliːɡ/", "коллега"],
+["salary", "/ˈsæləri/", "зарплата"],
+["document", "/ˈdɒkjumənt/", "документ"],
+["printer", "/ˈprɪntər/", "принтер"],
+["schedule", "/ˈʃedjuːl/", "расписание"],
+["contract", "/ˈkɒntrækt/", "контракт"],
+["fairy tale", "/ˈfeəri teɪl/", "сказка"],
+["king", "/kɪŋ/", "король"],
+["queen", "/kwiːn/", "королева"],
+["prince", "/prɪns/", "принц"],
+["princess", "/ˌprɪnˈses/", "принцесса"],
+["dragon", "/ˈdræɡən/", "дракон"],
+["knight", "/naɪt/", "рыцарь"],
+["castle", "/ˈkɑːsəl/", "замок"],
+["giant", "/ˈdʒaɪənt/", "великан"],
+["fairy", "/ˈfeəri/", "фея"],
+["wizard", "/ˈwɪzəd/", "волшебник"],
+["treasure", "/ˈtreʒər/", "сокровище"],
+["Once upon a time", "/wʌns əˈpɒn ə taɪm/", "Жили-были..."],
+["They lived happily ever after.", "/ðeɪ lɪvd ˈhæpɪli ˈevər ˈɑːftər/", "И жили они долго и счастливо."]
 ];
 
 let cards = DEFAULT.map(c=>({en:c[0],tr:c[1],ru:c[2],known:false}));
@@ -131,15 +870,15 @@ function backText(c){return dir==='en'?(c.tr+'  '+c.ru):(c.en+'  '+c.tr)}
 function render(){
   stats();
   const stage=document.getElementById('stage');
-  if(idx>=order.length){stage.innerHTML='<div class="done">🎉 Готово! Ты прошла все карточки.<br><br>Нажми «↻ Сначала» или «🔀 Перемешать».</div>';return}
+  if(idx>=order.length){stage.innerHTML='<div class="done">✦ ✦ ✦<br>Гримуар прочитан до конца.<br>Все слова прошли через тебя.<br><br>Нажми «↻ Заново» или «🔀 Перемешать».</div>';return}
   const c=cards[order[idx]];
   if(mode==='flip'){flipped=false;
     stage.innerHTML=`<div class="card" onclick="flip()">
       <div class="front">${frontText(c)}</div>
       <div id="rev" style="display:none">${dir==='en'?`<div class="tr">${c.tr}</div><div class="back">${c.ru}</div>`:`<div class="back">${c.en}</div><div class="tr">${c.tr}</div>`}</div>
-      <div class="hint">нажми, чтобы перевернуть</div></div>
-      <div class="row"><button class="dont" onclick="mark(false)">❌ Повторить</button>
-      <button class="know" onclick="mark(true)">✅ Знаю</button></div>`;
+      <div class="hint">▾ коснись, чтобы открыть тайну ▾</div></div>
+      <div class="row"><button class="dont" onclick="mark(false)">🌑 Во тьму</button>
+      <button class="know" onclick="mark(true)">✨ Познано</button></div>`;
   } else if(mode==='quiz'){
     const correct=backText(c);
     const pool=cards.filter(x=>x!==c);
@@ -147,13 +886,13 @@ function render(){
     for(let n=0;n<40&&opts.length<4;n++){const r=pool[(idx*7+n*13)%pool.length];const t=backText(r);if(!opts.includes(t))opts.push(t)}
     for(let i=opts.length-1;i>0;i--){const j=(i*2654435761>>>0)%(i+1);[opts[i],opts[j]]=[opts[j],opts[i]]}
     stage.innerHTML=`<div class="card"><div class="front">${frontText(c)}</div></div>
-      <div style="margin-top:14px">${opts.map(o=>`<button class="opt" onclick="answer(this,${o===correct})">${o}</button>`).join('')}</div>
+      <div class="opts">${opts.map(o=>`<button class="opt" onclick="answer(this,${o===correct})">${o}</button>`).join('')}</div>
       <div class="msg" id="msg"></div>`;
   } else {
     const answer=(dir==='en'?c.ru:c.en);
     stage.innerHTML=`<div class="card"><div class="front">${frontText(c)}</div>
       ${dir==='en'?'':`<div class="tr">${c.tr}</div>`}</div>
-      <input id="inp" type="text" placeholder="напиши перевод и нажми Enter" autocomplete="off">
+      <input id="inp" type="text" placeholder="произнеси заклинание (перевод) + Enter" autocomplete="off" autocapitalize="off" autocorrect="off">
       <div class="msg" id="msg"></div>`;
     const inp=document.getElementById('inp');inp.focus();
     inp.addEventListener('keydown',e=>{if(e.key==='Enter')checkType(answer)});
@@ -165,7 +904,7 @@ function answer(btn,ok){
   document.querySelectorAll('.opt').forEach(b=>b.onclick=null);
   btn.classList.add(ok?'correct':'wrong');
   cards[order[idx]].known=ok;
-  document.getElementById('msg').textContent=ok?'✅ Верно!':'❌ Правильно: '+backText(cards[order[idx]]);
+  document.getElementById('msg').textContent=ok?'✨ Верно!':'🌑 Правильно: '+backText(cards[order[idx]]);
   if(!ok)order.push(order[idx]);
   setTimeout(()=>{idx++;render()},ok?700:1600);
 }
@@ -175,7 +914,7 @@ function checkType(ans){
   const variants=ans.split(/[\/,()]/).map(norm).filter(Boolean);
   const ok=variants.some(v=>v===val);
   cards[order[idx]].known=ok;if(!ok)order.push(order[idx]);
-  document.getElementById('msg').textContent=ok?'✅ Верно!':'❌ Правильно: '+ans;
+  document.getElementById('msg').textContent=ok?'✨ Верно!':'🌑 Правильно: '+ans;
   inp.disabled=true;setTimeout(()=>{idx++;render()},ok?700:1800);
 }
 function loadCsv(e){

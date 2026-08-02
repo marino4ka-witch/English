@@ -1,4 +1,5 @@
 English,Transcription,Русский
+# ─────────── ГЛАГОЛЫ (VERBS) ───────────
 be,/biː/,быть
 have,/hæv/,иметь
 do,/duː/,делать
@@ -31,64 +32,701 @@ read,/riːd/,читать
 write,/raɪt/,писать
 buy,/baɪ/,покупать
 pay,/peɪ/,платить
+sell,/sel/,продавать
 run,/rʌn/,бежать
-hide,/haɪd/,прятать(ся)
-bite,/baɪt/,кусать
-catch,/kætʃ/,ловить
-fight,/faɪt/,драться
-break,/breɪk/,ломать
-kill,/kɪl/,убивать
-fall,/fɔːl/,падать
-become,/bɪˈkʌm/,становиться
-leave,/liːv/,покидать / оставлять
-lose,/luːz/,терять
-win,/wɪn/,выигрывать
-meet,/miːt/,встречать
-understand,/ˌʌndərˈstænd/,понимать
+walk,/wɔːk/,идти пешком
+drive,/draɪv/,водить машину
+fly,/flaɪ/,летать
+swim,/swɪm/,плавать
+jump,/dʒʌmp/,прыгать
+sit,/sɪt/,сидеть
+stand,/stænd/,стоять
+open,/ˈəʊpən/,открывать
+close,/kləʊz/,закрывать
+start,/stɑːt/,начинать
+finish,/ˈfɪnɪʃ/,заканчивать
+stop,/stɒp/,останавливать
+keep,/kiːp/,продолжать / хранить
+put,/pʊt/,класть
+bring,/brɪŋ/,приносить
+carry,/ˈkæri/,нести
+hold,/həʊld/,держать
+turn,/tɜːn/,поворачивать
+move,/muːv/,двигать
+change,/tʃeɪndʒ/,менять
+happen,/ˈhæpən/,случаться
+try,/traɪ/,пытаться
+use,/juːz/,использовать
 help,/help/,помогать
 ask,/ɑːsk/,спрашивать
+answer,/ˈɑːnsər/,отвечать
 call,/kɔːl/,звонить
-cook,/kʊk/,готовить
-learn,/lɜːn/,учить
+show,/ʃəʊ/,показывать
+mean,/miːn/,значить
+believe,/bɪˈliːv/,верить
 remember,/rɪˈmembər/,помнить
-witch,/wɪtʃ/,ведьма
-vampire,/ˈvæmpaɪər/,вампир
-monster,/ˈmɒnstər/,монстр
-hunter,/ˈhʌntər/,охотник
-ghost,/ɡəʊst/,призрак
-spider,/ˈspaɪdər/,паук
-family,/ˈfæməli/,семья
+forget,/fəˈɡet/,забывать
+understand,/ˌʌndərˈstænd/,понимать
+learn,/lɜːn/,учить
+teach,/tiːtʃ/,преподавать
+study,/ˈstʌdi/,изучать
+cook,/kʊk/,готовить
+clean,/kliːn/,убирать
+wash,/wɒʃ/,мыть
+wear,/weər/,носить (одежду)
+meet,/miːt/,встречать
+leave,/liːv/,покидать / оставлять
+stay,/steɪ/,оставаться
+wait,/weɪt/,ждать
+become,/bɪˈkʌm/,становиться
+lose,/luːz/,терять
+win,/wɪn/,выигрывать
+choose,/tʃuːz/,выбирать
+decide,/dɪˈsaɪd/,решать
+hope,/həʊp/,надеяться
+wish,/wɪʃ/,желать
+mind,/maɪnd/,возражать
+care,/keər/,заботиться
+worry,/ˈwʌri/,волноваться
+enjoy,/ɪnˈdʒɔɪ/,наслаждаться
+laugh,/lɑːf/,смеяться
+cry,/kraɪ/,плакать
+smile,/smaɪl/,улыбаться
+kiss,/kɪs/,целовать
+hug,/hʌɡ/,обнимать
+grow,/ɡrəʊ/,расти
+build,/bɪld/,строить
+break,/breɪk/,ломать
+fix,/fɪks/,чинить
+cut,/kʌt/,резать
+throw,/θrəʊ/,бросать
+catch,/kætʃ/,ловить
+hit,/hɪt/,ударять
+fall,/fɔːl/,падать
+hide,/haɪd/,прятать(ся)
+bite,/baɪt/,кусать
+fight,/faɪt/,драться
+kill,/kɪl/,убивать
+die,/daɪ/,умирать
+save,/seɪv/,спасать / сохранять
+protect,/prəˈtekt/,защищать
+follow,/ˈfɒləʊ/,следовать
+lead,/liːd/,вести
+send,/send/,отправлять
+receive,/rɪˈsiːv/,получать
+spend,/spend/,тратить
+cost,/kɒst/,стоить
+count,/kaʊnt/,считать
+add,/æd/,добавлять
+explain,/ɪkˈspleɪn/,объяснять
+describe,/dɪˈskraɪb/,описывать
+suggest,/səˈdʒest/,предлагать
+agree,/əˈɡriː/,соглашаться
+promise,/ˈprɒmɪs/,обещать
+allow,/əˈlaʊ/,разрешать
+happen,/ˈhæpən/,происходить
+seem,/siːm/,казаться
+appear,/əˈpɪər/,появляться
+disappear,/ˌdɪsəˈpɪər/,исчезать
+# ─────────── ФРАЗОВЫЕ ГЛАГОЛЫ (PHRASAL VERBS) ───────────
+get up,/ɡet ʌp/,вставать (с постели)
+wake up,/weɪk ʌp/,просыпаться
+get on,/ɡet ɒn/,садиться (в транспорт)
+get off,/ɡet ɒf/,выходить (из транспорта)
+give up,/ɡɪv ʌp/,сдаваться
+look for,/lʊk fɔːr/,искать
+look after,/lʊk ˈɑːftər/,заботиться о
+look forward to,/lʊk ˈfɔːwəd tuː/,с нетерпением ждать
+find out,/faɪnd aʊt/,выяснять
+turn on,/tɜːn ɒn/,включать
+turn off,/tɜːn ɒf/,выключать
+put on,/pʊt ɒn/,надевать
+take off,/teɪk ɒf/,снимать / взлетать
+pick up,/pɪk ʌp/,забирать / поднимать
+grow up,/ɡrəʊ ʌp/,взрослеть
+come back,/kʌm bæk/,возвращаться
+go out,/ɡəʊ aʊt/,выходить (гулять)
+run out of,/rʌn aʊt ɒv/,заканчиваться (о запасе)
+take care of,/teɪk keər ɒv/,заботиться о
+# ─────────── ЛЮДИ И СЕМЬЯ (PEOPLE & FAMILY) ───────────
+man,/mæn/,мужчина
+woman,/ˈwʊmən/,женщина
 child,/tʃaɪld/,ребёнок
 children,/ˈtʃɪldrən/,дети
+baby,/ˈbeɪbi/,малыш
+boy,/bɔɪ/,мальчик
+girl,/ɡɜːl/,девочка
+family,/ˈfæməli/,семья
 mother,/ˈmʌðər/,мама
 father,/ˈfɑːðər/,папа
+parents,/ˈpeərənts/,родители
 son,/sʌn/,сын
 daughter,/ˈdɔːtər/,дочь
+brother,/ˈbrʌðər/,брат
+sister,/ˈsɪstər/,сестра
+husband,/ˈhʌzbənd/,муж
+wife,/waɪf/,жена
+grandmother,/ˈɡrænmʌðər/,бабушка
+grandfather,/ˈɡrænfɑːðər/,дедушка
 friend,/frend/,друг
-music,/ˈmjuːzɪk/,музыка
-film,/fɪlm/,фильм
-coffee,/ˈkɒfi/,кофе
+neighbour,/ˈneɪbər/,сосед
+people,/ˈpiːpəl/,люди
+person,/ˈpɜːsən/,человек
+# ─────────── ДОМ (HOME) ───────────
+house,/haʊs/,дом
+home,/həʊm/,дом (родной)
+room,/ruːm/,комната
+kitchen,/ˈkɪtʃɪn/,кухня
+bedroom,/ˈbedruːm/,спальня
+bathroom,/ˈbɑːθruːm/,ванная
+door,/dɔːr/,дверь
+window,/ˈwɪndəʊ/,окно
+wall,/wɔːl/,стена
+floor,/flɔːr/,пол
+table,/ˈteɪbəl/,стол
+chair,/tʃeər/,стул
+bed,/bed/,кровать
+key,/kiː/,ключ
+light,/laɪt/,свет
+phone,/fəʊn/,телефон
+clock,/klɒk/,часы (настенные)
+mirror,/ˈmɪrər/,зеркало
+garden,/ˈɡɑːdən/,сад
+# ─────────── ЕДА И КАФЕ (FOOD & CAFE) ───────────
 food,/fuːd/,еда
 water,/ˈwɔːtər/,вода
+coffee,/ˈkɒfi/,кофе
+tea,/tiː/,чай
+milk,/mɪlk/,молоко
+juice,/dʒuːs/,сок
+bread,/bred/,хлеб
+butter,/ˈbʌtər/,масло
+cheese,/tʃiːz/,сыр
+egg,/eɡ/,яйцо
+meat,/miːt/,мясо
+chicken,/ˈtʃɪkɪn/,курица
+fish,/fɪʃ/,рыба
+soup,/suːp/,суп
+salad,/ˈsæləd/,салат
+rice,/raɪs/,рис
+fruit,/fruːt/,фрукты
+apple,/ˈæpəl/,яблоко
+sugar,/ˈʃʊɡər/,сахар
+salt,/sɔːlt/,соль
+breakfast,/ˈbrekfəst/,завтрак
+lunch,/lʌntʃ/,обед
+dinner,/ˈdɪnər/,ужин
+menu,/ˈmenjuː/,меню
+plate,/pleɪt/,тарелка
+cup,/kʌp/,чашка
+glass,/ɡlɑːs/,стакан
+spoon,/spuːn/,ложка
+fork,/fɔːk/,вилка
+knife,/naɪf/,нож
+bill,/bɪl/,счёт
+waiter,/ˈweɪtər/,официант
+delicious,/dɪˈlɪʃəs/,очень вкусный
+hungry,/ˈhʌŋɡri/,голодный
+thirsty,/ˈθɜːsti/,испытывающий жажду
+# ─────────── ПРИРОДА И ЖИВОТНЫЕ (NATURE & ANIMALS) ───────────
 nature,/ˈneɪtʃər/,природа
+tree,/triː/,дерево
+flower,/ˈflaʊər/,цветок
+grass,/ɡrɑːs/,трава
+forest,/ˈfɒrɪst/,лес
+mountain,/ˈmaʊntɪn/,гора
+river,/ˈrɪvər/,река
+sea,/siː/,море
+lake,/leɪk/,озеро
+sky,/skaɪ/,небо
+sun,/sʌn/,солнце
+moon,/muːn/,луна
+star,/stɑːr/,звезда
+rain,/reɪn/,дождь
+snow,/snəʊ/,снег
+wind,/wɪnd/,ветер
+fire,/ˈfaɪər/,огонь
+stone,/stəʊn/,камень
 animal,/ˈænɪməl/,животное
-dangerous,/ˈdeɪndʒərəs/,опасный
-happy,/ˈhæpi/,счастливый
-tired,/ˈtaɪərd/,уставший
-hot,/hɒt/,горячий
-cold,/kəʊld/,холодный
+dog,/dɒɡ/,собака
+cat,/kæt/,кошка
+bird,/bɜːd/,птица
+horse,/hɔːs/,лошадь
+wolf,/wʊlf/,волк
+bear,/beər/,медведь
+snake,/sneɪk/,змея
+spider,/ˈspaɪdər/,паук
+# ─────────── ГОРОД И ПУТЕШЕСТВИЯ (CITY & TRAVEL) ───────────
+city,/ˈsɪti/,город
+town,/taʊn/,городок
+street,/striːt/,улица
+road,/rəʊd/,дорога
+shop,/ʃɒp/,магазин
+market,/ˈmɑːkɪt/,рынок
+hospital,/ˈhɒspɪtəl/,больница
+school,/skuːl/,школа
+station,/ˈsteɪʃən/,станция / вокзал
+airport,/ˈeəpɔːt/,аэропорт
+hotel,/həʊˈtel/,отель
+bank,/bæŋk/,банк
+church,/tʃɜːtʃ/,церковь
+park,/pɑːk/,парк
+bridge,/brɪdʒ/,мост
+map,/mæp/,карта
+ticket,/ˈtɪkɪt/,билет
+passport,/ˈpɑːspɔːt/,паспорт
+luggage,/ˈlʌɡɪdʒ/,багаж
+train,/treɪn/,поезд
+bus,/bʌs/,автобус
+car,/kɑːr/,машина
+plane,/pleɪn/,самолёт
+taxi,/ˈtæksi/,такси
+flight,/flaɪt/,рейс / полёт
+trip,/trɪp/,поездка
+holiday,/ˈhɒlədeɪ/,отпуск / праздник
+# ─────────── ТЕЛО И ЗДОРОВЬЕ (BODY & HEALTH) ───────────
+head,/hed/,голова
+face,/feɪs/,лицо
+eye,/aɪ/,глаз
+ear,/ɪər/,ухо
+nose,/nəʊz/,нос
+mouth,/maʊθ/,рот
+tooth,/tuːθ/,зуб
+hair,/heər/,волосы
+hand,/hænd/,рука (кисть)
+arm,/ɑːm/,рука
+leg,/leɡ/,нога
+foot,/fʊt/,ступня
+heart,/hɑːt/,сердце
+blood,/blʌd/,кровь
+skin,/skɪn/,кожа
+doctor,/ˈdɒktər/,врач
+medicine,/ˈmedsɪn/,лекарство
+pain,/peɪn/,боль
+health,/helθ/,здоровье
+sick,/sɪk/,больной
+# ─────────── ВРЕМЯ (TIME) ───────────
+time,/taɪm/,время
+day,/deɪ/,день
+night,/naɪt/,ночь
+morning,/ˈmɔːnɪŋ/,утро
+evening,/ˈiːvnɪŋ/,вечер
+week,/wiːk/,неделя
+month,/mʌnθ/,месяц
+year,/jɪər/,год
+today,/təˈdeɪ/,сегодня
+tomorrow,/təˈmɒrəʊ/,завтра
+yesterday,/ˈjestədeɪ/,вчера
+hour,/ˈaʊər/,час
+minute,/ˈmɪnɪt/,минута
+Monday,/ˈmʌndeɪ/,понедельник
+Friday,/ˈfraɪdeɪ/,пятница
+weekend,/ˌwiːkˈend/,выходные
+# ─────────── РАБОТА И ДЕНЬГИ (WORK & MONEY) ───────────
+work,/wɜːk/,работа
+job,/dʒɒb/,работа (должность)
+money,/ˈmʌni/,деньги
+price,/praɪs/,цена
+card,/kɑːd/,карта (банковская)
+cash,/kæʃ/,наличные
+office,/ˈɒfɪs/,офис
+boss,/bɒs/,начальник
+company,/ˈkʌmpəni/,компания
+business,/ˈbɪznɪs/,бизнес / дело
+customer,/ˈkʌstəmər/,клиент
+free,/friː/,бесплатный / свободный
+expensive,/ɪkˈspensɪv/,дорогой
+cheap,/tʃiːp/,дешёвый
+# ─────────── ПРИЛАГАТЕЛЬНЫЕ (ADJECTIVES) ───────────
+good,/ɡʊd/,хороший
+bad,/bæd/,плохой
 big,/bɪɡ/,большой
 small,/smɔːl/,маленький
-delicious,/dɪˈlɪʃəs/,очень вкусный
+new,/njuː/,новый
+old,/əʊld/,старый
+young,/jʌŋ/,молодой
+long,/lɒŋ/,длинный
+short,/ʃɔːt/,короткий
+high,/haɪ/,высокий
+low,/ləʊ/,низкий
+hot,/hɒt/,горячий
+cold,/kəʊld/,холодный
+warm,/wɔːm/,тёплый
+fast,/fɑːst/,быстрый
+slow,/sləʊ/,медленный
+easy,/ˈiːzi/,лёгкий
+hard,/hɑːd/,трудный / твёрдый
+happy,/ˈhæpi/,счастливый
+sad,/sæd/,грустный
+angry,/ˈæŋɡri/,сердитый
+scared,/skeəd/,испуганный
+tired,/ˈtaɪəd/,уставший
+strong,/strɒŋ/,сильный
+weak,/wiːk/,слабый
+beautiful,/ˈbjuːtɪfəl/,красивый
+ugly,/ˈʌɡli/,уродливый
+clean,/kliːn/,чистый
+dirty,/ˈdɜːti/,грязный
+full,/fʊl/,полный
+empty,/ˈempti/,пустой
+right,/raɪt/,правильный / правый
+wrong,/rɒŋ/,неправильный
+true,/truː/,правдивый
+important,/ɪmˈpɔːtənt/,важный
+different,/ˈdɪfrənt/,разный
+same,/seɪm/,одинаковый
+dark,/dɑːk/,тёмный
+bright,/braɪt/,яркий
+dangerous,/ˈdeɪndʒərəs/,опасный
+safe,/seɪf/,безопасный
+famous,/ˈfeɪməs/,знаменитый
+funny,/ˈfʌni/,смешной
+scary,/ˈskeəri/,страшный
+strange,/streɪndʒ/,странный
+quiet,/ˈkwaɪət/,тихий
+loud,/laʊd/,громкий
+# ─────────── НАРЕЧИЯ (ADVERBS) ───────────
+now,/naʊ/,сейчас
+then,/ðen/,тогда / потом
+here,/hɪər/,здесь
+there,/ðeər/,там
 always,/ˈɔːlweɪz/,всегда
 usually,/ˈjuːʒuəli/,обычно
 often,/ˈɒfən/,часто
 sometimes,/ˈsʌmtaɪmz/,иногда
 never,/ˈnevər/,никогда
+already,/ɔːlˈredi/,уже
+still,/stɪl/,всё ещё
+yet,/jet/,ещё (в вопросах/отриц.)
+just,/dʒʌst/,только что / просто
+soon,/suːn/,скоро
+late,/leɪt/,поздно
+early,/ˈɜːli/,рано
+together,/təˈɡeðər/,вместе
+alone,/əˈləʊn/,один
+really,/ˈrɪəli/,действительно
+very,/ˈveri/,очень
+too,/tuː/,слишком / тоже
+also,/ˈɔːlsəʊ/,также
+almost,/ˈɔːlməʊst/,почти
+maybe,/ˈmeɪbi/,может быть
+probably,/ˈprɒbəbli/,вероятно
+quickly,/ˈkwɪkli/,быстро
+slowly,/ˈsləʊli/,медленно
+carefully,/ˈkeəfəli/,осторожно
+suddenly,/ˈsʌdənli/,вдруг
+# ─────────── ПРЕДЛОГИ (PREPOSITIONS) ───────────
 in,/ɪn/,в
 on,/ɒn/,на
+at,/æt/,в / на (точка)
+to,/tuː/,к
+from,/frɒm/,из / от
+of,/ɒv/,принадлежность (кого/чего)
+with,/wɪð/,с
+without,/wɪˈðaʊt/,без
+for,/fɔːr/,для / за
+about,/əˈbaʊt/,о / около
 under,/ˈʌndər/,под
+over,/ˈəʊvər/,над
+between,/bɪˈtwiːn/,между
+behind,/bɪˈhaɪnd/,позади
+in front of,/ɪn frʌnt ɒv/,перед
 next to,/nekst tuː/,рядом с
-because,/bɪˈkɒz/,потому что
-but,/bʌt/,но
+near,/nɪər/,около
+before,/bɪˈfɔːr/,перед / до
+after,/ˈɑːftər/,после
+during,/ˈdjʊərɪŋ/,во время
+until,/ənˈtɪl/,до (момента)
+through,/θruː/,сквозь / через
+across,/əˈkrɒs/,через (поперёк)
+into,/ˈɪntuː/,внутрь
+# ─────────── МЕСТОИМЕНИЯ И СЛОВА-ВОПРОСЫ ───────────
+who,/huː/,кто
+what,/wɒt/,что
+where,/weər/,где / куда
+when,/wen/,когда
+why,/waɪ/,почему
+how,/haʊ/,как
+which,/wɪtʃ/,который
+whose,/huːz/,чей
+someone,/ˈsʌmwʌn/,кто-то
+something,/ˈsʌmθɪŋ/,что-то
+anything,/ˈeniθɪŋ/,что-нибудь
+nothing,/ˈnʌθɪŋ/,ничего
+everyone,/ˈevriwʌn/,каждый / все
+everything,/ˈevriθɪŋ/,всё
+# ─────────── СОЮЗЫ И СВЯЗКИ (LINKERS) ───────────
 and,/ænd/,и
+but,/bʌt/,но
+or,/ɔːr/,или
+so,/səʊ/,поэтому / так что
+because,/bɪˈkɒz/,потому что
+if,/ɪf/,если
+when,/wen/,когда
+while,/waɪl/,пока / в то время как
+although,/ɔːlˈðəʊ/,хотя
+however,/haʊˈevər/,однако
+also,/ˈɔːlsəʊ/,также
+than,/ðæn/,чем (сравнение)
+as,/æz/,как / поскольку
+that,/ðæt/,что (союз)
+# ─────────── ЧАСТЫЕ ФРАЗЫ (EVERYDAY CHUNKS) ───────────
+Hello!,/həˈləʊ/,Привет! / Здравствуйте!
+Goodbye!,/ɡʊdˈbaɪ/,До свидания!
+Thank you.,/ˈθæŋk juː/,Спасибо.
+You're welcome.,/jɔːr ˈwelkəm/,Пожалуйста (в ответ).
+Excuse me.,/ɪkˈskjuːz miː/,Извините.
+I'm sorry.,/aɪm ˈsɒri/,Простите.
+Nice to meet you.,/naɪs tuː miːt juː/,Приятно познакомиться.
+How are you?,/haʊ ɑːr juː/,Как дела?
+I'm fine.,/aɪm faɪn/,У меня всё хорошо.
+What's your name?,/wɒts jɔːr neɪm/,Как тебя зовут?
+My name is...,/maɪ neɪm ɪz/,Меня зовут...
+I don't know.,/aɪ dəʊnt nəʊ/,Я не знаю.
+I don't understand.,/aɪ dəʊnt ˌʌndərˈstænd/,Я не понимаю.
+Can you help me?,/kæn juː help miː/,Можешь мне помочь?
+Of course.,/ɒv kɔːs/,Конечно.
+No problem.,/nəʊ ˈprɒbləm/,Без проблем.
+Let's go!,/lets ɡəʊ/,Пойдём!
+See you later.,/siː juː ˈleɪtər/,Увидимся позже.
+Take care.,/teɪk keər/,Береги себя.
+Good luck!,/ɡʊd lʌk/,Удачи!
+# ─────────── ФРАЗЫ ДЛЯ ПУТЕШЕСТВИЙ И КАФЕ ───────────
+I'll have a coffee.,/aɪl hæv ə ˈkɒfi/,Мне кофе (заказ).
+Can I have the bill?,/kæn aɪ hæv ðə bɪl/,Можно счёт?
+A table for two.,/ə ˈteɪbəl fɔːr tuː/,Столик на двоих.
+How much is it?,/haʊ mʌtʃ ɪz ɪt/,Сколько это стоит?
+Do you take card?,/duː juː teɪk kɑːd/,Оплата картой есть?
+Where is the toilet?,/weər ɪz ðə ˈtɔɪlət/,Где туалет?
+I have a reservation.,/aɪ hæv ə ˌrezərˈveɪʃən/,У меня бронь.
+I'm lost.,/aɪm lɒst/,Я заблудился.
+Turn left.,/tɜːn left/,Поверните налево.
+Go straight.,/ɡəʊ streɪt/,Идите прямо.
+Can you speak slowly?,/kæn juː spiːk ˈsləʊli/,Можете говорить медленнее?
+I'm from Russia.,/aɪm frɒm ˈrʌʃə/,Я из России.
+I'm learning English.,/aɪm ˈlɜːnɪŋ ˈɪŋɡlɪʃ/,Я учу английский.
+# ─────────── СЛОЖНЫЕ КОНСТРУКЦИИ B1–B2 ───────────
+I would like to...,/aɪ wʊd laɪk tuː/,Я хотел(а) бы... (вежливо)
+I'd rather...,/aɪd ˈrɑːðər/,Я бы предпочёл...
+I used to...,/aɪ juːst tuː/,Раньше я... (было привычкой)
+I'm used to...,/aɪm juːst tuː/,Я привык(ла) к...
+I'm going to...,/aɪm ˈɡəʊɪŋ tuː/,Я собираюсь...
+I have to...,/aɪ hæv tuː/,Я должен (вынужден)...
+I should...,/aɪ ʃʊd/,Мне следует...
+I might...,/aɪ maɪt/,Я может быть...
+You'd better...,/juːd ˈbetər/,Тебе лучше... (совет)
+It depends on...,/ɪt dɪˈpendz ɒn/,Это зависит от...
+It looks like...,/ɪt lʊks laɪk/,Похоже что...
+It seems that...,/ɪt siːmz ðæt/,Кажется что...
+as soon as,/əz suːn əz/,как только
+as long as,/əz lɒŋ əz/,пока / при условии
+in order to,/ɪn ˈɔːdər tuː/,чтобы (с целью)
+even though,/ˈiːvən ðəʊ/,несмотря на то что
+by the way,/baɪ ðə weɪ/,кстати
+on the other hand,/ɒn ðiː ˈʌðər hænd/,с другой стороны
+in my opinion,/ɪn maɪ əˈpɪnjən/,по моему мнению
+That's why...,/ðæts waɪ/,Вот почему...
+The more the better.,/ðə mɔːr ðə ˈbetər/,Чем больше тем лучше.
+If I were you...,/ɪf aɪ wɜːr juː/,На твоём месте я бы...
+I wish I could...,/aɪ wɪʃ aɪ kʊd/,Жаль что я не могу...
+I can't wait to...,/aɪ kɑːnt weɪt tuː/,Не могу дождаться чтобы...
+Would you mind...?,/wʊd juː maɪnd/,Не мог бы ты...? (вежливо)
+# ─────────── ЧАСТЫЕ ИДИОМЫ (IDIOMS) ───────────
+It's up to you.,/ɪts ʌp tuː juː/,Решать тебе.
+Never mind.,/ˈnevər maɪnd/,Неважно / забудь.
+Take it easy.,/teɪk ɪt ˈiːzi/,Не переживай / расслабься.
+It's worth it.,/ɪts wɜːθ ɪt/,Оно того стоит.
+Make up your mind.,/meɪk ʌp jɔːr maɪnd/,Определись / реши.
+piece of cake,/piːs ɒv keɪk/,проще простого
+once in a while,/wʌns ɪn ə waɪl/,время от времени
+out of the blue,/aʊt ɒv ðə bluː/,как гром среди ясного неба
+# ─────────── В СТИЛЕ ТВОИХ ФИЛЬМОВ 🧛 ───────────
+witch,/wɪtʃ/,ведьма
+vampire,/ˈvæmpaɪər/,вампир
+monster,/ˈmɒnstər/,монстр
+hunter,/ˈhʌntər/,охотник
+ghost,/ɡəʊst/,призрак
+demon,/ˈdiːmən/,демон
+soul,/səʊl/,душа
+spell,/spel/,заклинание
+magic,/ˈmædʒɪk/,магия
+curse,/kɜːs/,проклятие
+sword,/sɔːd/,меч
+dark,/dɑːk/,тьма / тёмный
+power,/ˈpaʊər/,сила / власть
+She is not human.,/ʃiː ɪz nɒt ˈhjuːmən/,Она не человек.
+He hunts monsters.,/hiː hʌnts ˈmɒnstəz/,Он охотится на монстров.
+The night is dark.,/ðə naɪt ɪz dɑːk/,Ночь темна.
+Blood never lies.,/blʌd ˈnevər laɪz/,Кровь никогда не лжёт.
+# ─────────── ЦВЕТА (COLOURS) ───────────
+colour,/ˈkʌlər/,цвет
+red,/red/,красный
+blue,/bluː/,синий / голубой
+green,/ɡriːn/,зелёный
+yellow,/ˈjeləʊ/,жёлтый
+black,/blæk/,чёрный
+white,/waɪt/,белый
+orange,/ˈɒrɪndʒ/,оранжевый
+pink,/pɪŋk/,розовый
+purple,/ˈpɜːpəl/,фиолетовый
+brown,/braʊn/,коричневый
+grey,/ɡreɪ/,серый
+gold,/ɡəʊld/,золотой
+silver,/ˈsɪlvər/,серебряный
+# ─────────── ПОГОДА (WEATHER) ───────────
+weather,/ˈweðər/,погода
+sunny,/ˈsʌni/,солнечно
+cloudy,/ˈklaʊdi/,облачно
+rainy,/ˈreɪni/,дождливо
+windy,/ˈwɪndi/,ветрено
+snowy,/ˈsnəʊi/,снежно
+foggy,/ˈfɒɡi/,туманно
+storm,/stɔːm/,буря / шторм
+thunder,/ˈθʌndər/,гром
+lightning,/ˈlaɪtnɪŋ/,молния
+cloud,/klaʊd/,облако
+ice,/aɪs/,лёд
+heat,/hiːt/,жара
+degree,/dɪˈɡriː/,градус
+It's raining.,/ɪts ˈreɪnɪŋ/,Идёт дождь.
+It's cold today.,/ɪts kəʊld təˈdeɪ/,Сегодня холодно.
+# ─────────── ЖИВОТНЫЕ (ANIMALS) ───────────
+cow,/kaʊ/,корова
+pig,/pɪɡ/,свинья
+sheep,/ʃiːp/,овца
+goat,/ɡəʊt/,коза
+rabbit,/ˈræbɪt/,кролик
+mouse,/maʊs/,мышь
+fox,/fɒks/,лиса
+deer,/dɪər/,олень
+lion,/ˈlaɪən/,лев
+tiger,/ˈtaɪɡər/,тигр
+elephant,/ˈelɪfənt/,слон
+monkey,/ˈmʌŋki/,обезьяна
+frog,/frɒɡ/,лягушка
+duck,/dʌk/,утка
+chicken,/ˈtʃɪkɪn/,курица
+tail,/teɪl/,хвост
+wing,/wɪŋ/,крыло
+# ─────────── НАСЕКОМЫЕ (INSECTS) ───────────
+insect,/ˈɪnsekt/,насекомое
+bee,/biː/,пчела
+ant,/ænt/,муравей
+mosquito,/məˈskiːtəʊ/,комар
+butterfly,/ˈbʌtəflaɪ/,бабочка
+wasp,/wɒsp/,оса
+beetle,/ˈbiːtəl/,жук
+worm,/wɜːm/,червяк
+snail,/sneɪl/,улитка
+# ─────────── МОРСКИЕ (SEA CREATURES) ───────────
+shark,/ʃɑːk/,акула
+whale,/weɪl/,кит
+dolphin,/ˈdɒlfɪn/,дельфин
+octopus,/ˈɒktəpəs/,осьминог
+crab,/kræb/,краб
+jellyfish,/ˈdʒelifɪʃ/,медуза
+seal,/siːl/,тюлень
+turtle,/ˈtɜːtəl/,черепаха
+shell,/ʃel/,ракушка
+wave,/weɪv/,волна
+# ─────────── ФРУКТЫ (FRUITS) ───────────
+banana,/bəˈnɑːnə/,банан
+orange (fruit),/ˈɒrɪndʒ/,апельсин
+lemon,/ˈlemən/,лимон
+grape,/ɡreɪp/,виноград
+strawberry,/ˈstrɔːbəri/,клубника
+cherry,/ˈtʃeri/,вишня
+peach,/piːtʃ/,персик
+pear,/peər/,груша
+watermelon,/ˈwɔːtəmelən/,арбуз
+pineapple,/ˈpaɪnæpəl/,ананас
+# ─────────── ОВОЩИ (VEGETABLES) ───────────
+vegetable,/ˈvedʒtəbəl/,овощ
+potato,/pəˈteɪtəʊ/,картофель
+tomato,/təˈmɑːtəʊ/,помидор
+carrot,/ˈkærət/,морковь
+onion,/ˈʌnjən/,лук
+cucumber,/ˈkjuːkʌmbər/,огурец
+cabbage,/ˈkæbɪdʒ/,капуста
+pepper,/ˈpepər/,перец
+garlic,/ˈɡɑːlɪk/,чеснок
+mushroom,/ˈmʌʃruːm/,гриб
+corn,/kɔːn/,кукуруза
+bean,/biːn/,фасоль
+# ─────────── ТЕХНИКА (TECHNOLOGY) ───────────
+computer,/kəmˈpjuːtər/,компьютер
+laptop,/ˈlæptɒp/,ноутбук
+screen,/skriːn/,экран
+keyboard,/ˈkiːbɔːd/,клавиатура
+computer mouse,/kəmˈpjuːtər maʊs/,мышь (компьютерная)
+internet,/ˈɪntənet/,интернет
+password,/ˈpɑːswɜːd/,пароль
+email,/ˈiːmeɪl/,электронная почта
+message,/ˈmesɪdʒ/,сообщение
+app,/æp/,приложение
+file,/faɪl/,файл
+camera,/ˈkæmərə/,камера
+battery,/ˈbætəri/,батарея
+charger,/ˈtʃɑːdʒər/,зарядка
+download,/ˌdaʊnˈləʊd/,скачивать
+online,/ˌɒnˈlaɪn/,онлайн
+# ─────────── ПРОФЕССИИ (PROFESSIONS) ───────────
+teacher,/ˈtiːtʃər/,учитель
+nurse,/nɜːs/,медсестра
+police officer,/pəˈliːs ˈɒfɪsər/,полицейский
+firefighter,/ˈfaɪəfaɪtər/,пожарный
+driver,/ˈdraɪvər/,водитель
+farmer,/ˈfɑːmər/,фермер
+engineer,/ˌendʒɪˈnɪər/,инженер
+lawyer,/ˈlɔɪər/,юрист
+artist,/ˈɑːtɪst/,художник
+singer,/ˈsɪŋər/,певец
+actor,/ˈæktər/,актёр
+writer,/ˈraɪtər/,писатель
+scientist,/ˈsaɪəntɪst/,учёный
+programmer,/ˈprəʊɡræmər/,программист
+pilot,/ˈpaɪlət/,пилот
+soldier,/ˈsəʊldʒər/,солдат
+# ─────────── ДЕТСАД И ШКОЛА (KINDERGARTEN & SCHOOL) ───────────
+kindergarten,/ˈkɪndəɡɑːtən/,детский сад
+pupil,/ˈpjuːpəl/,ученик
+student,/ˈstjuːdənt/,студент
+lesson,/ˈlesən/,урок
+homework,/ˈhəʊmwɜːk/,домашнее задание
+book,/bʊk/,книга
+pen,/pen/,ручка
+pencil,/ˈpensəl/,карандаш
+paper,/ˈpeɪpər/,бумага
+desk,/desk/,парта / стол
+board,/bɔːd/,доска
+test,/test/,тест / контрольная
+mark,/mɑːk/,оценка
+toy,/tɔɪ/,игрушка
+game,/ɡeɪm/,игра
+draw,/drɔː/,рисовать
+# ─────────── ОФИС (OFFICE) ───────────
+meeting,/ˈmiːtɪŋ/,совещание / встреча
+report,/rɪˈpɔːt/,отчёт
+deadline,/ˈdedlaɪn/,крайний срок
+project,/ˈprɒdʒekt/,проект
+colleague,/ˈkɒliːɡ/,коллега
+salary,/ˈsæləri/,зарплата
+document,/ˈdɒkjumənt/,документ
+printer,/ˈprɪntər/,принтер
+schedule,/ˈʃedjuːl/,расписание
+contract,/ˈkɒntrækt/,контракт
+# ─────────── СКАЗКИ (FAIRY TALES) ───────────
+fairy tale,/ˈfeəri teɪl/,сказка
+king,/kɪŋ/,король
+queen,/kwiːn/,королева
+prince,/prɪns/,принц
+princess,/ˌprɪnˈses/,принцесса
+dragon,/ˈdræɡən/,дракон
+knight,/naɪt/,рыцарь
+castle,/ˈkɑːsəl/,замок
+giant,/ˈdʒaɪənt/,великан
+fairy,/ˈfeəri/,фея
+wizard,/ˈwɪzəd/,волшебник
+treasure,/ˈtreʒər/,сокровище
+Once upon a time,/wʌns əˈpɒn ə taɪm/,Жили-были...
+They lived happily ever after.,/ðeɪ lɪvd ˈhæpɪli ˈevər ˈɑːftər/,И жили они долго и счастливо.
