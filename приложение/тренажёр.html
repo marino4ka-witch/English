@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тренажёр английского — Марина</title>
+<style>
+  :root{
+    --bg:#14121a; --card:#211d2b; --card2:#2c2638; --text:#f2eefb;
+    --muted:#a99fc0; --accent:#8b5cf6; --good:#34d399; --bad:#f87171; --line:#39324a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    background:var(--bg);color:var(--text);min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;padding:16px}
+  h1{font-size:20px;margin:8px 0 2px;text-align:center}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:14px}
+  .bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:12px}
+  button,select,label.file{background:var(--card2);color:var(--text);border:1px solid var(--line);
+    border-radius:10px;padding:9px 13px;font-size:14px;cursor:pointer;transition:.15s}
+  button:hover,label.file:hover{border-color:var(--accent)}
+  button.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .progress{color:var(--muted);font-size:13px;margin-bottom:10px;text-align:center}
+  .progress b{color:var(--text)}
+  #stage{width:100%;max-width:520px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;
+    min-height:240px;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;padding:26px;cursor:pointer;user-select:none}
+  .front{font-size:38px;font-weight:700}
+  .tr{color:var(--accent);font-size:22px;margin-top:10px}
+  .back{font-size:30px;font-weight:600;margin-top:6px}
+  .hint{color:var(--muted);font-size:13px;margin-top:18px}
+  .row{display:flex;gap:10px;margin-top:14px;justify-content:center}
+  .row button{flex:1;max-width:200px;font-size:15px;padding:12px}
+  .know{border-color:var(--good)} .know:hover{background:rgba(52,211,153,.15)}
+  .dont{border-color:var(--bad)} .dont:hover{background:rgba(248,113,113,.15)}
+  .opt{display:block;width:100%;text-align:left;margin:8px 0;padding:14px;font-size:17px}
+  .opt.correct{background:rgba(52,211,153,.2);border-color:var(--good)}
+  .opt.wrong{background:rgba(248,113,113,.2);border-color:var(--bad)}
+  input[type=text]{width:100%;padding:14px;font-size:18px;border-radius:10px;
+    border:1px solid var(--line);background:var(--card2);color:var(--text);margin-top:14px}
+  .msg{text-align:center;margin-top:12px;font-size:16px;min-height:22px}
+  .done{text-align:center;font-size:20px;padding:40px 10px}
+  .file input{display:none}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+  <h1>🧛‍♀️ Тренажёр английского</h1>
+  <div class="sub">Карточки Марины · работает без интернета</div>
+
+  <div class="bar">
+    <button id="mFlip" class="active" onclick="setMode('flip')">🃏 Карточки</button>
+    <button id="mQuiz" onclick="setMode('quiz')">📝 Викторина</button>
+    <button id="mType" onclick="setMode('type')">⌨️ Печать</button>
+  </div>
+  <div class="bar">
+    <button id="dir" onclick="toggleDir()">EN → RU</button>
+    <button onclick="shuffleCards()">🔀 Перемешать</button>
+    <button onclick="restart()">↻ Сначала</button>
+    <label class="file">📂 Свой CSV<input type="file" accept=".csv" onchange="loadCsv(event)"></label>
+  </div>
+
+  <div class="progress">Карта <b><span id="pos">0</span></b> из <b><span id="total">0</span></b>
+    · знаю: <b id="known">0</b> · повторить: <b id="review">0</b></div>
+
+  <div id="stage"></div>
+
+<script>
+// ── Встроенные карточки [английский, транскрипция, русский] ──
+const DEFAULT = [
+["be","/biː/","быть"],["have","/hæv/","иметь"],["do","/duː/","делать"],
+["go","/ɡəʊ/","идти"],["get","/ɡet/","получать / становиться"],
+["make","/meɪk/","делать / создавать"],["say","/seɪ/","сказать"],
+["know","/nəʊ/","знать"],["think","/θɪŋk/","думать"],["see","/siː/","видеть"],
+["come","/kʌm/","приходить"],["take","/teɪk/","брать"],["give","/ɡɪv/","давать"],
+["find","/faɪnd/","находить"],["tell","/tel/","рассказывать"],
+["feel","/fiːl/","чувствовать"],["want","/wɒnt/","хотеть"],
+["need","/niːd/","нуждаться"],["like","/laɪk/","нравиться"],["love","/lʌv/","любить"],
+["watch","/wɒtʃ/","смотреть"],["play","/pleɪ/","играть"],["live","/lɪv/","жить"],
+["work","/wɜːk/","работать"],["eat","/iːt/","есть (кушать)"],["drink","/drɪŋk/","пить"],
+["sleep","/sliːp/","спать"],["speak","/spiːk/","говорить"],["read","/riːd/","читать"],
+["write","/raɪt/","писать"],["buy","/baɪ/","покупать"],["pay","/peɪ/","платить"],
+["run","/rʌn/","бежать"],["hide","/haɪd/","прятать(ся)"],["bite","/baɪt/","кусать"],
+["catch","/kætʃ/","ловить"],["fight","/faɪt/","драться"],["break","/breɪk/","ломать"],
+["kill","/kɪl/","убивать"],["fall","/fɔːl/","падать"],["become","/bɪˈkʌm/","становиться"],
+["leave","/liːv/","покидать / оставлять"],["lose","/luːz/","терять"],
+["win","/wɪn/","выигрывать"],["meet","/miːt/","встречать"],
+["understand","/ˌʌndərˈstænd/","понимать"],["help","/help/","помогать"],
+["ask","/ɑːsk/","спрашивать"],["call","/kɔːl/","звонить"],["cook","/kʊk/","готовить"],
+["learn","/lɜːn/","учить"],["remember","/rɪˈmembər/","помнить"],
+["witch","/wɪtʃ/","ведьма"],["vampire","/ˈvæmpaɪər/","вампир"],
+["monster","/ˈmɒnstər/","монстр"],["hunter","/ˈhʌntər/","охотник"],
+["ghost","/ɡəʊst/","призрак"],["spider","/ˈspaɪdər/","паук"],
+["family","/ˈfæməli/","семья"],["child","/tʃaɪld/","ребёнок"],
+["children","/ˈtʃɪldrən/","дети"],["mother","/ˈmʌðər/","мама"],
+["father","/ˈfɑːðər/","папа"],["son","/sʌn/","сын"],["daughter","/ˈdɔːtər/","дочь"],
+["friend","/frend/","друг"],["music","/ˈmjuːzɪk/","музыка"],["film","/fɪlm/","фильм"],
+["coffee","/ˈkɒfi/","кофе"],["food","/fuːd/","еда"],["water","/ˈwɔːtər/","вода"],
+["nature","/ˈneɪtʃər/","природа"],["animal","/ˈænɪməl/","животное"],
+["dangerous","/ˈdeɪndʒərəs/","опасный"],["happy","/ˈhæpi/","счастливый"],
+["tired","/ˈtaɪərd/","уставший"],["hot","/hɒt/","горячий"],["cold","/kəʊld/","холодный"],
+["big","/bɪɡ/","большой"],["small","/smɔːl/","маленький"],
+["delicious","/dɪˈlɪʃəs/","очень вкусный"],["always","/ˈɔːlweɪz/","всегда"],
+["usually","/ˈjuːʒuəli/","обычно"],["often","/ˈɒfən/","часто"],
+["sometimes","/ˈsʌmtaɪmz/","иногда"],["never","/ˈnevər/","никогда"],
+["in","/ɪn/","в"],["on","/ɒn/","на"],["under","/ˈʌndər/","под"],
+["next to","/nekst tuː/","рядом с"],["because","/bɪˈkɒz/","потому что"],
+["but","/bʌt/","но"],["and","/ænd/","и"]
+];
+
+let cards = DEFAULT.map(c=>({en:c[0],tr:c[1],ru:c[2],known:false}));
+let order=[], idx=0, mode='flip', flipped=false, dir='en';
+
+function reindex(){order=cards.map((_,i)=>i)}
+function shuffleCards(){for(let i=order.length-1;i>0;i--){const j=(i*2654435761>>>0)%(i+1);[order[i],order[j]]=[order[j],order[i]]}idx=0;render()}
+function restart(){cards.forEach(c=>c.known=false);reindex();idx=0;render()}
+function setMode(m){mode=m;['flip','quiz','type'].forEach(x=>document.getElementById('m'+x[0].toUpperCase()+x.slice(1)).classList.toggle('active',x===m));idx=0;render()}
+function toggleDir(){dir=dir==='en'?'ru':'en';document.getElementById('dir').textContent=dir==='en'?'EN → RU':'RU → EN';idx=0;render()}
+
+function stats(){
+  document.getElementById('total').textContent=order.length;
+  document.getElementById('pos').textContent=Math.min(idx+1,order.length);
+  const k=cards.filter(c=>c.known).length;
+  document.getElementById('known').textContent=k;
+  document.getElementById('review').textContent=cards.length-k;
+}
+function frontText(c){return dir==='en'?c.en:c.ru}
+function backText(c){return dir==='en'?(c.tr+'  '+c.ru):(c.en+'  '+c.tr)}
+
+function render(){
+  stats();
+  const stage=document.getElementById('stage');
+  if(idx>=order.length){stage.innerHTML='<div class="done">🎉 Готово! Ты прошла все карточки.<br><br>Нажми «↻ Сначала» или «🔀 Перемешать».</div>';return}
+  const c=cards[order[idx]];
+  if(mode==='flip'){flipped=false;
+    stage.innerHTML=`<div class="card" onclick="flip()">
+      <div class="front">${frontText(c)}</div>
+      <div id="rev" style="display:none">${dir==='en'?`<div class="tr">${c.tr}</div><div class="back">${c.ru}</div>`:`<div class="back">${c.en}</div><div class="tr">${c.tr}</div>`}</div>
+      <div class="hint">нажми, чтобы перевернуть</div></div>
+      <div class="row"><button class="dont" onclick="mark(false)">❌ Повторить</button>
+      <button class="know" onclick="mark(true)">✅ Знаю</button></div>`;
+  } else if(mode==='quiz'){
+    const correct=backText(c);
+    const pool=cards.filter(x=>x!==c);
+    const opts=[correct];
+    for(let n=0;n<40&&opts.length<4;n++){const r=pool[(idx*7+n*13)%pool.length];const t=backText(r);if(!opts.includes(t))opts.push(t)}
+    for(let i=opts.length-1;i>0;i--){const j=(i*2654435761>>>0)%(i+1);[opts[i],opts[j]]=[opts[j],opts[i]]}
+    stage.innerHTML=`<div class="card"><div class="front">${frontText(c)}</div></div>
+      <div style="margin-top:14px">${opts.map(o=>`<button class="opt" onclick="answer(this,${o===correct})">${o}</button>`).join('')}</div>
+      <div class="msg" id="msg"></div>`;
+  } else {
+    const answer=(dir==='en'?c.ru:c.en);
+    stage.innerHTML=`<div class="card"><div class="front">${frontText(c)}</div>
+      ${dir==='en'?'':`<div class="tr">${c.tr}</div>`}</div>
+      <input id="inp" type="text" placeholder="напиши перевод и нажми Enter" autocomplete="off">
+      <div class="msg" id="msg"></div>`;
+    const inp=document.getElementById('inp');inp.focus();
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter')checkType(answer)});
+  }
+}
+function flip(){const r=document.getElementById('rev');if(r)r.style.display=flipped?'none':'block';flipped=!flipped}
+function mark(k){cards[order[idx]].known=k;if(!k)order.push(order[idx]);idx++;render()}
+function answer(btn,ok){
+  document.querySelectorAll('.opt').forEach(b=>b.onclick=null);
+  btn.classList.add(ok?'correct':'wrong');
+  cards[order[idx]].known=ok;
+  document.getElementById('msg').textContent=ok?'✅ Верно!':'❌ Правильно: '+backText(cards[order[idx]]);
+  if(!ok)order.push(order[idx]);
+  setTimeout(()=>{idx++;render()},ok?700:1600);
+}
+function norm(s){return s.trim().toLowerCase().replace(/ё/g,'е').replace(/\s+/g,' ')}
+function checkType(ans){
+  const inp=document.getElementById('inp');const val=norm(inp.value);
+  const variants=ans.split(/[\/,()]/).map(norm).filter(Boolean);
+  const ok=variants.some(v=>v===val);
+  cards[order[idx]].known=ok;if(!ok)order.push(order[idx]);
+  document.getElementById('msg').textContent=ok?'✅ Верно!':'❌ Правильно: '+ans;
+  inp.disabled=true;setTimeout(()=>{idx++;render()},ok?700:1800);
+}
+function loadCsv(e){
+  const f=e.target.files[0];if(!f)return;const rd=new FileReader();
+  rd.onload=()=>{
+    const rows=rd.result.split(/\r?\n/).filter(r=>r.trim());
+    const parsed=[];
+    for(let i=0;i<rows.length;i++){
+      const p=rows[i].split(',');if(p.length<3)continue;
+      if(i===0&&/english|русск|engli/i.test(rows[i]))continue;
+      parsed.push({en:p[0].trim(),tr:p[1].trim(),ru:p.slice(2).join(',').trim(),known:false});
+    }
+    if(parsed.length){cards=parsed;reindex();idx=0;render();}
+    else alert('Не нашёл карточки. Нужен формат: English,Transcription,Русский');
+  };
+  rd.readAsText(f,'utf-8');
+}
+reindex();render();
+</script>
+</body>
+</html>
