@@ -1,29 +1,24 @@
 <style>
   :root{
-    --bg:#0c0a09; --screen:#141110; --panel:#1c1815; --panel2:#231d19;
-    --gold:#c9a24b; --gold2:#e6c777; --goldsoft:#a98b3f;
-    --wine:#5a181c; --wine2:#7a2328; --wineln:#8c5a3a;
-    --green:#4f9d6b; --greenbg:#16281d; --greentx:#8fe0ac;
-    --red:#a34a45; --redbg:#2a1614; --redtx:#e2a19c;
-    --amber:#d99a3a; --amberbg:#2a2010; --ambertx:#e8c07a;
-    --parch:#ece2cf; --muted:#9b8f7c; --line:#2f2721;
+    --bg:#0b0a0d; --panel:#1a1512; --panel2:#221a15; --line:#2c2318;
+    --gold:#c9a24b; --gold2:#e8c877; --goldsoft:#8f7333; --goldln:rgba(230,199,119,.5);
+    --parch:#ece2cf; --muted:#9b8f7c;
+    --cardtop:#6d1c22; --cardbot:#390f13; --cardln:#a9702f;
+    --red:#b5544d; --redbg1:#7d2622; --redbg2:#531a17; --redtx:#f0cdc7;
+    --amber:#d9a84a; --ambbg1:#a2762c; --ambbg2:#6f5017; --ambtx:#f3e0b0;
+    --green:#4f9d6b; --grnbg1:#2f6048; --grnbg2:#1a3a2b; --grntx:#c4e8d2;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;height:100%}
   body{
-    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
-    color:var(--parch);
-    background:
-      radial-gradient(120% 70% at 50% -5%, #241a12 0%, #120d0a 45%, #060504 100%),
-      #060504;
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;color:var(--parch);
+    background:radial-gradient(130% 80% at 50% -8%, #1c1512 0%, #0d0a0b 48%, #050405 100%),#050405;
     display:flex;align-items:center;justify-content:center;overflow:hidden}
   .ember{position:fixed;bottom:-16px;width:3px;height:3px;border-radius:50%;
-    background:var(--gold);box-shadow:0 0 8px 2px rgba(201,162,75,.7);opacity:0;
+    background:var(--gold);box-shadow:0 0 8px 2px rgba(201,162,75,.6);opacity:0;
     animation:rise linear infinite;pointer-events:none;z-index:0}
-  @keyframes rise{0%{transform:translateY(0) scale(.5);opacity:0}
-    15%{opacity:.8}100%{transform:translateY(-104vh) scale(1);opacity:0}}
+  @keyframes rise{0%{transform:translateY(0) scale(.5);opacity:0}15%{opacity:.7}100%{transform:translateY(-104vh) scale(1);opacity:0}}
   @media (prefers-reduced-motion: reduce){.ember{display:none}}
-  /* анимация отправки в колоду */
   .spark2{position:fixed;pointer-events:none;z-index:60;opacity:1;line-height:1;
     transition:transform .62s cubic-bezier(.2,.7,.3,1),opacity .55s ease}
   .card.fly-know{animation:flyR .45s ease forwards}
@@ -34,187 +29,198 @@
   @keyframes flyU{to{transform:translateY(-48%) scale(.8);opacity:0}}
 
   .phone{position:relative;z-index:1;display:flex;flex-direction:column;
-    width:min(100vw, calc(100vh * 9 / 16));
-    height:min(100vh, calc(100vw * 16 / 9));
-    background:linear-gradient(180deg,#151110 0%,#0f0c0a 100%);
-    border:1px solid #241d17;border-radius:26px;overflow:hidden;
-    box-shadow:0 0 0 1px rgba(201,162,75,.12),0 0 70px rgba(0,0,0,.7),
-      inset 0 0 90px rgba(0,0,0,.55)}
+    width:min(100vw, calc(100vh * 9 / 16));height:min(100vh, calc(100vw * 16 / 9));
+    background:linear-gradient(180deg,#141010 0%,#0b0809 100%);
+    border:1px solid #241d17;border-radius:28px;overflow:hidden;
+    box-shadow:0 0 0 1px rgba(201,162,75,.12),0 0 70px rgba(0,0,0,.75),inset 0 0 90px rgba(0,0,0,.55)}
 
-  .status{display:flex;justify-content:space-between;align-items:center;
-    padding:9px 18px 3px;font-size:12px;color:var(--muted);flex:0 0 auto;
-    font-family:system-ui,sans-serif}
-  .status .dots{letter-spacing:1px}
+  /* ── шапка ── */
+  .top{display:flex;align-items:center;gap:11px;padding:14px 16px 10px;flex:0 0 auto}
+  .top .compass{width:38px;height:38px;flex:0 0 auto}
+  .brand{flex:1 1 auto;line-height:1}
+  .brand .n{font-size:17px;letter-spacing:3px}
+  .brand .n b{color:var(--gold2);font-weight:700}.brand .n i{color:var(--parch);font-style:normal;font-weight:700}
+  .brand .s{font-size:9px;letter-spacing:3px;color:var(--goldsoft);text-transform:uppercase;
+    margin-top:3px;font-family:system-ui,sans-serif}
+  .iconbtn{width:34px;height:34px;flex:0 0 auto;border-radius:50%;border:1px solid var(--goldsoft);
+    background:radial-gradient(circle at 50% 35%,#241c14,#140f0b);color:var(--gold2);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:15px}
+  .iconbtn:hover{border-color:var(--gold2);box-shadow:0 0 10px rgba(201,162,75,.3)}
+  .hr{height:1px;margin:0 16px;flex:0 0 auto;
+    background:linear-gradient(90deg,transparent,var(--goldln),transparent)}
 
-  .brand{display:flex;align-items:center;gap:9px;padding:4px 18px 8px;flex:0 0 auto}
-  .brand svg{width:30px;height:30px;flex:0 0 auto}
-  .brand .bt{line-height:1}
-  .brand .n1{font-size:15px;letter-spacing:3px;color:var(--gold2);font-weight:700}
-  .brand .n2{font-size:15px;letter-spacing:3px;color:var(--parch);font-weight:700}
-  .brand .bs{font-size:9px;letter-spacing:2px;color:var(--goldsoft);
-    text-transform:uppercase;margin-top:2px;font-family:system-ui,sans-serif}
+  /* ── строка заголовка ── */
+  .head{display:flex;justify-content:space-between;align-items:flex-end;padding:10px 18px 4px;flex:0 0 auto}
+  .head .ht{font-size:24px;color:var(--parch);letter-spacing:.5px}
+  .head .hsub{font-size:11px;color:var(--muted);font-family:system-ui,sans-serif;margin-top:2px}
+  .head .hpos{font-size:14px;color:var(--muted);font-family:system-ui,sans-serif}
+  .head .hpos b{color:var(--gold2);font-weight:700}
 
-  .head{padding:6px 18px 4px;flex:0 0 auto;display:flex;
-    justify-content:space-between;align-items:flex-end;border-top:1px solid var(--line)}
-  .head .ht{font-size:19px;color:var(--parch);letter-spacing:.5px}
-  .head .hsub{font-size:11px;color:var(--muted);font-family:system-ui,sans-serif;margin-top:1px}
-  .head .hpos{font-size:12px;color:var(--gold);font-family:system-ui,sans-serif}
+  .screen{flex:1 1 auto;overflow-y:auto;padding:10px 16px 8px;display:flex;flex-direction:column}
+  .dsep{color:var(--goldsoft);font-size:12px;align-self:center;padding:0 2px}
 
-  .screen{flex:1 1 auto;overflow-y:auto;padding:12px 16px 8px;
-    display:flex;flex-direction:column}
+  /* ── карта ── */
+  .card{position:relative;flex:1 1 auto;min-height:210px;border-radius:16px;cursor:pointer;user-select:none;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 22px;
+    background:radial-gradient(120% 80% at 50% 40%, #6d1c22 0%, #4b1318 55%, #360d12 100%);
+    border:1px solid var(--cardln);
+    box-shadow:inset 0 0 0 1px rgba(230,199,119,.55),inset 0 0 60px rgba(0,0,0,.55),0 8px 26px rgba(0,0,0,.5)}
+  .card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.13;
+    background:repeating-conic-gradient(from 0deg at 50% 44%, rgba(230,199,119,.7) 0deg .6deg, transparent .6deg 15deg),
+      radial-gradient(circle at 50% 44%, rgba(230,199,119,.35), transparent 42%);
+    -webkit-mask:radial-gradient(circle at 50% 44%, #000 0 38%, transparent 60%);
+            mask:radial-gradient(circle at 50% 44%, #000 0 38%, transparent 60%)}
+  .card::after{content:"";position:absolute;inset:9px;border:1px solid rgba(230,199,119,.4);border-radius:11px;pointer-events:none}
+  .card.pk{box-shadow:inset 0 0 0 1px var(--green),inset 0 0 60px rgba(0,0,0,.55),0 0 20px rgba(79,157,107,.35)}
+  .card.pd{box-shadow:inset 0 0 0 1px var(--red),inset 0 0 60px rgba(0,0,0,.55),0 0 20px rgba(181,84,77,.35)}
+  .card.pr{box-shadow:inset 0 0 0 1px var(--amber),inset 0 0 60px rgba(0,0,0,.55),0 0 20px rgba(217,168,74,.35)}
+  .cnr{position:absolute;color:var(--gold2);opacity:.55;font-size:12px;z-index:2}
+  .cnr.tl{top:14px;left:16px}.cnr.tr{top:14px;right:16px}.cnr.bl{bottom:14px;left:16px}.cnr.br{bottom:14px;right:16px}
+  .ctop{position:relative;z-index:2;margin-bottom:8px}.ctop svg{width:22px;height:22px;opacity:.9}
+  .word{position:relative;z-index:2;font-size:32px;font-weight:700;color:var(--gold2);line-height:1.15;
+    text-shadow:0 1px 12px rgba(0,0,0,.6)}
+  #rev{position:relative;z-index:2}
+  .rule{width:120px;height:1px;margin:14px auto;position:relative;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .rule::after{content:"◆";position:absolute;top:-8px;left:50%;transform:translateX(-50%);color:var(--gold);font-size:9px}
+  .tr{font-size:17px;color:#e9d6a3;font-style:italic}
+  .bk{font-size:21px;color:var(--parch);margin-top:5px}
+  .hint{position:relative;z-index:2;font-size:11px;color:#e0bd93;opacity:.7;margin-top:14px;font-family:system-ui,sans-serif}
+  .cmoon{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);color:var(--gold2);font-size:14px;z-index:2;opacity:.85}
 
-  .card{position:relative;flex:0 0 auto;border-radius:14px;
-    background:
-      radial-gradient(90% 60% at 50% 12%, rgba(230,199,119,.10), transparent 60%),
-      linear-gradient(180deg,#5f1a1f 0%,#401114 100%);
-    border:1px solid var(--wineln);padding:22px 18px 20px;text-align:center;
-    cursor:pointer;user-select:none;min-height:170px;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    box-shadow:inset 0 0 0 1px rgba(201,162,75,.35),
-      inset 0 0 46px rgba(0,0,0,.5),0 6px 24px rgba(0,0,0,.5)}
-  .card.pk{border-color:var(--green)} .card.pd{border-color:var(--red)} .card.pr{border-color:var(--amber)}
-  .card .em{width:24px;height:24px;opacity:.85;margin-bottom:5px}
-  .card .word{font-size:28px;font-weight:700;color:var(--gold2);line-height:1.15;
-    text-shadow:0 1px 10px rgba(0,0,0,.6)}
-  .card .rule{width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:11px 0}
-  .card .tr{font-size:16px;color:#e9d6a3;font-style:italic}
-  .card .bk{font-size:19px;color:var(--parch);margin-top:5px}
-  .card .hint{font-size:11px;color:#d8b98e;opacity:.7;margin-top:12px;
-    font-family:system-ui,sans-serif}
-  .card .badge{position:absolute;top:8px;right:11px;font-size:10px;font-family:system-ui,sans-serif;
-    padding:2px 8px;border-radius:10px}
-  .badge.pk{background:var(--greenbg);color:var(--greentx)} .badge.pd{background:var(--redbg);color:var(--redtx)}
-  .badge.pr{background:var(--amberbg);color:var(--ambertx)}
-
-  /* озвучка */
-  .say{display:flex;gap:8px;justify-content:center;margin-top:12px;flex:0 0 auto}
-  .sbtn{font-family:system-ui,sans-serif;font-size:13px;padding:8px 16px;border-radius:20px;
-    cursor:pointer;background:rgba(201,162,75,.12);border:1px solid var(--goldsoft);
-    color:var(--gold2);display:flex;align-items:center;gap:5px}
-  .sbtn:hover{background:rgba(201,162,75,.22);box-shadow:0 0 10px rgba(201,162,75,.3)}
+  /* ── пилюли озвучки ── */
+  .say{display:flex;gap:6px;justify-content:center;align-items:center;margin-top:12px;flex:0 0 auto}
+  .sbtn{font-family:system-ui,sans-serif;font-size:13px;padding:9px 22px;border-radius:22px;cursor:pointer;
+    background:linear-gradient(180deg,#211913,#140f0b);border:1px solid var(--goldsoft);color:var(--gold2);
+    display:flex;align-items:center;gap:6px}
+  .sbtn:hover{border-color:var(--gold2);box-shadow:0 0 12px rgba(201,162,75,.3)}
   .sbtn:active{transform:scale(.96)}
 
-  /* навигация по карточкам */
-  .nav{display:flex;gap:8px;margin-top:10px;flex:0 0 auto}
-  .nav .btn{flex:1;font-family:system-ui,sans-serif;font-size:13px;padding:11px;
-    border-radius:11px;border:1px solid var(--line);background:var(--panel);color:var(--parch);cursor:pointer}
+  /* ── навигация ── */
+  .nav{display:flex;gap:6px;justify-content:center;align-items:center;margin-top:9px;flex:0 0 auto}
+  .nav .btn{flex:1;max-width:170px;font-family:system-ui,sans-serif;font-size:13px;padding:11px;border-radius:11px;
+    border:1px solid var(--line);background:linear-gradient(180deg,#1b1510,#120d0a);color:var(--parch);cursor:pointer}
   .nav .btn:hover{border-color:var(--gold)}
 
-  /* три кнопки статуса */
-  .row3{display:flex;gap:8px;margin-top:10px;flex:0 0 auto}
-  .row3 .btn{flex:1;font-family:system-ui,sans-serif;font-size:13px;padding:13px 6px;
-    border-radius:11px;cursor:pointer;border:1px solid var(--line)}
-  .know{background:var(--greenbg);border-color:#2f5c41;color:var(--greentx)}
-  .know:hover{box-shadow:0 0 12px rgba(79,157,107,.35)}
-  .dont{background:var(--redbg);border-color:#5a2b28;color:var(--redtx)}
-  .dont:hover{box-shadow:0 0 12px rgba(163,74,69,.35)}
-  .rep{background:var(--amberbg);border-color:#5a4526;color:var(--ambertx)}
-  .rep:hover{box-shadow:0 0 12px rgba(217,154,58,.35)}
+  /* ── три плитки статуса ── */
+  .row3{display:flex;gap:9px;margin-top:11px;flex:0 0 auto}
+  .pbtn{flex:1;border-radius:13px;cursor:pointer;padding:12px 4px 11px;display:flex;flex-direction:column;
+    align-items:center;gap:4px;font-family:system-ui,sans-serif;border:1px solid;position:relative;overflow:hidden}
+  .pbtn .pi{font-size:19px;line-height:1}.pbtn .pt{font-size:12.5px}
+  .pbtn::after{content:"";position:absolute;inset:0;opacity:.10;pointer-events:none;
+    background:radial-gradient(circle at 50% 120%, currentColor, transparent 60%)}
+  .pbtn:active{transform:translateY(1px)}
+  .pbtn.dont{background:linear-gradient(180deg,var(--redbg1),var(--redbg2));border-color:var(--red);color:var(--redtx)}
+  .pbtn.rep{background:linear-gradient(180deg,var(--ambbg1),var(--ambbg2));border-color:var(--amber);color:var(--ambtx)}
+  .pbtn.know{background:linear-gradient(180deg,var(--grnbg1),var(--grnbg2));border-color:var(--green);color:var(--grntx)}
+  .pbtn:hover{filter:brightness(1.08)}
 
+  /* общие кнопки/списки */
   .row{display:flex;gap:11px;margin-top:14px;flex:0 0 auto}
-  .btn{font-family:system-ui,sans-serif;cursor:pointer}
-  .row .btn{flex:1;font-size:14px;padding:13px;border-radius:11px;
-    border:1px solid var(--line);background:var(--panel);color:var(--parch)}
+  .row .btn{flex:1;font-family:system-ui,sans-serif;font-size:14px;padding:13px;border-radius:11px;
+    border:1px solid var(--line);background:var(--panel);color:var(--parch);cursor:pointer}
   .row .btn:hover{border-color:var(--gold)}
 
   /* викторина */
   .q{font-size:13px;color:var(--muted);font-family:system-ui,sans-serif;margin:2px 0 4px}
-  .qword{font-size:23px;color:var(--gold2);text-align:center;margin:6px 0 4px}
-  .opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;
-    margin:7px 0;padding:13px 14px;border-radius:11px;border:1px solid var(--line);
-    background:var(--panel);color:var(--parch);cursor:pointer;font-size:15px;
-    font-family:system-ui,sans-serif}
+  .qword{font-size:24px;color:var(--gold2);text-align:center;margin:6px 0 4px;transition:filter .25s ease,opacity .25s ease}
+  .qcover{position:relative;cursor:pointer;margin:4px 0 2px;min-height:46px;display:flex;align-items:center;justify-content:center}
+  .qword.blur{filter:blur(11px);opacity:.5;user-select:none}
+  .qveil{position:absolute;font-size:12px;color:var(--gold2);font-family:system-ui,sans-serif;
+    background:rgba(11,10,13,.5);padding:5px 12px;border-radius:12px;pointer-events:none;border:1px solid var(--goldsoft)}
+  .opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;margin:7px 0;padding:13px 14px;
+    border-radius:11px;border:1px solid var(--line);background:var(--panel);color:var(--parch);cursor:pointer;
+    font-size:15px;font-family:system-ui,sans-serif}
   .opt:hover{border-color:var(--gold)}
-  .opt .lt{width:24px;height:24px;flex:0 0 auto;border-radius:6px;border:1px solid var(--goldsoft);
-    color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:12px}
-  .opt.correct{background:var(--greenbg);border-color:var(--green)}
-  .opt.correct .lt{background:var(--green);color:#0c0a09;border-color:var(--green)}
-  .opt.wrong{background:var(--redbg);border-color:var(--red)}
-  .opt.wrong .lt{background:var(--red);color:#0c0a09;border-color:var(--red)}
+  .opt .lt{width:26px;height:26px;flex:0 0 auto;border-radius:50%;border:1px solid var(--goldsoft);color:var(--gold);
+    display:flex;align-items:center;justify-content:center;font-size:12px}
+  .opt.correct{background:var(--grnbg2);border-color:var(--green)}.opt.correct .lt{background:var(--green);color:#0c0a09}
+  .opt.wrong{background:var(--redbg2);border-color:var(--red)}.opt.wrong .lt{background:var(--red);color:#0c0a09}
+  .qmode{display:flex;gap:10px;margin-bottom:8px;flex:0 0 auto}
+  .qm{flex:1;padding:11px;border-radius:11px;font-family:system-ui,sans-serif;font-size:13px;cursor:pointer;
+    border:1px solid var(--line);background:linear-gradient(180deg,#1b1510,#120d0a);color:var(--muted);
+    display:flex;align-items:center;justify-content:center;gap:6px}
+  .qm.on{background:linear-gradient(180deg,var(--redbg1),var(--redbg2));border-color:var(--red);color:var(--redtx)}
+  .card.qcard{flex:0 0 auto;min-height:150px;padding:22px 20px}
+  .qsub{position:relative;z-index:2;font-size:12px;color:#e0bd93;opacity:.85;font-family:system-ui,sans-serif;
+    margin-top:10px;line-height:1.5;text-align:center}
+  .qreveal{width:100%;margin-top:9px;padding:12px;border-radius:11px;cursor:pointer;font-family:system-ui,sans-serif;
+    font-size:14px;color:var(--parch);background:linear-gradient(180deg,#1b1510,#120d0a);border:1px solid var(--goldsoft);
+    display:flex;align-items:center;justify-content:center;gap:6px}
+  .qreveal:hover{border-color:var(--gold)}
+  .qopts{margin-top:12px}
 
   /* печать */
-  input[type=text]{width:100%;padding:14px;font-size:17px;border-radius:11px;
-    border:1px solid var(--line);background:var(--panel);color:var(--parch);
-    margin-top:12px;font-family:system-ui,sans-serif}
+  input[type=text]{width:100%;padding:14px;font-size:17px;border-radius:11px;border:1px solid var(--line);
+    background:var(--panel);color:var(--parch);margin-top:12px;font-family:system-ui,sans-serif}
   input[type=text]:focus{outline:none;border-color:var(--gold);box-shadow:0 0 12px rgba(201,162,75,.3)}
-  .tip{margin-top:12px;padding:12px 14px;border-radius:11px;border:1px solid var(--line);
-    background:var(--panel);color:var(--muted);font-size:12px;font-family:system-ui,sans-serif;line-height:1.5}
-  .tip b{color:var(--gold)}
+  .tip{margin-top:12px;padding:12px 14px;border-radius:11px;border:1px solid var(--line);background:var(--panel);
+    color:var(--muted);font-size:12px;font-family:system-ui,sans-serif;line-height:1.5}.tip b{color:var(--gold)}
   .msg{text-align:center;margin-top:12px;font-size:15px;min-height:22px;font-family:system-ui,sans-serif}
-  .primary{width:100%;margin-top:12px;padding:14px;border-radius:11px;cursor:pointer;
-    font-family:system-ui,sans-serif;font-size:15px;color:var(--gold2);
-    background:linear-gradient(180deg,#2a2119,#1d1712);border:1px solid var(--goldsoft)}
+  .primary{width:100%;margin-top:12px;padding:14px;border-radius:11px;cursor:pointer;font-family:system-ui,sans-serif;
+    font-size:15px;color:var(--gold2);background:linear-gradient(180deg,#2a2119,#1d1712);border:1px solid var(--goldsoft)}
   .primary:hover{box-shadow:0 0 14px rgba(201,162,75,.3)}
 
-  /* управление */
+  /* управление / библиотека */
   .sect{font-size:12px;color:var(--goldsoft);text-transform:uppercase;letter-spacing:1.5px;
     font-family:system-ui,sans-serif;margin:16px 0 8px}
   .seg{display:flex;gap:10px}
-  .seg button{flex:1;padding:12px;border-radius:11px;border:1px solid var(--line);
-    background:var(--panel);color:var(--muted);cursor:pointer;font-family:system-ui,sans-serif;font-size:14px}
+  .seg button{flex:1;padding:12px;border-radius:11px;border:1px solid var(--line);background:var(--panel);
+    color:var(--muted);cursor:pointer;font-family:system-ui,sans-serif;font-size:14px}
   .seg button.on{background:linear-gradient(180deg,#3a2c1c,#2a2015);border-color:var(--gold);color:var(--gold2)}
   .filter{margin-top:6px}
-  .filter select{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line);
-    background:var(--panel);color:var(--parch);font-family:system-ui,sans-serif;font-size:14px}
+  .filter select{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line);background:var(--panel);
+    color:var(--parch);font-family:system-ui,sans-serif;font-size:14px}
   .piles{display:flex;flex-direction:column;gap:9px;margin-top:2px}
-  .pile{display:flex;align-items:center;justify-content:space-between;
-    padding:11px 14px;border-radius:12px;border:1px solid;font-family:system-ui,sans-serif}
-  .pile.k{background:var(--greenbg);border-color:#2f5c41;color:var(--greentx)}
-  .pile.d{background:var(--redbg);border-color:#5a2b28;color:var(--redtx)}
-  .pile.r{background:var(--amberbg);border-color:#5a4526;color:var(--ambertx)}
-  .pile .pinfo{display:flex;align-items:baseline;gap:8px}
-  .pile .pc{font-size:20px;font-weight:700}.pile .pl{font-size:13px}
-  .pile button{background:rgba(255,255,255,.06);border:1px solid currentColor;color:inherit;
-    padding:8px 14px;border-radius:9px;cursor:pointer;font-family:system-ui,sans-serif;font-size:13px}
-  .pile button:hover{background:rgba(255,255,255,.14)}
-  .stats{display:flex;gap:10px;margin-top:2px}
-  .chip{flex:1;padding:12px;border-radius:11px;text-align:center;font-family:system-ui,sans-serif}
-  .chip .cv{font-size:24px;font-weight:700}.chip .cl{font-size:11px;opacity:.85}
-  .chip.g{background:var(--greenbg);border:1px solid #2f5c41;color:var(--greentx)}
+  .pile{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-radius:12px;
+    border:1px solid;font-family:system-ui,sans-serif}
+  .pile.k{background:var(--grnbg2);border-color:var(--green);color:var(--grntx)}
+  .pile.d{background:var(--redbg2);border-color:var(--red);color:var(--redtx)}
+  .pile.r{background:var(--ambbg2);border-color:var(--amber);color:var(--ambtx)}
+  .pile .pinfo{display:flex;align-items:baseline;gap:8px}.pile .pc{font-size:20px;font-weight:700}.pile .pl{font-size:13px}
+  .pile button{background:rgba(255,255,255,.06);border:1px solid currentColor;color:inherit;padding:8px 14px;
+    border-radius:9px;cursor:pointer;font-family:system-ui,sans-serif;font-size:13px}.pile button:hover{background:rgba(255,255,255,.14)}
   .gauge{display:flex;flex-direction:column;align-items:center;margin-top:14px}
-  .gauge svg{width:120px;height:120px}
-  .gauge .gt{margin-top:-86px;text-align:center}
-  .gauge .gn{font-size:28px;color:var(--gold2);font-weight:700}
-  .gauge .gl{font-size:11px;color:var(--muted);font-family:system-ui,sans-serif}
+  .gauge svg{width:120px;height:120px}.gauge .gt{margin-top:-86px;text-align:center}
+  .gauge .gn{font-size:28px;color:var(--gold2);font-weight:700}.gauge .gl{font-size:11px;color:var(--muted);font-family:system-ui,sans-serif}
   .gauge .gp{margin-top:48px;font-size:12px;color:var(--gold);font-family:system-ui,sans-serif}
-
-  /* библиотека */
   .impd{border-radius:14px;padding:18px;text-align:center;cursor:pointer;display:block;
     background:linear-gradient(180deg,#241d16,#1a1510);border:1px dashed var(--goldsoft)}
   .impd .ii{font-size:26px}.impd .il{font-size:15px;color:var(--gold2);margin-top:6px}
   .impd .is{font-size:11px;color:var(--muted);font-family:system-ui,sans-serif;margin-top:3px}
-  .note{margin-top:12px;font-size:11px;color:var(--muted);font-family:system-ui,sans-serif;
-    text-align:center;line-height:1.5}
+  .note{margin-top:12px;font-size:11px;color:var(--muted);font-family:system-ui,sans-serif;text-align:center;line-height:1.5}
   .lib .li{display:flex;align-items:center;gap:11px;padding:11px 4px;border-bottom:1px solid var(--line)}
-  .lib .lf{width:22px;text-align:center;color:var(--goldsoft)}
-  .lib .ln{font-size:13px;color:var(--parch)}
+  .lib .lf{width:22px;text-align:center;color:var(--goldsoft)}.lib .ln{font-size:13px;color:var(--parch)}
   .lib .ld{font-size:10px;color:var(--muted);font-family:system-ui,sans-serif}
   .file input{display:none}
+  .done{text-align:center;font-size:17px;padding:18px 12px 8px;color:var(--gold2);line-height:1.5}
 
-  .done{text-align:center;font-size:17px;padding:20px 12px 8px;color:var(--gold2);line-height:1.5}
-
-  .tabs{display:flex;flex:0 0 auto;border-top:1px solid var(--line);
-    background:linear-gradient(180deg,#100c0a,#0a0806);padding:6px 4px 8px}
-  .tab{flex:1;background:none;border:none;cursor:pointer;color:var(--muted);
-    display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0;
+  /* ── нижние вкладки ── */
+  .tabs{display:flex;flex:0 0 auto;border-top:1px solid var(--goldln);
+    background:linear-gradient(180deg,#151009,#0a0705);padding:8px 6px 10px;gap:2px}
+  .tab{flex:1;background:none;border:none;cursor:pointer;color:var(--muted);border-radius:12px;
+    display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0 4px;
     font-family:system-ui,sans-serif;font-size:9.5px;letter-spacing:.3px}
-  .tab svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.6}
-  .tab.on{color:var(--gold2)}
+  .tab svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6}
+  .tab.on{color:var(--gold2);background:linear-gradient(180deg,rgba(201,162,75,.20),rgba(201,162,75,.05));
+    box-shadow:inset 0 0 0 1px rgba(201,162,75,.4)}
   .tab.on svg{filter:drop-shadow(0 0 5px rgba(201,162,75,.6))}
-  .tab:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:8px}
+  .tab:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 </style>
 <div class="phone">
-  <div class="status"><span>9:41</span><span class="dots">✦ ◗ ▮</span></div>
-
-  <div class="brand">
-    <svg viewBox="0 0 40 40" aria-hidden="true"><g fill="none" stroke="#c9a24b" stroke-width="1.4">
-      <circle cx="20" cy="20" r="17"/><circle cx="20" cy="20" r="12.5" stroke="#a98b3f"/>
-      </g><path d="M20 6 L23 20 L20 34 L17 20 Z" fill="#e6c777"/>
-      <path d="M6 20 L20 17 L34 20 L20 23 Z" fill="#a98b3f"/>
-      <circle cx="20" cy="20" r="2" fill="#e6c777"/></svg>
-    <div class="bt"><span class="n1">NIGHT</span> <span class="n2">ENGLISH</span>
-      <div class="bs">учи · помни · говори</div></div>
+  <div class="top">
+    <svg class="compass" viewBox="0 0 44 44" aria-hidden="true">
+      <circle cx="22" cy="22" r="19" fill="none" stroke="#c9a24b" stroke-width="1.4"/>
+      <circle cx="22" cy="22" r="14" fill="none" stroke="#8f7333" stroke-width="1"/>
+      <path d="M22 5 L25.5 22 L22 39 L18.5 22 Z" fill="#e8c877"/>
+      <path d="M5 22 L22 18.5 L39 22 L22 25.5 Z" fill="#8f7333"/>
+      <circle cx="22" cy="22" r="2.2" fill="#e8c877"/></svg>
+    <div class="brand"><div class="n"><b>NIGHT</b> <i>ENGLISH</i></div>
+      <div class="s">учи · помни · говори</div></div>
+    <button class="iconbtn" id="btnSpark" title="Перемешать">✦</button>
+    <button class="iconbtn" id="btnMenu" title="Управление">⋮</button>
   </div>
+  <div class="hr"></div>
 
   <div class="head"><div><div class="ht" id="htitle">Карточки</div>
     <div class="hsub" id="hsub">Запоминай с умом</div></div>
@@ -237,48 +243,34 @@
 </div>
 
 <script>
-(function(){for(let i=0;i<12;i++){const s=document.createElement('div');
-  s.className='ember';s.style.left=(6+i*7.5)+'%';
-  s.style.animationDuration=(8+(i%5)*2)+'s';s.style.animationDelay=(-i*1.1)+'s';
+(function(){for(let i=0;i<12;i++){const s=document.createElement('div');s.className='ember';
+  s.style.left=(6+i*7.5)+'%';s.style.animationDuration=(8+(i%5)*2)+'s';s.style.animationDelay=(-i*1.1)+'s';
   document.body.appendChild(s);}})();
 
-const EMBLEM='<svg class="em" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="none" stroke="#e6c777" stroke-width="1.3"/><path d="M20 7 L22.5 20 L20 33 L17.5 20 Z" fill="#e6c777"/><circle cx="20" cy="20" r="1.6" fill="#e6c777"/></svg>';
-const SAY='<div class="say"><button class="sbtn" data-act="say" data-acc="US">🔊 Слушать</button></div>';
+const EMBLEM='<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="none" stroke="#e8c877" stroke-width="1.3"/><path d="M20 7 L22.5 20 L20 33 L17.5 20 Z" fill="#e8c877"/><circle cx="20" cy="20" r="1.6" fill="#e8c877"/></svg>';
+const SAY='<div class="say"><button class="sbtn" data-act="say" data-acc="GB">🔊 UK</button><span class="dsep">◇</span><button class="sbtn" data-act="say" data-acc="US">🔊 US</button></div>';
 
-// ── озвучка: выбираем ЛУЧШИЙ английский голос (Google / Natural), не робота ──
+// ── озвучка: лучший английский голос ──
 let VOICES=[];
 function loadVoices(){try{VOICES=window.speechSynthesis?speechSynthesis.getVoices():[];}catch(e){VOICES=[];}}
 if(window.speechSynthesis){loadVoices();speechSynthesis.onvoiceschanged=loadVoices;}
-function voiceRank(v){
-  const n=(v.name||'').toLowerCase();
-  if(n.includes('google'))return 0;                 // голоса Google — «как из гугла»
-  if(n.includes('natural')||n.includes('neural'))return 1;
-  if(n.includes('siri')||n.includes('samantha')||n.includes('daniel')||n.includes('aaron'))return 2; // хорошие голоса Apple
-  if(n.includes('microsoft')&&n.includes('online'))return 3;
-  if(v.localService===false)return 4;               // облачные обычно лучше
-  return 5;
-}
-function pickVoice(lang){
-  const en=VOICES.filter(v=>/^en/i.test((v.lang||'').replace('_','-')));
-  if(!en.length)return null;
-  const want=lang.toLowerCase();
-  const byLang=en.filter(v=>(v.lang||'').replace('_','-').toLowerCase().startsWith(want));
-  const pool=(byLang.length?byLang:en).slice().sort((a,b)=>voiceRank(a)-voiceRank(b));
-  return pool[0];
-}
+function voiceRank(v){const n=(v.name||'').toLowerCase();
+  if(n.includes('google'))return 0;if(n.includes('natural')||n.includes('neural'))return 1;
+  if(n.includes('siri')||n.includes('samantha')||n.includes('daniel'))return 2;
+  if(n.includes('microsoft')&&n.includes('online'))return 3;if(v.localService===false)return 4;return 5;}
+function pickVoice(lang){const en=VOICES.filter(v=>/^en/i.test((v.lang||'').replace('_','-')));if(!en.length)return null;
+  const want=lang.toLowerCase();const byLang=en.filter(v=>(v.lang||'').replace('_','-').toLowerCase().startsWith(want));
+  return (byLang.length?byLang:en).slice().sort((a,b)=>voiceRank(a)-voiceRank(b))[0];}
 function speak(text,acc){
   if(!('speechSynthesis' in window)){alert('Браузер не умеет озвучивать. Открой в Chrome или Safari.');return;}
   loadVoices();speechSynthesis.cancel();
-  const lang=acc==='US'?'en-US':'en-GB';
-  const u=new SpeechSynthesisUtterance(text);u.rate=0.9;u.pitch=1;
-  let v=chosenVoiceName?VOICES.find(x=>x.name===chosenVoiceName):null;
-  if(!v)v=pickVoice(lang);
+  const lang=acc==='US'?'en-US':'en-GB';const u=new SpeechSynthesisUtterance(text);u.rate=0.9;u.pitch=1;
+  let v=chosenVoiceName?VOICES.find(x=>x.name===chosenVoiceName):null;if(!v)v=pickVoice(lang);
   const isEn=v&&/^en/i.test((v.lang||'').replace('_','-'));
   if(v){u.voice=v;u.lang=v.lang;}else{u.lang=lang;}
   if(!isEn&&!speak._warned){speak._warned=true;
-    alert('На этом устройстве нет английского голоса — поэтому слова звучат неправильно.\n\nЧто сделать:\n• открой приложение в браузере Chrome (там есть голоса Google English), или\n• установи английский голос в настройках телефона (Синтез речи / Text-to-speech), или\n• в приложении: Управление → Голос озвучки — выбери английский голос вручную.');}
-  speechSynthesis.speak(u);
-}
+    alert('На этом устройстве нет английского голоса — слова звучат неправильно.\n\nРешение:\n• открой в Chrome (там голоса Google English), или\n• установи английский голос в настройках телефона (Синтез речи), или\n• Управление → Голос озвучки — выбери английский вручную.');}
+  speechSynthesis.speak(u);}
 
 // ── Встроенные карточки [английский, транскрипция, русский, тема] ──
 const DEFAULT = [
@@ -3305,29 +3297,23 @@ const DEFAULT = [
 
 let all=DEFAULT.map(c=>({en:c[0],tr:c[1],ru:c[2],theme:c[3]||'Прочее',pile:null}));
 let cards=all;
-let order=[],idx=0,tab='flip',flipped=false,dir='en',deck='__all__',busy=false,chosenVoiceName=null;
-const PILE_COL={know:'#5fe0a0',dont:'#ff6b63',repeat:'#f2c14e'};
-function reduced(){return window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;}
-function burst(el,p){
-  const col=PILE_COL[p]||'#e6c777';const r=el.getBoundingClientRect();
-  const cx=r.left+r.width/2,cy=r.top+r.height/2;
-  for(let i=0;i<20;i++){
-    const s=document.createElement('div');s.className='spark2';s.textContent=(i%2)?'✦':'✧';
-    s.style.left=cx+'px';s.style.top=cy+'px';s.style.color=col;
-    s.style.fontSize=(9+Math.random()*13)+'px';s.style.textShadow='0 0 8px '+col;
-    document.body.appendChild(s);
-    const a=Math.random()*6.283,d=50+Math.random()*120;
-    const dx=Math.cos(a)*d,dy=Math.sin(a)*d-20;
-    requestAnimationFrame(()=>{s.style.transform='translate('+dx+'px,'+dy+'px) scale('+(0.4+Math.random()*0.9)+') rotate('+(Math.random()*180-90)+'deg)';s.style.opacity='0';});
-    setTimeout(()=>s.remove(),660);
-  }
-}
-const META={
-  flip:['Карточки','Запоминай с умом'], quiz:['Викторина','Проверь себя'],
-  type:['Печать','Режим сильной памяти'], settings:['Управление','Полный контроль'],
+let order=[],idx=0,tab='flip',flipped=false,dir='en',deck='__all__',busy=false,chosenVoiceName=null,quizMode='audio',quizShown=false;
+const META={flip:['Карточки','Запоминай с умом'],quiz:['Викторина','Проверь себя'],
+  type:['Печать','Режим сильной памяти'],settings:['Управление','Полный контроль'],
   library:['Библиотека','Импортируй и учи своё']};
 const PILE_RU={know:'Знаю',dont:'Не знаю',repeat:'Повторять'};
 const PILE_CLS={know:'pk',dont:'pd',repeat:'pr'};
+const PILE_COL={know:'#5fe0a0',dont:'#ff6b63',repeat:'#f2c14e'};
+
+function reduced(){return window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;}
+function burst(el,p){const col=PILE_COL[p]||'#e8c877';const r=el.getBoundingClientRect();
+  const cx=r.left+r.width/2,cy=r.top+r.height/2;
+  for(let i=0;i<20;i++){const s=document.createElement('div');s.className='spark2';s.textContent=(i%2)?'✦':'✧';
+    s.style.left=cx+'px';s.style.top=cy+'px';s.style.color=col;s.style.fontSize=(9+Math.random()*13)+'px';
+    s.style.textShadow='0 0 8px '+col;document.body.appendChild(s);
+    const a=Math.random()*6.283,d=50+Math.random()*120,dx=Math.cos(a)*d,dy=Math.sin(a)*d-20;
+    requestAnimationFrame(()=>{s.style.transform='translate('+dx+'px,'+dy+'px) scale('+(0.4+Math.random()*0.9)+') rotate('+(Math.random()*180-90)+'deg)';s.style.opacity='0';});
+    setTimeout(()=>s.remove(),660);}}
 
 function applyDeck(){
   if(deck==='__all__')cards=all;
@@ -3335,91 +3321,85 @@ function applyDeck(){
   else if(deck==='__dont__')cards=all.filter(c=>c.pile==='dont');
   else if(deck==='__repeat__')cards=all.filter(c=>c.pile==='repeat');
   else cards=all.filter(c=>c.theme===deck);
-  if(!cards.length){cards=all;deck='__all__';}
-  reindex();idx=0;}
+  if(!cards.length){cards=all;deck='__all__';}reindex();idx=0;}
 function reindex(){order=cards.map((_,i)=>i)}
 function shuffleCards(){for(let i=order.length-1;i>0;i--){const j=(i*2654435761>>>0)%(i+1);[order[i],order[j]]=[order[j],order[i]]}idx=0;render()}
 function restart(){idx=0;render()}
 function pileCount(p){return all.filter(c=>c.pile===p).length}
 function setTab(t){tab=t;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
+  if(t==='quiz')quizShown=false;
   if(t==='flip'||t==='quiz'||t==='type')idx=Math.min(idx,order.length);render()}
 function setDir(d){dir=d;idx=0;render()}
-function learnPile(p){const key='__'+p+'__';
-  if(!all.some(c=>c.pile===p)){alert('Колода «'+PILE_RU[p]+'» пока пуста. Разложи карточки кнопками на карточке.');return;}
-  deck=key;applyDeck();setTab('flip');shuffleCards();}
-
+function learnPile(p){if(!all.some(c=>c.pile===p)){alert('Колода «'+PILE_RU[p]+'» пока пуста.');return;}
+  deck='__'+p+'__';applyDeck();setTab('flip');shuffleCards();}
 function frontText(c){return dir==='en'?c.en:c.ru}
 function backText(c){return dir==='en'?c.ru:c.en}
 function fullBack(c){return dir==='en'?(c.tr+'  '+c.ru):(c.en+'  '+c.tr)}
 
-function head(){
-  document.getElementById('htitle').textContent=META[tab][0];
+function head(){document.getElementById('htitle').textContent=META[tab][0];
   document.getElementById('hsub').textContent=META[tab][1];
   const p=document.getElementById('hpos');
-  p.textContent=(tab==='flip'||tab==='quiz'||tab==='type')?
-    Math.min(idx+1,order.length)+' / '+order.length:'';
-}
+  p.innerHTML=(tab==='flip'||tab==='quiz'||tab==='type')?('<b>'+Math.min(idx+1,order.length)+'</b> / '+order.length):'';}
 
-function render(){
-  head();
-  const s=document.getElementById('screen');
+function render(){head();const s=document.getElementById('screen');
   if(tab==='settings')return renderSettings(s);
   if(tab==='library')return renderLibrary(s);
   if(idx>=order.length){
-    s.innerHTML=`<div class="done">✦<br>Колода пройдена!</div>
-      <div class="piles">
-        ${['know','dont','repeat'].map(p=>`<div class="pile ${PILE_CLS[p].slice(1)}">
-          <div class="pinfo"><span class="pc">${pileCount(p)}</span><span class="pl">${PILE_RU[p]}</span></div>
-          <button data-act="learnpile" data-p="${p}">учить →</button></div>`).join('')}
-      </div>
+    s.innerHTML=`<div class="done">✦ Колода пройдена!</div>
+      <div class="piles">${['dont','repeat','know'].map(p=>`<div class="pile ${PILE_CLS[p].slice(1)}">
+        <div class="pinfo"><span class="pc">${pileCount(p)}</span><span class="pl">${PILE_RU[p]}</span></div>
+        <button data-act="learnpile" data-p="${p}">учить →</button></div>`).join('')}</div>
       <div class="row"><button class="btn" data-act="restart">↻ Сначала</button>
         <button class="btn" data-act="shuffle">🔀 Перемешать</button></div>`;return;}
   const c=cards[order[idx]];
-  if(tab==='flip'){flipped=false;
-    const pc=c.pile?` ${PILE_CLS[c.pile]}`:'';
-    const badge=c.pile?`<div class="badge ${PILE_CLS[c.pile]}">${PILE_RU[c.pile]}</div>`:'';
-    s.innerHTML=`<div class="card${pc}" data-act="flip">${badge}${EMBLEM}
+  if(tab==='flip'){flipped=false;const pc=c.pile?' '+PILE_CLS[c.pile]:'';
+    s.innerHTML=`<div class="card${pc}" data-act="flip">
+      <span class="cnr tl">✦</span><span class="cnr tr">✦</span><span class="cnr bl">✦</span><span class="cnr br">✦</span>
+      <div class="ctop">${EMBLEM}</div>
       <div class="word">${frontText(c)}</div>
-      <div id="rev" style="display:none"><div class="rule"></div>
-        <div class="tr">${c.tr}</div><div class="bk">${backText(c)}</div></div>
-      <div class="hint" id="hint">нажми на карточку, чтобы перевернуть</div></div>
+      <div id="rev" style="display:none"><div class="rule"></div><div class="tr">${c.tr}</div><div class="bk">${backText(c)}</div></div>
+      <div class="hint" id="hint">нажми на карточку, чтобы перевернуть</div>
+      <div class="cmoon">☾</div></div>
       ${SAY}
-      <div class="nav"><button class="btn" data-act="prev">‹ Назад</button>
+      <div class="nav"><button class="btn" data-act="prev">‹ Назад</button><span class="dsep">◇</span>
         <button class="btn" data-act="next">Вперёд ›</button></div>
       <div class="row3">
-        <button class="btn dont" data-act="mark" data-p="dont">✗ Не знаю</button>
-        <button class="btn rep" data-act="mark" data-p="repeat">↻ Повторять</button>
-        <button class="btn know" data-act="mark" data-p="know">✓ Знаю</button></div>`;
+        <button class="pbtn dont" data-act="mark" data-p="dont"><span class="pi">✕</span><span class="pt">Не знаю</span></button>
+        <button class="pbtn rep" data-act="mark" data-p="repeat"><span class="pi">↻</span><span class="pt">Повторять</span></button>
+        <button class="pbtn know" data-act="mark" data-p="know"><span class="pi">✓</span><span class="pt">Знаю</span></button></div>`;
   } else if(tab==='quiz'){
-    const correct=backText(c);
-    const pool=cards.filter(x=>x!==c);const opts=[correct];
-    for(let n=0;n<80&&opts.length<4;n++){const r=pool[(idx*7+n*13)%pool.length];if(!r)break;const t=backText(r);if(!opts.includes(t))opts.push(t)}
+    const correct=c.ru;const pool=cards.filter(x=>x!==c);const opts=[correct];
+    for(let n=0;n<160&&opts.length<4;n++){const r=pool[(idx*7+n*13)%pool.length];if(!r)break;if(r.ru&&!opts.includes(r.ru))opts.push(r.ru)}
     for(let i=opts.length-1;i>0;i--){const j=(i*2654435761>>>0)%(i+1);[opts[i],opts[j]]=[opts[j],opts[i]]}
-    const L=['A','B','C','D'];
-    s.innerHTML=`<div class="q">Выберите перевод:</div>
-      <div class="qword">${frontText(c)}</div>${SAY}
-      <div style="margin-top:10px">${opts.map((o,i)=>`<button class="opt" data-act="opt" data-ok="${o===correct?1:0}"><span class="lt">${L[i]}</span>${o}</button>`).join('')}</div>
+    const L=['A','B','C','D'];const showWord=quizMode==='show'||quizShown;
+    s.innerHTML=`
+      <div class="qmode">
+        <button class="qm ${quizMode==='audio'?'on':''}" data-act="qmode" data-m="audio">🦻 На слух</button>
+        <button class="qm ${quizMode==='show'?'on':''}" data-act="qmode" data-m="show">👁 Показать слово</button></div>
+      <div class="card qcard">
+        <span class="cnr tl">✦</span><span class="cnr tr">✦</span><span class="cnr bl">✦</span><span class="cnr br">✦</span>
+        <div class="ctop">${EMBLEM}</div>
+        ${showWord?`<div class="word">${c.en}</div>`:`<div class="word">Слово скрыто</div>
+          <div class="qsub">Сначала прослушай.<br>Если не понял — открой слово.</div>`}
+        <div class="cmoon">☾</div></div>
+      <button class="primary" data-act="say" data-acc="US">🔊 Слушать</button>
+      ${showWord?'':'<button class="qreveal" data-act="qreveal">👁 Показать слово</button>'}
+      <div class="qopts">${opts.map((o,i)=>`<button class="opt" data-act="opt" data-ok="${o===correct?1:0}"><span class="lt">${L[i]}</span>${o}</button>`).join('')}</div>
       <div class="msg" id="msg"></div>`;
   } else {
     window._ans=backText(c);
-    s.innerHTML=`<div class="q">Напечатайте перевод:</div>
-      <div class="qword">${frontText(c)}</div>
+    s.innerHTML=`<div class="q">Напечатайте перевод:</div><div class="qword">${frontText(c)}</div>
       ${dir==='en'?`<div style="text-align:center;color:#e9d6a3;font-style:italic">${c.tr}</div>`:''}${SAY}
       <input id="inp" type="text" placeholder="${dir==='en'?'введите перевод на русском':'type the English word'}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
-      <button class="primary" data-act="check">Проверить</button>
-      <div class="msg" id="msg"></div>
+      <button class="primary" data-act="check">Проверить</button><div class="msg" id="msg"></div>
       <div class="tip">Режим печати — самый сильный для памяти: мозг работает <b>активно</b>.</div>`;
-    const inp=document.getElementById('inp');if(inp){inp.focus();
-      inp.addEventListener('keydown',e=>{if(e.key==='Enter')checkType();});}
+    const inp=document.getElementById('inp');if(inp){inp.focus();inp.addEventListener('keydown',e=>{if(e.key==='Enter')checkType();});}
   }
 }
 function flip(){const r=document.getElementById('rev'),h=document.getElementById('hint');
   if(r){flipped=!flipped;r.style.display=flipped?'block':'none';if(h)h.style.display=flipped?'none':'block';}}
-function mark(p){
-  if(busy)return;cards[order[idx]].pile=p;
-  const el=document.querySelector('.card');
-  if(!el||reduced()){idx++;render();return;}
-  busy=true;burst(el,p);el.classList.add('fly-'+p);
+function mark(p){if(busy)return;cards[order[idx]].pile=p;const el=document.querySelector('.card');
+  if(!el||reduced()){idx++;render();return;}busy=true;burst(el,p);el.classList.add('fly-'+p);
   setTimeout(()=>{busy=false;idx++;render();},450);}
 function prev(){if(busy)return;if(idx>0){idx--;render();}}
 function next(){if(busy)return;idx=Math.min(idx+1,order.length);render();}
@@ -3427,7 +3407,7 @@ function answer(btn,ok){if(busy)return;document.querySelectorAll('.opt').forEach
   btn.classList.add(ok?'correct':'wrong');cards[order[idx]].pile=ok?'know':'dont';
   if(!reduced())burst(btn,ok?'know':'dont');
   document.getElementById('msg').textContent=ok?'✓ Верно!':'✕ Правильно: '+fullBack(cards[order[idx]]);
-  setTimeout(()=>{idx++;render();},ok?650:1500);}
+  setTimeout(()=>{quizShown=false;idx++;render();},ok?650:1500);}
 function norm(s){return s.trim().toLowerCase().replace(/ё/g,'е').replace(/[.!?]/g,'').replace(/\s+/g,' ')}
 function checkType(){const inp=document.getElementById('inp');if(!inp||inp.disabled)return;
   const val=norm(inp.value);const ans=window._ans;
@@ -3440,85 +3420,57 @@ function checkType(){const inp=document.getElementById('inp');if(!inp||inp.disab
 function renderSettings(s){
   const total=cards.length,known=cards.filter(c=>c.pile==='know').length;
   const p=total?known/total:0,C=2*Math.PI*52,off=C*(1-p);
-  const themes=[...new Set(all.map(c=>c.theme))];
-  loadVoices();
-  const enV=VOICES.filter(v=>/^en/i.test((v.lang||'').replace('_','-')));
-  const vlist=enV.length?enV:VOICES;
-  const enWarn=enV.length?'':'<div class="note" style="text-align:left;color:#e2a19c">⚠ Английский голос не найден. Открой в Chrome или установи английский голос в настройках телефона (Синтез речи).</div>';
+  const themes=[...new Set(all.map(c=>c.theme))];loadVoices();
+  const enV=VOICES.filter(v=>/^en/i.test((v.lang||'').replace('_','-')));const vlist=enV.length?enV:VOICES;
+  const enWarn=enV.length?'':'<div class="note" style="text-align:left;color:#e2a19c">⚠ Английский голос не найден. Открой в Chrome или установи английский голос в настройках телефона.</div>';
   s.innerHTML=`
     <div class="sect">Направление</div>
     <div class="seg"><button class="${dir==='en'?'on':''}" data-act="dir" data-d="en">EN → RU</button>
       <button class="${dir==='ru'?'on':''}" data-act="dir" data-d="ru">RU → EN</button></div>
     <div class="sect">Голос озвучки</div>
-    <div class="filter"><select id="voiceSel">
-      <option value="">Авто (лучший английский)</option>
-      ${vlist.map(v=>`<option value="${v.name}" ${v.name===chosenVoiceName?'selected':''}>${v.name} (${v.lang})</option>`).join('')}
-    </select></div>
-    <div class="seg"><button data-act="voicetest">🔊 Проверить голос</button></div>
-    ${enWarn}
+    <div class="filter"><select id="voiceSel"><option value="">Авто (лучший английский)</option>
+      ${vlist.map(v=>`<option value="${v.name}" ${v.name===chosenVoiceName?'selected':''}>${v.name} (${v.lang})</option>`).join('')}</select></div>
+    <div class="seg"><button data-act="voicetest">🔊 Проверить голос</button></div>${enWarn}
     <div class="sect">Три колоды по статусу</div>
     <div class="piles">
-      <div class="pile k"><div class="pinfo"><span class="pc">${pileCount('know')}</span><span class="pl">✓ Знаю</span></div>
-        <button data-act="learnpile" data-p="know">учить →</button></div>
-      <div class="pile d"><div class="pinfo"><span class="pc">${pileCount('dont')}</span><span class="pl">✗ Не знаю</span></div>
-        <button data-act="learnpile" data-p="dont">учить →</button></div>
-      <div class="pile r"><div class="pinfo"><span class="pc">${pileCount('repeat')}</span><span class="pl">↻ Повторять</span></div>
-        <button data-act="learnpile" data-p="repeat">учить →</button></div>
+      <div class="pile d"><div class="pinfo"><span class="pc">${pileCount('dont')}</span><span class="pl">✕ Не знаю</span></div><button data-act="learnpile" data-p="dont">учить →</button></div>
+      <div class="pile r"><div class="pinfo"><span class="pc">${pileCount('repeat')}</span><span class="pl">↻ Повторять</span></div><button data-act="learnpile" data-p="repeat">учить →</button></div>
+      <div class="pile k"><div class="pinfo"><span class="pc">${pileCount('know')}</span><span class="pl">✓ Знаю</span></div><button data-act="learnpile" data-p="know">учить →</button></div>
     </div>
     <div class="sect">Тема (набор карточек)</div>
-    <div class="filter"><select id="deckSel">
-      <option value="__all__" ${deck==='__all__'?'selected':''}>Все карточки (${all.length})</option>
-      ${themes.map(t=>`<option value="${t}" ${t===deck?'selected':''}>${t} (${all.filter(c=>c.theme===t).length})</option>`).join('')}
-    </select></div>
+    <div class="filter"><select id="deckSel"><option value="__all__" ${deck==='__all__'?'selected':''}>Все карточки (${all.length})</option>
+      ${themes.map(t=>`<option value="${t}" ${t===deck?'selected':''}>${t} (${all.filter(c=>c.theme===t).length})</option>`).join('')}</select></div>
     <div class="sect">Порядок</div>
-    <div class="seg"><button data-act="shuffle">🔀 Перемешать</button>
-      <button data-act="restart">↻ Сначала</button></div>
-    <div class="sect">Прогресс текущего набора</div>
-    <div class="gauge">
-      <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="none" stroke="#2a221b" stroke-width="9"/>
-      <circle cx="60" cy="60" r="52" fill="none" stroke="#c9a24b" stroke-width="9" stroke-linecap="round"
-        stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" transform="rotate(-90 60 60)"/></svg>
+    <div class="seg"><button data-act="shuffle">🔀 Перемешать</button><button data-act="restart">↻ Сначала</button></div>
+    <div class="sect">Прогресс набора</div>
+    <div class="gauge"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="none" stroke="#2a221b" stroke-width="9"/>
+      <circle cx="60" cy="60" r="52" fill="none" stroke="#c9a24b" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" transform="rotate(-90 60 60)"/></svg>
       <div class="gt"><div class="gn">${total}</div><div class="gl">карточек в наборе</div></div>
       <div class="gp">Выучено: ${Math.round(p*100)}%</div></div>`;
-  const sel=document.getElementById('deckSel');
-  if(sel)sel.addEventListener('change',()=>{deck=sel.value;applyDeck();setTab('flip');});
-  const vs=document.getElementById('voiceSel');
-  if(vs)vs.addEventListener('change',()=>{chosenVoiceName=vs.value||null;speak('to be ready','US');});
+  const sel=document.getElementById('deckSel');if(sel)sel.addEventListener('change',()=>{deck=sel.value;applyDeck();setTab('flip');});
+  const vs=document.getElementById('voiceSel');if(vs)vs.addEventListener('change',()=>{chosenVoiceName=vs.value||null;speak('to go home','US');});
 }
 function renderLibrary(s){
-  const files=[
-    ['📄','README.md','старт · метод · ожидания'],
-    ['🗺️','план/00_план_4_месяца.md','дорожная карта A1→B1'],
-    ['📘','lessons/','уроки с мнемоникой'],
-    ['🔤','словарь/глаголы_топ.md','глаголы · 3 формы'],
-    ['🧩','словарь/грамматика.csv','фразы-паттерны: времена'],
-    ['📚','словарь/словарь_по_темам.md','весь словарь по темам'],
-    ['🗂️','словарь/карточки.csv','база карточек'],
-    ['✈️','путешествия/фразы.md','кафе · аэропорт · о себе'],
-    ['🦅','гражданство/гражданство_сша.md','100 civics-вопросов USCIS'],
-    ['📱','приложение/тренажёр.html','это приложение']];
-  s.innerHTML=`
-    <label class="impd file"><div class="ii">📂</div><div class="il">Свой CSV</div>
-      <div class="is">импортируй свои карточки из CSV-файла</div>
-      <input type="file" accept=".csv"></label>
-    <div class="note">Три кнопки на карточке (Знаю / Не знаю / Повторять) раскладывают её в одну из трёх колод. Открой их в «Управление».</div>
+  const files=[['📄','README.md','старт · метод · ожидания'],['🗺️','план/00_план_4_месяца.md','дорожная карта A1→B1'],
+    ['📘','lessons/','уроки с мнемоникой'],['🔤','словарь/глаголы_топ.md','глаголы · 3 формы'],
+    ['🧩','словарь/грамматика.csv','фразы-паттерны: времена'],['📚','словарь/словарь_по_темам.md','весь словарь по темам'],
+    ['🗂️','словарь/карточки.csv','база карточек'],['✈️','путешествия/фразы.md','кафе · аэропорт · о себе'],
+    ['🦅','гражданство/гражданство_сша.md','100 civics-вопросов USCIS'],['📱','приложение/тренажёр.html','это приложение']];
+  s.innerHTML=`<label class="impd file"><div class="ii">📂</div><div class="il">Свой CSV</div>
+      <div class="is">импортируй свои карточки из CSV-файла</div><input type="file" accept=".csv"></label>
+    <div class="note">Три кнопки на карточке (Не знаю / Повторять / Знаю) раскладывают её по трём колодам. Открой их в «Управление».</div>
     <div class="sect">Моя библиотека курса</div>
-    <div class="lib">${files.map(f=>`<div class="li"><div class="lf">${f[0]}</div>
-      <div><div class="ln">${f[1]}</div><div class="ld">${f[2]}</div></div></div>`).join('')}</div>`;
-  const inp=s.querySelector('input[type=file]');
-  if(inp)inp.addEventListener('change',loadCsv);
+    <div class="lib">${files.map(f=>`<div class="li"><div class="lf">${f[0]}</div><div><div class="ln">${f[1]}</div><div class="ld">${f[2]}</div></div></div>`).join('')}</div>`;
+  const inp=s.querySelector('input[type=file]');if(inp)inp.addEventListener('change',loadCsv);
 }
 function loadCsv(e){const f=e.target.files[0];if(!f)return;const rd=new FileReader();
   rd.onload=()=>{const rows=rd.result.split(/\r?\n/).filter(r=>r.trim());const parsed=[];
-    for(let i=0;i<rows.length;i++){if(rows[i].trim().startsWith('#'))continue;
-      const p=rows[i].split(',');if(p.length<3)continue;
+    for(let i=0;i<rows.length;i++){if(rows[i].trim().startsWith('#'))continue;const p=rows[i].split(',');if(p.length<3)continue;
       if(i===0&&/english|русск|engli/i.test(rows[i]))continue;
       parsed.push({en:p[0].trim(),tr:p[1].trim(),ru:p.slice(2).join(',').trim(),theme:'Мой CSV',pile:null});}
-    if(parsed.length){all=parsed;deck='__all__';applyDeck();setTab('flip');}
-    else alert('Не нашёл карточки. Формат: English,Transcription,Русский');};
+    if(parsed.length){all=parsed;deck='__all__';applyDeck();setTab('flip');}else alert('Формат: English,Transcription,Русский');};
   rd.readAsText(f,'utf-8');}
 
-// ── единый обработчик кликов (работает и в демо-панели, где inline-onclick запрещён) ──
 document.getElementById('screen').addEventListener('click',e=>{
   const el=e.target.closest('[data-act]');if(!el)return;const a=el.dataset.act;if(!a)return;
   if(a==='flip')flip();
@@ -3531,10 +3483,14 @@ document.getElementById('screen').addEventListener('click',e=>{
   else if(a==='prev')prev();
   else if(a==='next')next();
   else if(a==='say'){if(idx<order.length)speak(cards[order[idx]].en,el.dataset.acc);}
-  else if(a==='voicetest')speak('to be ready','US');
+  else if(a==='voicetest')speak('to go home','US');
+  else if(a==='qmode'){quizMode=el.dataset.m;quizShown=false;render();}
+  else if(a==='qreveal'){quizShown=true;render();}
   else if(a==='learnpile')learnPile(el.dataset.p);
 });
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
+document.getElementById('btnSpark').addEventListener('click',()=>{setTab('flip');shuffleCards();});
+document.getElementById('btnMenu').addEventListener('click',()=>setTab('settings'));
 
 applyDeck();render();
 </script>
