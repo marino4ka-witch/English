@@ -61,6 +61,14 @@
   .head .hsub{font-size:11px;color:var(--muted);font-family:system-ui,sans-serif;margin-top:2px}
   .head .hpos{font-size:14px;color:var(--muted);font-family:system-ui,sans-serif}
   .head .hpos b{color:var(--gold2);font-weight:700}
+  .levelbar{display:flex;gap:6px;padding:8px 16px 2px;flex:0 0 auto}
+  .levelbar button{flex:1;font-family:system-ui,sans-serif;font-size:11.5px;padding:8px 4px;border-radius:10px;
+    cursor:pointer;border:1px solid var(--line);background:linear-gradient(180deg,#1b1510,#120d0a);color:var(--muted)}
+  .levelbar button.on{background:linear-gradient(180deg,#3a2c1c,#2a2015);border-color:var(--gold);color:var(--gold2);
+    box-shadow:0 0 8px rgba(201,162,75,.25)}
+  .cardlvl{position:absolute;top:11px;left:50%;transform:translateX(-50%);font-family:system-ui,sans-serif;
+    font-size:10px;letter-spacing:1px;color:var(--gold2);border:1px solid var(--goldsoft);border-radius:10px;
+    padding:1px 9px;z-index:3;background:rgba(0,0,0,.3)}
 
   .screen{flex:1 1 auto;overflow-y:auto;padding:10px 16px 8px;display:flex;flex-direction:column}
   .dsep{color:var(--goldsoft);font-size:12px;align-self:center;padding:0 2px}
@@ -233,6 +241,7 @@
     <div class="hsub" id="hsub">Запоминай с умом</div></div>
     <div class="hpos" id="hpos"></div></div>
 
+  <div class="levelbar" id="levelbar"></div>
   <div class="screen" id="screen"></div>
 
   <nav class="tabs">
@@ -3611,7 +3620,7 @@ function head(){document.getElementById('htitle').textContent=META[tab][0];
   const lp=(lvl!=='__all__')?lvl+' · ':'';
   p.innerHTML=(tab==='flip'||tab==='quiz'||tab==='type')?(lp+'<b>'+Math.min(idx+1,order.length)+'</b> / '+order.length):'';}
 
-function render(){head();const s=document.getElementById('screen');
+function render(){head();renderLevelbar();const s=document.getElementById('screen');
   if(tab==='settings')return renderSettings(s);
   if(tab==='library')return renderLibrary(s);
   if(idx>=order.length){
@@ -3624,6 +3633,7 @@ function render(){head();const s=document.getElementById('screen');
   const c=cards[order[idx]];
   if(tab==='flip'){flipped=false;const pc=c.pile?' '+PILE_CLS[c.pile]:'';
     s.innerHTML=`<div class="card${pc}" data-act="flip">
+      ${c.lvl&&c.lvl!=='—'?`<div class="cardlvl">${c.lvl}</div>`:''}
       <span class="cnr tl">✦</span><span class="cnr tr">✦</span><span class="cnr bl">✦</span><span class="cnr br">✦</span>
       <div class="ctop">${EMBLEM}</div>
       <div class="word">${frontText(c)}</div>
@@ -3766,6 +3776,13 @@ document.getElementById('screen').addEventListener('click',e=>{
   else if(a==='qreveal'){quizShown=true;render();}
   else if(a==='learnpile')learnPile(el.dataset.p);
 });
+function renderLevelbar(){const lb=document.getElementById('levelbar');
+  const show=(tab==='flip'||tab==='quiz'||tab==='type');lb.style.display=show?'flex':'none';if(!show)return;
+  const opts=[['__all__','Все'],['A1','A1'],['A2','A2'],['B1','B1']];
+  lb.innerHTML=opts.map(([v,t])=>`<button class="${lvl===v?'on':''}" data-act="lvl" data-l="${v}">${t}</button>`).join('');}
+document.getElementById('levelbar').addEventListener('click',e=>{
+  const el=e.target.closest('[data-act=lvl]');if(!el)return;
+  lvl=el.dataset.l;deck='__all__';applyDeck();render();});
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
 document.getElementById('btnSpark').addEventListener('click',()=>{setTab('flip');shuffleCards();});
 document.getElementById('btnMenu').addEventListener('click',()=>setTab('settings'));
