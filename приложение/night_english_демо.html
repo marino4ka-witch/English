@@ -23,6 +23,15 @@
   @keyframes rise{0%{transform:translateY(0) scale(.5);opacity:0}
     15%{opacity:.8}100%{transform:translateY(-104vh) scale(1);opacity:0}}
   @media (prefers-reduced-motion: reduce){.ember{display:none}}
+  /* анимация отправки в колоду */
+  .spark2{position:fixed;pointer-events:none;z-index:60;opacity:1;line-height:1;
+    transition:transform .62s cubic-bezier(.2,.7,.3,1),opacity .55s ease}
+  .card.fly-know{animation:flyR .45s ease forwards}
+  .card.fly-dont{animation:flyL .45s ease forwards}
+  .card.fly-repeat{animation:flyU .45s ease forwards}
+  @keyframes flyR{to{transform:translateX(75%) rotate(9deg);opacity:0}}
+  @keyframes flyL{to{transform:translateX(-75%) rotate(-9deg);opacity:0}}
+  @keyframes flyU{to{transform:translateY(-48%) scale(.8);opacity:0}}
 
   .phone{position:relative;z-index:1;display:flex;flex-direction:column;
     width:min(100vw, calc(100vh * 9 / 16));
@@ -236,20 +245,33 @@
 const EMBLEM='<svg class="em" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="none" stroke="#e6c777" stroke-width="1.3"/><path d="M20 7 L22.5 20 L20 33 L17.5 20 Z" fill="#e6c777"/><circle cx="20" cy="20" r="1.6" fill="#e6c777"/></svg>';
 const SAY='<div class="say"><button class="sbtn" data-act="say" data-acc="GB">🔊 UK</button><button class="sbtn" data-act="say" data-acc="US">🔊 US</button></div>';
 
-// ── озвучка (речь браузера, офлайн) ──
+// ── озвучка: выбираем ЛУЧШИЙ английский голос (Google / Natural), не робота ──
 let VOICES=[];
 function loadVoices(){try{VOICES=window.speechSynthesis?speechSynthesis.getVoices():[];}catch(e){VOICES=[];}}
 if(window.speechSynthesis){loadVoices();speechSynthesis.onvoiceschanged=loadVoices;}
+function voiceRank(v){
+  const n=(v.name||'').toLowerCase();
+  if(n.includes('google'))return 0;                 // голоса Google — «как из гугла»
+  if(n.includes('natural')||n.includes('neural'))return 1;
+  if(n.includes('siri')||n.includes('samantha')||n.includes('daniel')||n.includes('aaron'))return 2; // хорошие голоса Apple
+  if(n.includes('microsoft')&&n.includes('online'))return 3;
+  if(v.localService===false)return 4;               // облачные обычно лучше
+  return 5;
+}
+function pickVoice(lang){
+  const en=VOICES.filter(v=>/^en/i.test((v.lang||'').replace('_','-')));
+  if(!en.length)return null;
+  const want=lang.toLowerCase();
+  const byLang=en.filter(v=>(v.lang||'').replace('_','-').toLowerCase().startsWith(want));
+  const pool=(byLang.length?byLang:en).slice().sort((a,b)=>voiceRank(a)-voiceRank(b));
+  return pool[0];
+}
 function speak(text,acc){
-  if(!('speechSynthesis' in window)){alert('Браузер не умеет озвучивать. Попробуй Chrome или Safari.');return;}
+  if(!('speechSynthesis' in window)){alert('Браузер не умеет озвучивать. Открой в Chrome или Safari.');return;}
   speechSynthesis.cancel();
   const lang=acc==='US'?'en-US':'en-GB';
-  const u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=0.92;
-  const low=lang.toLowerCase();
-  const v=VOICES.find(x=>x.lang&&x.lang.replace('_','-').toLowerCase()===low)
-        ||VOICES.find(x=>x.lang&&x.lang.replace('_','-').toLowerCase().startsWith(low))
-        ||VOICES.find(x=>x.lang&&x.lang.toLowerCase().startsWith('en'));
-  if(v)u.voice=v;
+  const u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=0.9;u.pitch=1;
+  const v=pickVoice(lang);if(v)u.voice=v;
   speechSynthesis.speak(u);
 }
 
@@ -3278,7 +3300,23 @@ const DEFAULT = [
 
 let all=DEFAULT.map(c=>({en:c[0],tr:c[1],ru:c[2],theme:c[3]||'Прочее',pile:null}));
 let cards=all;
-let order=[],idx=0,tab='flip',flipped=false,dir='en',deck='__all__';
+let order=[],idx=0,tab='flip',flipped=false,dir='en',deck='__all__',busy=false;
+const PILE_COL={know:'#5fe0a0',dont:'#ff6b63',repeat:'#f2c14e'};
+function reduced(){return window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;}
+function burst(el,p){
+  const col=PILE_COL[p]||'#e6c777';const r=el.getBoundingClientRect();
+  const cx=r.left+r.width/2,cy=r.top+r.height/2;
+  for(let i=0;i<20;i++){
+    const s=document.createElement('div');s.className='spark2';s.textContent=(i%2)?'✦':'✧';
+    s.style.left=cx+'px';s.style.top=cy+'px';s.style.color=col;
+    s.style.fontSize=(9+Math.random()*13)+'px';s.style.textShadow='0 0 8px '+col;
+    document.body.appendChild(s);
+    const a=Math.random()*6.283,d=50+Math.random()*120;
+    const dx=Math.cos(a)*d,dy=Math.sin(a)*d-20;
+    requestAnimationFrame(()=>{s.style.transform='translate('+dx+'px,'+dy+'px) scale('+(0.4+Math.random()*0.9)+') rotate('+(Math.random()*180-90)+'deg)';s.style.opacity='0';});
+    setTimeout(()=>s.remove(),660);
+  }
+}
 const META={
   flip:['Карточки','Запоминай с умом'], quiz:['Викторина','Проверь себя'],
   type:['Печать','Режим сильной памяти'], settings:['Управление','Полный контроль'],
@@ -3372,11 +3410,17 @@ function render(){
 }
 function flip(){const r=document.getElementById('rev'),h=document.getElementById('hint');
   if(r){flipped=!flipped;r.style.display=flipped?'block':'none';if(h)h.style.display=flipped?'none':'block';}}
-function mark(p){cards[order[idx]].pile=p;idx++;render();}
-function prev(){if(idx>0){idx--;render();}}
-function next(){idx=Math.min(idx+1,order.length);render();}
-function answer(btn,ok){document.querySelectorAll('.opt').forEach(b=>b.dataset.act='');
+function mark(p){
+  if(busy)return;cards[order[idx]].pile=p;
+  const el=document.querySelector('.card');
+  if(!el||reduced()){idx++;render();return;}
+  busy=true;burst(el,p);el.classList.add('fly-'+p);
+  setTimeout(()=>{busy=false;idx++;render();},450);}
+function prev(){if(busy)return;if(idx>0){idx--;render();}}
+function next(){if(busy)return;idx=Math.min(idx+1,order.length);render();}
+function answer(btn,ok){if(busy)return;document.querySelectorAll('.opt').forEach(b=>b.dataset.act='');
   btn.classList.add(ok?'correct':'wrong');cards[order[idx]].pile=ok?'know':'dont';
+  if(!reduced())burst(btn,ok?'know':'dont');
   document.getElementById('msg').textContent=ok?'✓ Верно!':'✕ Правильно: '+fullBack(cards[order[idx]]);
   setTimeout(()=>{idx++;render();},ok?650:1500);}
 function norm(s){return s.trim().toLowerCase().replace(/ё/g,'е').replace(/[.!?]/g,'').replace(/\s+/g,' ')}
