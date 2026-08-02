@@ -276,10 +276,15 @@ function pickVoice(lang){
 }
 function speak(text,acc){
   if(!('speechSynthesis' in window)){alert('Браузер не умеет озвучивать. Открой в Chrome или Safari.');return;}
-  speechSynthesis.cancel();
+  loadVoices();speechSynthesis.cancel();
   const lang=acc==='US'?'en-US':'en-GB';
-  const u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=0.9;u.pitch=1;
-  const v=pickVoice(lang);if(v)u.voice=v;
+  const u=new SpeechSynthesisUtterance(text);u.rate=0.9;u.pitch=1;
+  let v=chosenVoiceName?VOICES.find(x=>x.name===chosenVoiceName):null;
+  if(!v)v=pickVoice(lang);
+  const isEn=v&&/^en/i.test((v.lang||'').replace('_','-'));
+  if(v){u.voice=v;u.lang=v.lang;}else{u.lang=lang;}
+  if(!isEn&&!speak._warned){speak._warned=true;
+    alert('На этом устройстве нет английского голоса — поэтому слова звучат неправильно.\n\nЧто сделать:\n• открой приложение в браузере Chrome (там есть голоса Google English), или\n• установи английский голос в настройках телефона (Синтез речи / Text-to-speech), или\n• в приложении: Управление → Голос озвучки — выбери английский голос вручную.');}
   speechSynthesis.speak(u);
 }
 
@@ -3308,7 +3313,7 @@ const DEFAULT = [
 
 let all=DEFAULT.map(c=>({en:c[0],tr:c[1],ru:c[2],theme:c[3]||'Прочее',pile:null}));
 let cards=all;
-let order=[],idx=0,tab='flip',flipped=false,dir='en',deck='__all__',busy=false;
+let order=[],idx=0,tab='flip',flipped=false,dir='en',deck='__all__',busy=false,chosenVoiceName=null;
 const PILE_COL={know:'#5fe0a0',dont:'#ff6b63',repeat:'#f2c14e'};
 function reduced(){return window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;}
 function burst(el,p){
@@ -3444,10 +3449,21 @@ function renderSettings(s){
   const total=cards.length,known=cards.filter(c=>c.pile==='know').length;
   const p=total?known/total:0,C=2*Math.PI*52,off=C*(1-p);
   const themes=[...new Set(all.map(c=>c.theme))];
+  loadVoices();
+  const enV=VOICES.filter(v=>/^en/i.test((v.lang||'').replace('_','-')));
+  const vlist=enV.length?enV:VOICES;
+  const enWarn=enV.length?'':'<div class="note" style="text-align:left;color:#e2a19c">⚠ Английский голос не найден. Открой в Chrome или установи английский голос в настройках телефона (Синтез речи).</div>';
   s.innerHTML=`
     <div class="sect">Направление</div>
     <div class="seg"><button class="${dir==='en'?'on':''}" data-act="dir" data-d="en">EN → RU</button>
       <button class="${dir==='ru'?'on':''}" data-act="dir" data-d="ru">RU → EN</button></div>
+    <div class="sect">Голос озвучки</div>
+    <div class="filter"><select id="voiceSel">
+      <option value="">Авто (лучший английский)</option>
+      ${vlist.map(v=>`<option value="${v.name}" ${v.name===chosenVoiceName?'selected':''}>${v.name} (${v.lang})</option>`).join('')}
+    </select></div>
+    <div class="seg"><button data-act="voicetest">🔊 Проверить голос</button></div>
+    ${enWarn}
     <div class="sect">Три колоды по статусу</div>
     <div class="piles">
       <div class="pile k"><div class="pinfo"><span class="pc">${pileCount('know')}</span><span class="pl">✓ Знаю</span></div>
@@ -3474,6 +3490,8 @@ function renderSettings(s){
       <div class="gp">Выучено: ${Math.round(p*100)}%</div></div>`;
   const sel=document.getElementById('deckSel');
   if(sel)sel.addEventListener('change',()=>{deck=sel.value;applyDeck();setTab('flip');});
+  const vs=document.getElementById('voiceSel');
+  if(vs)vs.addEventListener('change',()=>{chosenVoiceName=vs.value||null;speak('to be ready','US');});
 }
 function renderLibrary(s){
   const files=[
@@ -3521,6 +3539,7 @@ document.getElementById('screen').addEventListener('click',e=>{
   else if(a==='prev')prev();
   else if(a==='next')next();
   else if(a==='say'){if(idx<order.length)speak(cards[order[idx]].en,el.dataset.acc);}
+  else if(a==='voicetest')speak('to be ready','US');
   else if(a==='learnpile')learnPile(el.dataset.p);
 });
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
