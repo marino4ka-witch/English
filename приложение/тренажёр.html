@@ -251,7 +251,6 @@
     <div class="hpos" id="hpos"></div></div>
 
   <div class="levelbar" id="levelbar"></div>
-  <div class="deckbar" id="deckbar"></div>
   <div class="screen" id="screen"></div>
 
   <nav class="tabs">
@@ -6060,7 +6059,7 @@ function head(){document.getElementById('htitle').textContent=META[tab][0];
   const lp=(lvl!=='__all__')?lvl+' · ':'';
   p.innerHTML=(tab==='flip'||tab==='quiz'||tab==='type')?(lp+'<b>'+Math.min(idx+1,order.length)+'</b> / '+order.length):'';}
 
-function render(){head();renderLevelbar();renderDeckbar();save();const s=document.getElementById('screen');
+function render(){head();renderLevelbar();save();const s=document.getElementById('screen');
   if(tab==='settings')return renderSettings(s);
   if(tab==='library')return renderLibrary(s);
   if(idx>=order.length){
@@ -6165,9 +6164,6 @@ function renderSettings(s){
       <div class="pile r"><div class="pinfo"><span class="pc">${pileCount('repeat')}</span><span class="pl">↻ Повторять</span></div><button data-act="learnpile" data-p="repeat">учить →</button></div>
       <div class="pile k"><div class="pinfo"><span class="pc">${pileCount('know')}</span><span class="pl">✓ Знаю</span></div><button data-act="learnpile" data-p="know">учить →</button></div>
     </div>
-    <div class="sect">Тема (набор карточек)</div>
-    <div class="filter"><select id="deckSel"><option value="__all__" ${deck==='__all__'?'selected':''}>Все карточки (${all.length})</option>
-      ${themes.map(t=>`<option value="${t}" ${t===deck?'selected':''}>${t} (${all.filter(c=>c.theme===t).length})</option>`).join('')}</select></div>
     <div class="sect">Порядок</div>
     <div class="seg"><button data-act="shuffle">🔀 Перемешать</button><button data-act="restart">↻ Сначала</button></div>
     <div class="sect">Прогресс набора</div>
@@ -6175,7 +6171,6 @@ function renderSettings(s){
       <circle cx="60" cy="60" r="52" fill="none" stroke="#c9a24b" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" transform="rotate(-90 60 60)"/></svg>
       <div class="gt"><div class="gn">${total}</div><div class="gl">карточек в наборе</div></div>
       <div class="gp">Выучено: ${Math.round(p*100)}%</div></div>`;
-  const sel=document.getElementById('deckSel');if(sel)sel.addEventListener('change',()=>{deck=sel.value;applyDeck();setTab('flip');});
   const vs=document.getElementById('voiceSel');if(vs)vs.addEventListener('change',()=>{chosenVoiceName=vs.value||null;save();speak('to go home','US');});
 }
 function renderLibrary(s){
@@ -6234,18 +6229,13 @@ function renderDeckbar(){const db=document.getElementById('deckbar');
 document.getElementById('levelbar').addEventListener('click',e=>{
   const el=e.target.closest('[data-act=lvl]');if(!el)return;
   lvl=el.dataset.l;deck='__all__';applyDeck();render();});
-document.getElementById('deckbar').addEventListener('click',e=>{
-  const el=e.target.closest('[data-act]');if(!el)return;const a=el.dataset.act;
-  if(a==='opendeck'){deck='__all__';applyDeck();render();}
-  else if(a==='shuffledeck')shuffleCards();
-  else if(a==='learnpile')learnPile(el.dataset.p);});
 // ── память: сохраняем прогресс (вкладка, карточка, уровень, колоды) ──
 const STORE='nightEnglish_v1';
 function save(){try{const piles={};all.forEach(c=>{if(c.pile)piles[c.en]=c.pile;});
-  localStorage.setItem(STORE,JSON.stringify({tab,lvl,deck,dir,quizMode,idx,order,voice:chosenVoiceName,piles}));}catch(e){}}
+  localStorage.setItem(STORE,JSON.stringify({tab,lvl,dir,quizMode,idx,order,voice:chosenVoiceName,piles}));}catch(e){}}
 function load(){try{const s=JSON.parse(localStorage.getItem(STORE)||'null');if(!s)return false;
   if(s.piles)all.forEach(c=>{if(s.piles[c.en])c.pile=s.piles[c.en];});
-  if(s.lvl)lvl=s.lvl;if(s.deck)deck=s.deck;if(s.dir)dir=s.dir;
+  if(s.lvl)lvl=s.lvl;if(s.dir)dir=s.dir;
   if(s.quizMode)quizMode=s.quizMode;if(s.voice)chosenVoiceName=s.voice;if(s.tab)tab=s.tab;
   applyDeck();
   if(Array.isArray(s.order)&&s.order.length===order.length)order=s.order;
