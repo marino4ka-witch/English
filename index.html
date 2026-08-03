@@ -62,7 +62,7 @@
   .head .hpos{font-size:14px;color:var(--muted);font-family:system-ui,sans-serif}
   .head .hpos b{color:var(--gold2);font-weight:700}
   .levelbar{display:flex;gap:6px;padding:8px 16px 2px;flex:0 0 auto}
-  .levelbar button{flex:1;font-family:system-ui,sans-serif;font-size:11.5px;padding:8px 4px;border-radius:10px;
+  .levelbar button{flex:1;font-family:system-ui,sans-serif;font-size:10.5px;padding:8px 2px;border-radius:9px;
     cursor:pointer;border:1px solid var(--line);background:linear-gradient(180deg,#1b1510,#120d0a);color:var(--muted)}
   .levelbar button.on{background:linear-gradient(180deg,#3a2c1c,#2a2015);border-color:var(--gold);color:var(--gold2);
     box-shadow:0 0 8px rgba(201,162,75,.25)}
@@ -105,7 +105,7 @@
   .rule{width:120px;height:1px;margin:14px auto;position:relative;
     background:linear-gradient(90deg,transparent,var(--gold),transparent)}
   .rule::after{content:"◆";position:absolute;top:-8px;left:50%;transform:translateX(-50%);color:var(--gold);font-size:9px}
-  .tr{font-size:17px;color:#e9d6a3;font-style:italic}
+  .tr{font-size:23px;color:#f0dca8;font-style:normal;letter-spacing:.4px;font-family:"Iowan Old Style",Georgia,serif}
   .bk{font-size:21px;color:var(--parch);margin-top:5px}
   .hint{position:relative;z-index:2;font-size:11px;color:#e0bd93;opacity:.7;margin-top:14px;font-family:system-ui,sans-serif}
   .cmoon{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);color:var(--gold2);font-size:14px;z-index:2;opacity:.85}
@@ -6027,6 +6027,156 @@ const DEFAULT = [
 ["That's a fair point", "/ðæts ə feə pɔɪnt/", "справедливое замечание", "B2 · РАЗГОВОРНЫЕ И ДИСКУРСИВНЫЕ ФРАЗЫ", "B2"],
 ["I beg to differ", "/aɪ beɡ tuː ˈdɪfə/", "позволю себе не согласиться", "B2 · РАЗГОВОРНЫЕ И ДИСКУРСИВНЫЕ ФРАЗЫ", "B2"],
 ["Take it with a pinch of salt", "/teɪk ɪt wɪð ə pɪntʃ ɒv sɔːlt/", "не принимай на веру", "B2 · РАЗГОВОРНЫЕ И ДИСКУРСИВНЫЕ ФРАЗЫ", "B2"],
+["Where is the check-in desk?", "/weər ɪz ðə ˈtʃekɪn desk/", "где стойка регистрации?", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["I'd like a window seat", "/aɪd laɪk ə ˈwɪndəʊ siːt/", "мне место у окна, пожалуйста", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["Here is my boarding pass", "/hɪər ɪz maɪ ˈbɔːdɪŋ pɑːs/", "вот мой посадочный", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["Is the flight on time?", "/ɪz ðə flaɪt ɒn taɪm/", "рейс по расписанию?", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["The flight is delayed", "/ðə flaɪt ɪz dɪˈleɪd/", "рейс задерживается", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["Which gate is it?", "/wɪtʃ ɡeɪt ɪz ɪt/", "какой выход на посадку?", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["I missed my flight", "/aɪ mɪst maɪ flaɪt/", "я опоздал(а) на рейс", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["Is this a carry-on?", "/ɪz ðɪs ə ˈkæri ɒn/", "это ручная кладь?", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["My suitcase is too heavy", "/maɪ ˈsuːtkeɪs ɪz tuː ˈhevi/", "мой чемодан слишком тяжёлый", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["Where is baggage claim?", "/weər ɪz ˈbæɡɪdʒ kleɪm/", "где выдача багажа?", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["My luggage didn't arrive", "/maɪ ˈlʌɡɪdʒ ˈdɪdənt əˈraɪv/", "мой багаж не прилетел", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["I have nothing to declare", "/aɪ hæv ˈnʌθɪŋ tuː dɪˈkleə/", "мне нечего декларировать", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["What's the purpose of your visit?", "/wɒts ðə ˈpɜːpəs ɒv jɔː ˈvɪzɪt/", "цель вашего визита?", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["I'm here on holiday", "/aɪm hɪər ɒn ˈhɒlədeɪ/", "я здесь в отпуске", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["I'm here on business", "/aɪm hɪər ɒn ˈbɪznɪs/", "я здесь по работе", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["Where can I get a taxi?", "/weə kæn aɪ ɡet ə ˈtæksi/", "где взять такси?", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["My connection is very tight", "/maɪ kəˈnekʃən ɪz ˈveri taɪt/", "у меня очень мало времени на пересадку", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["Boarding will begin soon", "/ˈbɔːdɪŋ wɪl bɪˈɡɪn suːn/", "скоро начнётся посадка", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["Please fasten your seatbelt", "/pliːz ˈfɑːsən jɔː ˈsiːtbelt/", "пристегните ремень, пожалуйста", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["I feel airsick", "/aɪ fiːl ˈeəsɪk/", "меня укачивает в самолёте", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["Where is passport control?", "/weər ɪz ˈpɑːspɔːt kənˈtrəʊl/", "где паспортный контроль?", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["Is there a shuttle to the city?", "/ɪz ðeər ə ˈʃʌtəl tuː ðə ˈsɪti/", "есть трансфер в город?", "ФРАЗЫ · АЭРОПОРТ И ПЕРЕЛЁТ", "Фразы"],
+["I'm looking for a flat to rent", "/aɪm ˈlʊkɪŋ fɔːr ə flæt tuː rent/", "я ищу квартиру в аренду", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["How much is the rent?", "/haʊ mʌtʃ ɪz ðə rent/", "сколько стоит аренда?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["Are bills included?", "/ɑː bɪlz ɪnˈkluːdɪd/", "коммуналка включена?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["Is there a deposit?", "/ɪz ðeər ə dɪˈpɒzɪt/", "есть залог?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["Can I see the flat?", "/kæn aɪ siː ðə flæt/", "можно посмотреть квартиру?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["Is it furnished?", "/ɪz ɪt ˈfɜːnɪʃt/", "она с мебелью?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["When can I move in?", "/wen kæn aɪ muːv ɪn/", "когда можно заселиться?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["How long is the contract?", "/haʊ lɒŋ ɪz ðə ˈkɒntrækt/", "на какой срок договор?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["Are pets allowed?", "/ɑː pets əˈlaʊd/", "можно с животными?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["The heating doesn't work", "/ðə ˈhiːtɪŋ ˈdʌzənt wɜːk/", "отопление не работает", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["There's a leak in the bathroom", "/ðeəz ə liːk ɪn ðə ˈbɑːθruːm/", "в ванной течёт", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["Can you fix it?", "/kæn juː fɪks ɪt/", "вы можете это починить?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["When is the rent due?", "/wen ɪz ðə rent djuː/", "когда платить за аренду?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["Who is the landlord?", "/huː ɪz ðə ˈlændlɔːd/", "кто арендодатель?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["Is the neighbourhood safe?", "/ɪz ðə ˈneɪbəhʊd seɪf/", "район безопасный?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["Are there any extra costs?", "/ɑː ðeər ˈeni ˈekstrə kɒsts/", "есть дополнительные расходы?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["The Wi-Fi isn't working", "/ðə ˈwaɪfaɪ ˈɪzənt ˈwɜːkɪŋ/", "вай-фай не работает", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["Could you lower the price?", "/kʊd juː ˈləʊə ðə praɪs/", "можно снизить цену?", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["Here is the key", "/hɪər ɪz ðə kiː/", "вот ключ", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["Sign here please", "/saɪn hɪə pliːz/", "распишитесь здесь, пожалуйста", "ФРАЗЫ · АРЕНДА ЖИЛЬЯ", "Фразы"],
+["A table for two please", "/ə ˈteɪbəl fɔː tuː pliːz/", "столик на двоих, пожалуйста", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["Do you have a table free?", "/duː juː hæv ə ˈteɪbəl friː/", "есть свободный столик?", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["Can I see the menu?", "/kæn aɪ siː ðə ˈmenjuː/", "можно меню?", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["What do you recommend?", "/wɒt duː juː ˌrekəˈmend/", "что посоветуете?", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["I'll have the same", "/aɪl hæv ðə seɪm/", "мне то же самое", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["Is this dish spicy?", "/ɪz ðɪs dɪʃ ˈspaɪsi/", "это блюдо острое?", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["I'm allergic to nuts", "/aɪm əˈlɜːdʒɪk tuː nʌts/", "у меня аллергия на орехи", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["Can I have it without onions?", "/kæn aɪ hæv ɪt wɪˈðaʊt ˈʌnjənz/", "можно без лука?", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["This isn't what I ordered", "/ðɪs ˈɪzənt wɒt aɪ ˈɔːdəd/", "это не то, что я заказывал(а)", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["The food is cold", "/ðə fuːd ɪz kəʊld/", "еда холодная", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["It was delicious", "/ɪt wɒz dɪˈlɪʃəs/", "было очень вкусно", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["Can we have the bill?", "/kæn wiː hæv ðə bɪl/", "счёт, пожалуйста", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["Is service included?", "/ɪz ˈsɜːvɪs ɪnˈkluːdɪd/", "чаевые включены в счёт?", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["Can we split the bill?", "/kæn wiː splɪt ðə bɪl/", "можно счёт пополам?", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["One coffee to go please", "/wʌn ˈkɒfi tuː ɡəʊ pliːz/", "один кофе с собой, пожалуйста", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["Can we sit outside?", "/kæn wiː sɪt aʊtˈsaɪd/", "можно сесть на улице?", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["Enjoy your meal", "/ɪnˈdʒɔɪ jɔː miːl/", "приятного аппетита", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["Could I get a receipt?", "/kʊd aɪ ɡet ə rɪˈsiːt/", "можно чек?", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["I'm just looking thanks", "/aɪm dʒʌst ˈlʊkɪŋ θæŋks/", "я просто смотрю, спасибо", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["Could we get some water?", "/kʊd wiː ɡet sʌm ˈwɔːtə/", "можно нам воды?", "ФРАЗЫ · КАФЕ И РЕСТОРАН", "Фразы"],
+["This is my son", "/ðɪs ɪz maɪ sʌn/", "это мой сын", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["He is three years old", "/hiː ɪz θriː jɪəz əʊld/", "ему три года", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["What time does school start?", "/wɒt taɪm dʌz skuːl stɑːt/", "во сколько начинается школа?", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["What time can I pick him up?", "/wɒt taɪm kæn aɪ pɪk hɪm ʌp/", "во сколько его забирать?", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["Did she eat well today?", "/dɪd ʃiː iːt wel təˈdeɪ/", "она сегодня хорошо поела?", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["He didn't sleep at nap time", "/hiː ˈdɪdənt sliːp ət næp taɪm/", "он не спал в тихий час", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["She has a fever", "/ʃiː hæz ə ˈfiːvə/", "у неё температура", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["Please call me if anything happens", "/pliːz kɔːl miː ɪf ˈeniθɪŋ ˈhæpənz/", "позвоните мне, если что-то случится", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["He is a bit shy", "/hiː ɪz ə bɪt ʃaɪ/", "он немного стеснительный", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["He is allergic to milk", "/hiː ɪz əˈlɜːdʒɪk tuː mɪlk/", "у него аллергия на молоко", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["How was he today?", "/haʊ wɒz hiː təˈdeɪ/", "как он сегодня?", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["Did she make friends?", "/dɪd ʃiː meɪk frendz/", "она с кем-нибудь подружилась?", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["He forgot his jacket", "/hiː fəˈɡɒt hɪz ˈdʒækɪt/", "он забыл куртку", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["Please help him wash his hands", "/pliːz help hɪm wɒʃ hɪz hændz/", "помогите ему помыть руки", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["He needs a nap", "/hiː niːdz ə næp/", "ему нужно поспать", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["Thank you for looking after him", "/ˈθæŋk juː fɔː ˈlʊkɪŋ ˈɑːftə hɪm/", "спасибо, что присмотрели за ним", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["Say goodbye to the teacher", "/seɪ ɡʊdˈbaɪ tuː ðə ˈtiːtʃə/", "попрощайся с воспитателем", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["Does he need to bring lunch?", "/dʌz hiː niːd tuː brɪŋ lʌntʃ/", "ему нужно приносить обед?", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["She is a bit tired today", "/ʃiː ɪz ə bɪt ˈtaɪəd təˈdeɪ/", "она сегодня немного устала", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["Be good okay?", "/biː ɡʊd əʊˈkeɪ/", "веди себя хорошо, ладно?", "ФРАЗЫ · ШКОЛА И САДИК (С РЕБЁНКОМ)", "Фразы"],
+["Excuse me can you help me?", "/ɪkˈskjuːz miː kæn juː help miː/", "извините, вы можете помочь?", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["How do I get to the station?", "/haʊ duː aɪ ɡet tuː ðə ˈsteɪʃən/", "как пройти к вокзалу?", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["Go straight and turn left", "/ɡəʊ streɪt ænd tɜːn left/", "идите прямо и поверните налево", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["It's just around the corner", "/ɪts dʒʌst əˈraʊnd ðə ˈkɔːnə/", "это сразу за углом", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["What's your name?", "/wɒts jɔː neɪm/", "как тебя зовут?", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["Where are you from?", "/weər ɑː juː frɒm/", "ты откуда?", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["How long have you been here?", "/haʊ lɒŋ hæv juː biːn hɪə/", "ты давно здесь?", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["Do you live nearby?", "/duː juː lɪv ˈnɪəbaɪ/", "ты живёшь поблизости?", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["Can I add you?", "/kæn aɪ æd juː/", "можно добавить тебя (в соцсетях)?", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["It was nice talking to you", "/ɪt wɒz naɪs ˈtɔːkɪŋ tuː juː/", "было приятно пообщаться", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["Do you have the time?", "/duː juː hæv ðə taɪm/", "подскажете время?", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["I'm a bit lost", "/aɪm ə bɪt lɒst/", "я немного заблудился(ась)", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["Which way is the centre?", "/wɪtʃ weɪ ɪz ðə ˈsentə/", "в какую сторону центр?", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["Take care", "/teɪk keə/", "береги себя", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["See you around", "/siː juː əˈraʊnd/", "ещё увидимся", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["Have a good one", "/hæv ə ɡʊd wʌn/", "хорошего дня (разг.)", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["Sorry I'm in a hurry", "/ˈsɒri aɪm ɪn ə ˈhʌri/", "извини, я спешу", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["Can you take a photo of us?", "/kæn juː teɪk ə ˈfəʊtəʊ ɒv ʌs/", "сфотографируете нас?", "ФРАЗЫ · УЛИЦА И ЗНАКОМСТВО", "Фразы"],
+["What does it look like?", "/wɒt dʌz ɪt lʊk laɪk/", "как оно выглядит?", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["It's round and red", "/ɪts raʊnd ænd red/", "оно круглое и красное", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["It's about this big", "/ɪts əˈbaʊt ðɪs bɪɡ/", "примерно вот такого размера", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["He is tall and thin", "/hiː ɪz tɔːl ænd θɪn/", "он высокий и худой", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["She has long dark hair", "/ʃiː hæz lɒŋ dɑːk heə/", "у неё длинные тёмные волосы", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["It's made of wood", "/ɪts meɪd ɒv wʊd/", "это из дерева", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["It looks like a cat", "/ɪt lʊks laɪk ə kæt/", "похоже на кошку", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["It feels soft", "/ɪt fiːlz sɒft/", "на ощупь мягкое", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["It's heavier than it looks", "/ɪts ˈheviə ðæn ɪt lʊks/", "оно тяжелее, чем кажется", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["He looks tired", "/hiː lʊks ˈtaɪəd/", "он выглядит уставшим", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["It's kind of strange", "/ɪts kaɪnd ɒv streɪndʒ/", "это как-то странно", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["It's hard to explain", "/ɪts hɑːd tuː ɪkˈspleɪn/", "это трудно объяснить", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["What colour is it?", "/wɒt ˈkʌlər ɪz ɪt/", "какого оно цвета?", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["It smells great", "/ɪt smelz ɡreɪt/", "оно классно пахнет", "ФРАЗЫ · ОПИСАНИЕ", "Фразы"],
+["Did you hear the news?", "/dɪd juː hɪə ðə njuːz/", "ты слышал(а) новость?", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["What's on the news?", "/wɒts ɒn ðə njuːz/", "что там в новостях?", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["Prices are going up", "/ˈpraɪsɪz ɑː ˈɡəʊɪŋ ʌp/", "цены растут", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["What's the weather like today?", "/wɒts ðə ˈweðə laɪk təˈdeɪ/", "какая сегодня погода?", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["It's going to rain later", "/ɪts ˈɡəʊɪŋ tuː reɪn ˈleɪtə/", "позже пойдёт дождь", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["Take an umbrella just in case", "/teɪk ən ʌmˈbrelə dʒʌst ɪn keɪs/", "возьми зонт на всякий случай", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["It's freezing outside", "/ɪts ˈfriːzɪŋ aʊtˈsaɪd/", "на улице очень холодно", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["It's boiling today", "/ɪts ˈbɔɪlɪŋ təˈdeɪ/", "сегодня жара", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["The roads are icy", "/ðə rəʊdz ɑːr ˈaɪsi/", "дороги обледенели", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["There's a storm coming", "/ðeəz ə stɔːm ˈkʌmɪŋ/", "надвигается буря", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["The sun is finally out", "/ðə sʌn ɪz ˈfaɪnəli aʊt/", "наконец-то вышло солнце", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["What's the forecast?", "/wɒts ðə ˈfɔːkɑːst/", "какой прогноз погоды?", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["It might snow tonight", "/ɪt maɪt snəʊ təˈnaɪt/", "ночью может пойти снег", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["It's cloudy but warm", "/ɪts ˈklaʊdi bʌt wɔːm/", "облачно, но тепло", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["There's been an accident", "/ðeəz biːn ən ˈæksɪdənt/", "произошла авария", "ФРАЗЫ · НОВОСТИ И ПОГОДА", "Фразы"],
+["Call the police!", "/kɔːl ðə pəˈliːs/", "Вызовите полицию!", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["Call an ambulance!", "/kɔːl ən ˈæmbjələns/", "Вызовите скорую!", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["Someone robbed me", "/ˈsʌmwʌn rɒbd miː/", "меня ограбили", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["Stop! Thief!", "/stɒp θiːf/", "Стой! Вор!", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["He took my bag", "/hiː tʊk maɪ bæɡ/", "он забрал мою сумку", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["My wallet was stolen", "/maɪ ˈwɒlɪt wɒz ˈstəʊlən/", "у меня украли кошелёк", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["My phone was stolen", "/maɪ fəʊn wɒz ˈstəʊlən/", "у меня украли телефон", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["I want to report a theft", "/aɪ wɒnt tuː rɪˈpɔːt ə θeft/", "я хочу заявить о краже", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["Leave me alone!", "/liːv miː əˈləʊn/", "Оставьте меня в покое!", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["Don't touch me!", "/dəʊnt tʌtʃ miː/", "Не трогайте меня!", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["I feel unsafe here", "/aɪ fiːl ʌnˈseɪf hɪə/", "мне здесь небезопасно", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["I'm scared", "/aɪm skeəd/", "мне страшно", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["Where is the nearest police station?", "/weər ɪz ðə ˈnɪərɪst pəˈliːs ˈsteɪʃən/", "где ближайший полицейский участок?", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["I lost my passport", "/aɪ lɒst maɪ ˈpɑːspɔːt/", "я потерял(а) паспорт", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["I need to contact my embassy", "/aɪ niːd tuː ˈkɒntækt maɪ ˈembəsi/", "мне нужно связаться с посольством", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["Someone is following me", "/ˈsʌmwʌn ɪz ˈfɒləʊɪŋ miː/", "за мной кто-то идёт", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["There's a fire!", "/ðeəz ə ˈfaɪə/", "Пожар!", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["It's an emergency", "/ɪts ən ɪˈmɜːdʒənsi/", "это чрезвычайная ситуация", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["Please hurry", "/pliːz ˈhʌri/", "пожалуйста, скорее", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["I didn't do anything", "/aɪ ˈdɪdənt duː ˈeniθɪŋ/", "я ничего не делал(а)", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
+["Can you help me please?", "/kæn juː help miː pliːz/", "помогите мне, пожалуйста", "ФРАЗЫ · ОПАСНОСТЬ · ПОЛИЦИЯ · ГРАБЁЖ", "Фразы"],
 ["see / sea", "/siː/", "видеть / море", "ОМОФОНЫ (слова, звучащие одинаково)", "Омофоны"],
 ["be / bee", "/biː/", "быть / пчела", "ОМОФОНЫ (слова, звучащие одинаково)", "Омофоны"],
 ["flour / flower", "/ˈflaʊə/", "мука / цветок", "ОМОФОНЫ (слова, звучащие одинаково)", "Омофоны"],
@@ -6238,8 +6388,8 @@ function setTab(t){tab=t;document.querySelectorAll('.tab').forEach(b=>b.classLis
   if(t==='quiz')quizShown=false;
   if(t==='flip'||t==='quiz'||t==='type')idx=Math.min(idx,order.length);render()}
 function setDir(d){dir=d;idx=0;render()}
-function learnPile(p){if(!levelBase().some(c=>c.pile===p)){alert('Колода «'+PILE_RU[p]+'» на этом уровне пока пуста.');return;}
-  deck='__'+p+'__';applyDeck();setTab('flip');}
+function learnPile(p){if(!all.some(c=>c.pile===p)){alert('Колода «'+PILE_RU[p]+'» пока пуста.');return;}
+  lvl='__all__';deck='__'+p+'__';applyDeck();setTab('flip');}
 function frontText(c){return dir==='en'?c.en:c.ru}
 function backText(c){return dir==='en'?c.ru:c.en}
 function fullBack(c){return dir==='en'?(c.tr+'  '+c.ru):(c.en+'  '+c.tr)}
@@ -6299,7 +6449,7 @@ function render(){head();renderLevelbar();save();const s=document.getElementById
   } else {
     window._ans=backText(c);
     s.innerHTML=`<div class="q">Напечатайте перевод:</div><div class="qword">${frontText(c)}</div>
-      ${dir==='en'?`<div style="text-align:center;color:#e9d6a3;font-style:italic">${c.tr}</div>`:''}${SAY}
+      ${dir==='en'?`<div style="text-align:center;color:#f0dca8;font-size:21px;letter-spacing:.4px">${c.tr}</div>`:''}${SAY}
       <input id="inp" type="text" placeholder="${dir==='en'?'введите перевод на русском':'type the English word'}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
       <button class="primary" data-act="check">Проверить</button><div class="msg" id="msg"></div>
       <div class="tip">Режим печати — самый сильный для памяти: мозг работает <b>активно</b>.</div>`;
@@ -6333,7 +6483,7 @@ function renderSettings(s){
   const themes=[...new Set(all.map(c=>c.theme))];loadVoices();
   const enV=VOICES.filter(v=>/^en/i.test((v.lang||'').replace('_','-')));const vlist=enV.length?enV:VOICES;
   const enWarn=enV.length?'':'<div class="note" style="text-align:left;color:#e2a19c">⚠ Английский голос не найден. Открой в Chrome или установи английский голос в настройках телефона.</div>';
-  const lc={A1:all.filter(c=>c.lvl==='A1').length,A2:all.filter(c=>c.lvl==='A2').length,B1:all.filter(c=>c.lvl==='B1').length,B2:all.filter(c=>c.lvl==='B2').length,H:all.filter(c=>c.lvl==='Омофоны').length};
+  const lc={A1:all.filter(c=>c.lvl==='A1').length,A2:all.filter(c=>c.lvl==='A2').length,B1:all.filter(c=>c.lvl==='B1').length,B2:all.filter(c=>c.lvl==='B2').length,F:all.filter(c=>c.lvl==='Фразы').length,H:all.filter(c=>c.lvl==='Омофоны').length};
   s.innerHTML=`
     <div class="sect">Уровень</div>
     <div class="seg">
@@ -6342,6 +6492,7 @@ function renderSettings(s){
       <button class="${lvl==='A2'?'on':''}" data-act="lvl" data-l="A2">A2 (${lc.A2})</button>
       <button class="${lvl==='B1'?'on':''}" data-act="lvl" data-l="B1">B1 (${lc.B1})</button>
       <button class="${lvl==='B2'?'on':''}" data-act="lvl" data-l="B2">B2 (${lc.B2})</button>
+      <button class="${lvl==='Фразы'?'on':''}" data-act="lvl" data-l="Фразы">Фразы (${lc.F})</button>
       <button class="${lvl==='Омофоны'?'on':''}" data-act="lvl" data-l="Омофоны">Омоф. (${lc.H})</button></div>
     <div class="sect">Направление</div>
     <div class="seg"><button class="${dir==='en'?'on':''}" data-act="dir" data-d="en">EN → RU</button>
@@ -6406,7 +6557,7 @@ document.getElementById('screen').addEventListener('click',e=>{
 });
 function renderLevelbar(){const lb=document.getElementById('levelbar');
   const show=(tab==='flip'||tab==='quiz'||tab==='type');lb.style.display=show?'flex':'none';if(!show)return;
-  const opts=[['__all__','Все'],['A1','A1'],['A2','A2'],['B1','B1'],['B2','B2'],['Омофоны','Омоф.']];
+  const opts=[['__all__','Все'],['A1','A1'],['A2','A2'],['B1','B1'],['B2','B2'],['Фразы','Фразы'],['Омофоны','Омоф.']];
   lb.innerHTML=opts.map(([v,t])=>`<button class="${lvl===v?'on':''}" data-act="lvl" data-l="${v}">${t}</button>`).join('');}
 function levelBase(){return lvl==='__all__'?all:all.filter(c=>c.lvl===lvl);}
 function renderDeckbar(){const db=document.getElementById('deckbar');
